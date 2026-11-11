@@ -1419,7 +1419,7 @@ const HELPERS = [
   { id: 'marchande', n: 'Lina la marchande', d: 'Vend le surplus quand la grange déborde', icon: 'market', lvl: 7, cost: 8000 },
   { id: 'artisan', n: "Hugo l'artisan", d: 'Vide les ateliers et relance la dernière recette', icon: 'windmill', lvl: 8, cost: 15000 },
 ];
-const GAME_VERSION = '1.0', BUILD_ID = 'ad5ba43e40';
+const GAME_VERSION = '1.0', BUILD_ID = 'b80cb6eda5';
 const GEM_OFFERS = [[10, 1, ''], [30, 2.7, '-10 %'], [80, 6.4, '-20 %']];
 const DAILY = [{ c: 200 }, { g: 10 }, { c: 600 }, { boost: 'grow', min: 10 }, { g: 20 }, { c: 2000 }, { g: 50, c: 4000, chest: true }];
 const WHEEL = [ // p = chance en %, la somme fait 100
@@ -1548,24 +1548,33 @@ function showUpdate(j) {
   const el = document.createElement('div'); el.id = 'upd';
   const notes = Array.isArray(j.notes) && j.notes.length ? `<ul>${j.notes.slice(0, 4).map(n => `<li>${esc(String(n))}</li>`).join('')}</ul>` : '';
   el.innerHTML = `<div class="upd-box"><div class="upd-ic">${ICONS.app ? ic('app') : ic('u_star')}</div><b class="disp">Mise à jour nécessaire</b>
-    <span>Une nouvelle version de Fermidor est disponible. Ta progression est bien sauvegardée : rien ne sera perdu.</span>${notes}
+    <span>Une nouvelle version de Fermidor vient de sortir. Le jeu va redémarrer pour l'installer. Ta progression est sauvegardée : rien ne sera perdu.</span>${notes}
     <button class="btn gold wide" id="updGo">Mettre à jour</button></div>`;
   document.body.appendChild(el);
   try { sfx('level'); } catch (e) { }
-  el.querySelector('#updGo').onclick = async e => {
-    const b = e.currentTarget; b.disabled = true; b.textContent = 'Mise à jour…';
+  try { started = false; } catch (e) { } // le jeu se fige : plus rien ne bouge derrière la fenêtre
+  window.addEventListener('keydown', ev => { if (document.getElementById('upd')) { ev.stopImmediatePropagation(); ev.preventDefault(); } }, true);
+  // redémarrage automatique après 15 s, même si le joueur ne touche à rien
+  const go = el.querySelector('#updGo'); let left = 15; go.textContent = `Mettre à jour (${left})`;
+  const cd = setInterval(() => { left--; if (left <= 0) { clearInterval(cd); go.click(); } else if (!go.disabled) go.textContent = `Mettre à jour (${left})`; }, 1000);
+  go.onclick = async e => {
+    clearInterval(cd); const b = go; if (b.disabled) return; b.disabled = true; b.textContent = 'Redémarrage…';
     try { save(true); } catch (er) { }
+    const within = (pr, ms) => Promise.race([Promise.resolve(pr).catch(() => { }), new Promise(r => setTimeout(r, ms))]);
+    const q = new URLSearchParams(location.search); q.set('v', j.build); const url = location.pathname + '?' + q.toString();
+    setTimeout(() => location.replace(url), 4000); // filet de sécurité : on redémarre quoi qu'il arrive
     await new Promise(r => setTimeout(r, 500));
-    try { const ks = await caches.keys(); await Promise.all(ks.map(k => caches.delete(k))); } catch (er) { }
-    try { const rg = await navigator.serviceWorker.getRegistration(); if (rg) await rg.update(); } catch (er) { }
-    const q = new URLSearchParams(location.search); q.set('v', j.build);
+    try { await within(caches.keys().then(ks => Promise.all(ks.map(k => caches.delete(k)))), 1500); } catch (er) { }
+    try { await within(navigator.serviceWorker.getRegistration().then(rg => rg && rg.update()), 1500); } catch (er) { }
     location.replace(location.pathname + '?' + q.toString());
   };
 }
 try { const q = new URLSearchParams(location.search); if (q.has('v')) { q.delete('v'); const qs = q.toString(); history.replaceState(null, '', location.pathname + (qs ? '?' + qs : '') + location.hash); } } catch (e) { }
 setTimeout(checkUpdate, 4000);
-setInterval(checkUpdate, 3 * 60 * 1000);
+setInterval(checkUpdate, 60 * 1000);
 document.addEventListener('visibilitychange', () => { if (!document.hidden) checkUpdate(); });
+window.addEventListener('focus', () => checkUpdate());
+window.addEventListener('online', () => checkUpdate());
 // copie de secours dans IndexedDB (survit mieux que localStorage seul)
 const IDB = (() => {
   let dbp = null;
