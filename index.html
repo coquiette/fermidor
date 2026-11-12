@@ -1218,6 +1218,74 @@ html.dark .paychk{background:rgba(255,255,255,.06)}
 .gstats b{color:var(--ink)}
 .card.gardup{border-color:var(--honey-dk)}
 html.dark .gstats span{background:rgba(255,255,255,.08)}
+/* ---------- route des récompenses + parrainage ---------- */
+.rdhead{display:flex;gap:12px;align-items:center;padding:12px;border-radius:18px;background:linear-gradient(120deg,#fff3c4,#ffe08a);border:2.5px solid var(--honey-dk);box-shadow:0 3px 0 var(--honey-dk)}
+.rd-star{position:relative;width:62px;height:62px;flex:0 0 auto;display:grid;place-items:center}
+.rd-star img.ic{position:absolute;inset:0;width:100%;height:100%;filter:drop-shadow(0 3px 0 rgba(0,0,0,.2))}
+.rd-star b{position:relative;font-family:var(--f-display);font-weight:400;font-size:22px;color:#fff;text-shadow:0 2px 0 #b06a08,0 0 3px #3a2618;padding-top:3px}
+.rd-prog{flex:1;min-width:0;display:flex;flex-direction:column;gap:5px}
+.rd-prog span{font-size:14px;font-weight:800;color:#3a2618}.rd-prog small{font-size:11px;font-weight:800;color:#7a5a2c;line-height:1.3}
+.rd-prog .bar2{height:14px}.rd-prog .bar2 i{background:linear-gradient(#ffe27a,#e0a10f)}
+.rdlist{display:flex;flex-direction:column;gap:7px;position:relative}
+.rd{display:grid;grid-template-columns:30px 40px 1fr auto;align-items:center;gap:9px;padding:7px 10px 7px 7px;border-radius:14px;background:#fffaf0;border:2.5px solid var(--line);font-size:14px;color:var(--ink)}
+.rd b{font-weight:800;min-width:0;line-height:1.2}
+.rd-n{width:30px;height:30px;border-radius:50%;display:grid;place-items:center;background:var(--paper-2);font-family:var(--f-display);font-size:14px;color:var(--ink-2)}
+.rd-ic{width:40px;height:40px;border-radius:12px;display:grid;place-items:center;background:rgba(0,0,0,.06)}.rd-ic img.ic{width:30px;height:30px}
+.rd.ready{border-color:var(--honey-dk);background:linear-gradient(90deg,#fff6d8,#ffe7a3);box-shadow:0 0 0 3px rgba(255,197,61,.35)}
+.rd.ready .rd-n{background:var(--honey);color:#3a2618}
+.rd.done{opacity:.62}.rd.done .rd-n{background:#bfe6a8;color:#2e7a31}
+.rd.big{border-style:dashed;border-color:#b06ad8}
+.boost.streak{border-color:#ff7a3d;background:linear-gradient(90deg,rgba(150,50,10,.92),rgba(58,38,24,.88));animation:pulse 1.2s ease-in-out infinite}
+.invite{display:flex;align-items:center;gap:10px;width:100%;padding:10px 12px;border-radius:18px;font:inherit;text-align:left;color:#fff;cursor:pointer;background:linear-gradient(110deg,#3ba7f0,#7b5cf0);border:3px solid #2a3f9a;box-shadow:0 4px 0 #2a3f9a,0 8px 14px rgba(0,0,0,.18)}
+.invite img.ic{width:48px;height:48px;filter:drop-shadow(0 3px 0 rgba(0,0,0,.25))}
+.invite span{flex:1;display:flex;flex-direction:column;gap:2px;min-width:0}.invite b{font-family:var(--f-display);font-weight:400;font-size:19px;text-shadow:0 2px 0 rgba(0,0,0,.25)}.invite small{font-size:12px;font-weight:800;opacity:.95;line-height:1.25}
+.invite i{font-style:normal;font-family:var(--f-display);font-size:28px}
+.invite:active{transform:translateY(3px);box-shadow:0 1px 0 #2a3f9a}
+.refcode{display:inline-block;margin-top:5px;padding:4px 12px;border-radius:10px;background:#3a2618;color:#ffe27a;font:900 17px/1.3 ui-monospace,Menlo,Consolas,monospace;letter-spacing:2px;-webkit-user-select:text;user-select:text}
+.mrow2{display:grid;grid-template-columns:1fr 1fr;gap:8px}.mrow2 .btn{min-height:48px}
+html.dark .rd{background:#33271d;border-color:#5e4430}html.dark .rd.ready{background:linear-gradient(90deg,#4a3a12,#6b5212)}html.dark .rd-ic{background:rgba(255,255,255,.07)}
+/* ---------- v10 : boutons et fenêtres plus soignés ---------- */
+#modal{background:radial-gradient(circle at 50% 42%,rgba(70,44,22,.6),rgba(16,9,4,.88))}
+.mbox{background:linear-gradient(#fffdf6,#fbeed3);border-radius:28px;box-shadow:0 7px 0 var(--wood-dk),0 24px 48px rgba(0,0,0,.5),inset 0 0 0 3px rgba(255,255,255,.8),inset 0 0 0 5px rgba(224,161,15,.3);animation:mboxIn .4s cubic-bezier(.2,1.5,.4,1) both}
+@keyframes mboxIn{0%{opacity:0;transform:translateY(28px) scale(.84)}100%{opacity:1;transform:none}}
+.ribbon{overflow:hidden;border-radius:16px;text-shadow:0 2px 0 rgba(0,0,0,.28);box-shadow:0 4px 0 var(--berry-dk),0 10px 18px rgba(0,0,0,.28),inset 0 2px 0 rgba(255,255,255,.45)}
+.ribbon.green{box-shadow:0 4px 0 var(--leaf-dk),0 10px 18px rgba(0,0,0,.28),inset 0 2px 0 rgba(255,255,255,.45)}
+.ribbon.gold{box-shadow:0 4px 0 var(--honey-dk),0 10px 18px rgba(0,0,0,.28),inset 0 2px 0 rgba(255,255,255,.55)}
+.ribbon.blue{box-shadow:0 4px 0 var(--sky-dk),0 10px 18px rgba(0,0,0,.28),inset 0 2px 0 rgba(255,255,255,.45)}
+.ribbon::after,.btn.gold::after,.sl-play.big::after,.gp-price::after{content:"";position:absolute;top:0;bottom:0;left:-60%;width:38%;background:linear-gradient(100deg,rgba(255,255,255,0),rgba(255,255,255,.55),rgba(255,255,255,0));transform:skewX(-18deg);animation:shine 3.4s ease-in-out infinite;pointer-events:none}
+@keyframes shine{0%,62%{left:-60%}100%{left:130%}}
+.btn{position:relative;overflow:hidden;transition:transform .08s,filter .12s}
+.btn.gold,.gp-price{position:relative;overflow:hidden}
+@media (hover:hover){.btn:hover{filter:brightness(1.07)}.card:hover{transform:translateY(-1px)}}
+.rewards .rw{animation:rwIn .45s cubic-bezier(.2,1.6,.4,1) both}.rewards .rw:nth-child(2){animation-delay:.08s}.rewards .rw:nth-child(3){animation-delay:.16s}.rewards .rw:nth-child(4){animation-delay:.24s}
+@keyframes rwIn{0%{opacity:0;transform:scale(.4) translateY(10px)}100%{opacity:1;transform:none}}
+#scrim{background:linear-gradient(rgba(16,9,4,.35),rgba(16,9,4,.72))}
+.sheet{box-shadow:0 -8px 0 rgba(58,38,24,.18),0 -18px 40px rgba(0,0,0,.35)}
+.sh-head{background:repeating-linear-gradient(90deg,transparent 0 46px,rgba(0,0,0,.06) 46px 48px),linear-gradient(#e09a58,#b8743e 60%,#a5642f);box-shadow:inset 0 3px 0 rgba(255,255,255,.28),inset 0 -6px 10px rgba(0,0,0,.12)}
+.sh-head img{filter:drop-shadow(0 3px 0 rgba(0,0,0,.25))}
+.close{border-radius:14px;background:linear-gradient(#ff8890,var(--berry));box-shadow:0 3px 0 var(--berry-dk),inset 0 2px 0 rgba(255,255,255,.4);transition:transform .08s}
+.close:active{transform:translateY(2px) scale(.94)}
+.card{border-radius:18px;background:linear-gradient(#fffdf6,#fff6e2);box-shadow:0 3px 0 var(--line),0 6px 12px rgba(58,38,24,.08),inset 0 1px 0 #fff;transition:transform .12s}
+.card.hi{background:linear-gradient(#fff9dc,#ffeeb0);box-shadow:0 3px 0 var(--honey-dk),0 6px 14px rgba(224,161,15,.25),inset 0 1px 0 #fff}
+.card .art{box-shadow:inset 0 -3px 0 rgba(0,0,0,.06),0 2px 0 rgba(255,255,255,.7)}
+.tile{border-radius:18px;background:linear-gradient(#fffdf6,#fff6e2);box-shadow:0 3px 0 var(--line),0 6px 12px rgba(58,38,24,.08),inset 0 1px 0 #fff}
+.tabs{border-radius:18px;padding:5px;box-shadow:inset 0 2px 4px rgba(58,38,24,.12)}
+.tabs button{border-radius:13px;transition:background .15s,color .15s}
+.tabs button.on{background:linear-gradient(#8fde6e,var(--leaf));color:#fff;text-shadow:0 1.5px 0 rgba(0,0,0,.3);box-shadow:0 3px 0 var(--leaf-dk),inset 0 2px 0 rgba(255,255,255,.35)}
+.sh-body h3{display:flex;align-items:center;gap:8px;font-size:18px}
+.lvlpip{padding:2px 9px;border-radius:999px;box-shadow:inset 0 -2px 0 rgba(0,0,0,.06)}
+.sideb .face,.dk .face{background:linear-gradient(#fffaf0,#f6dfb0);box-shadow:0 4px 0 var(--wood-dk),0 8px 14px rgba(0,0,0,.28),inset 0 2px 0 #fff}
+.sideb:active .face,.dk:active .face{transform:translateY(3px);box-shadow:0 1px 0 var(--wood-dk),inset 0 2px 0 #fff}
+.dot{box-shadow:0 2px 0 rgba(0,0,0,.25),0 0 0 2px #fff;animation:pulse 1.3s ease-in-out infinite}
+#toast{border-radius:16px;border:2px solid rgba(255,214,140,.5);box-shadow:0 6px 18px rgba(0,0,0,.35)}
+html.dark .mbox{background:linear-gradient(#33271d,#2b2119);box-shadow:0 7px 0 #1d120a,0 24px 48px rgba(0,0,0,.6),inset 0 0 0 3px rgba(255,255,255,.06),inset 0 0 0 5px rgba(224,161,15,.22)}
+html.dark .card,html.dark .tile{background:linear-gradient(#3a2d22,#33271d);box-shadow:0 3px 0 #1d120a,inset 0 1px 0 rgba(255,255,255,.06)}
+html.dark .card.hi{background:linear-gradient(#4a3a18,#3d3020);box-shadow:0 3px 0 #6b4e12,inset 0 1px 0 rgba(255,255,255,.08)}
+html.dark .tabs button.on{background:linear-gradient(#5fae4a,#3f8f2f);color:#fff}
+html.dark .sideb .face,html.dark .dk .face{background:linear-gradient(#fffaf0,#f6dfb0)}
+@media (prefers-reduced-motion:reduce){.ribbon::after,.btn.gold::after,.sl-play.big::after,.gp-price::after{animation:none;display:none}}
+#roadBtn{position:fixed;left:max(10px,env(safe-area-inset-left,0px));top:calc(env(safe-area-inset-top,0px) + 162px);z-index:12}
+@media (orientation:landscape) and (max-height:520px){#roadBtn{top:118px}}
 /* ---------- fenêtre d'orientation ---------- */
 #rotHint{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:200;display:none}
 </style>
@@ -1236,6 +1304,7 @@ html.dark .gstats span{background:rgba(255,255,255,.08)}
     <button class="sideb" data-open="wheel"><div class="face"><img class="ic" data-icon="u_wheel" alt=""></div><label class="out">Roue</label><span class="dot" id="dWheel" hidden>1</span></button>
     <button class="sideb" data-open="missions"><div class="face"><img class="ic" data-icon="board" alt=""></div><label class="out">Missions</label><span class="dot" id="dMiss" hidden>!</span></button>
     <button class="sideb" data-open="achievements"><div class="face"><img class="ic" data-icon="i_trophy" alt=""></div><label class="out">Succès</label><span class="dot" id="dAch" hidden>!</span></button>
+    <button class="sideb" id="roadBtn" data-open="road"><div class="face"><img class="ic" data-icon="i_chest" alt=""></div><label class="out">Route</label><span class="dot" id="dRoad" hidden>!</span></button>
     <div id="boosts"></div>
   </aside>
   <div id="isle" hidden><button id="isPrev" aria-label="Île précédente">‹</button><button id="isName" data-open="islands"><img class="ic" id="isIc" alt=""><span id="isTxt" class="out">Vallée Dorée</span></button><button id="isNext" aria-label="Île suivante">›</button></div>
@@ -1369,6 +1438,22 @@ const ITEMS = {
   crepe: { n: 'Crêpes au sirop', ic: 'i_crepe', p: 340, xp: 26 },
   marrons: { n: 'Marrons glacés', ic: 'i_marron', p: 760, xp: 45 },
   bonnet: { n: 'Bonnet en alpaga', ic: 'i_beanie', p: 960, xp: 52 },
+  // Oasis du Soleil
+  datte: { n: 'Dattes', ic: 'i_date', p: 230, xp: 18 },
+  orange: { n: 'Orange', ic: 'i_orange', p: 270, xp: 20 },
+  figue: { n: 'Figue', ic: 'i_fig', p: 330, xp: 23 },
+  laitchevre: { n: 'Lait de chèvre', ic: 'i_goatmilk', p: 520, xp: 32 },
+  jusorange: { n: "Jus d'orange", ic: 'i_orangejuice', p: 1150, xp: 60 },
+  makroud: { n: 'Gâteau aux dattes', ic: 'i_makroud', p: 1050, xp: 58 },
+  fromagechevre: { n: 'Fromage de chèvre', ic: 'i_goatcheese', p: 1500, xp: 75 },
+  // Volcan Ardent
+  cafe: { n: 'Café', ic: 'i_coffee', p: 420, xp: 27 },
+  grenade: { n: 'Grenade', ic: 'i_pomegranate', p: 500, xp: 30 },
+  dragon: { n: 'Fruit du dragon', ic: 'i_dragon', p: 620, xp: 35 },
+  oeuffeu: { n: 'Œuf de feu', ic: 'i_fireegg', p: 850, xp: 42 },
+  espresso: { n: 'Espresso', ic: 'i_espresso', p: 1800, xp: 85 },
+  sorbet: { n: 'Sorbet du dragon', ic: 'i_sorbet', p: 2100, xp: 95 },
+  omelette: { n: 'Omelette de feu', ic: 'i_omelette', p: 2500, xp: 110 },
 };
 const ITEM_ORDER = Object.keys(ITEMS);
 
@@ -1381,6 +1466,10 @@ const ISLANDS = [
     pal: { grass: '#82d65e', grass_dk: '#5fb848', sand: '#f8e6b3', sand_wet: '#ebcf92', path: '#f5e2ad', edge: '#dcc286' } },
   { id: 'pics', n: 'Pics Givrés', lvl: 18, cost: 350000, ox: 0, oz: -92, sx: 0.9, sz: 0.66, mini: 'mini_snow', d: 'Myrtilles, érables, alpagas et chalets de montagne.', show: ['myrtille', 'sirop', 'alpaga', 'crepe', 'bonnet'],
     pal: { grass: '#eef4fa', grass_dk: '#d2e0ec', sand: '#dfe8ef', sand_wet: '#c7d3dc', path: '#b7c7d8', edge: '#93a7bd' } },
+  { id: 'oasis', n: 'Oasis du Soleil', lvl: 22, cost: 1500000, ox: 66, oz: -92, sx: 0.85, sz: 0.66, mini: 'mini_desert', d: 'Dattiers, orangers, figuiers et chèvres du désert.', show: ['datte', 'orange', 'figue', 'jusorange', 'fromagechevre'],
+    pal: { grass: '#f0d48a', grass_dk: '#e2bf6e', sand: '#f7e3ae', sand_wet: '#e3c88a', path: '#fff3d2', edge: '#d3ae68' } },
+  { id: 'volcan', n: 'Volcan Ardent', lvl: 27, cost: 6000000, ox: -66, oz: -92, sx: 0.85, sz: 0.66, mini: 'mini_volcano', d: 'Café, grenades, fruits du dragon et poules de feu au pied du volcan.', show: ['cafe', 'grenade', 'dragon', 'espresso', 'omelette'],
+    pal: { grass: '#5d544f', grass_dk: '#48403c', sand: '#3d3633', sand_wet: '#2c2624', path: '#8d827b', edge: '#2c2624' } },
 ];
 const ISL = Object.fromEntries(ISLANDS.map(i => [i.id, i]));
 const islHW = I => 19.5 * I.sx, islHD = I => 31 * I.sz;
@@ -1406,6 +1495,12 @@ const TREES = [
   { id: 'myrtille', isl: 'pics', t: 90, seed: 8000, lvl: 18, m: 'tree_blueberry' },
   { id: 'chataigne', isl: 'pics', t: 160, seed: 12000, lvl: 19, m: 'tree_chestnut' },
   { id: 'sirop', isl: 'pics', t: 200, seed: 16000, lvl: 20, m: 'tree_maple' },
+  { id: 'datte', isl: 'oasis', t: 170, seed: 30000, lvl: 22, m: 'tree_date' },
+  { id: 'orange', isl: 'oasis', t: 190, seed: 42000, lvl: 23, m: 'tree_orange' },
+  { id: 'figue', isl: 'oasis', t: 230, seed: 60000, lvl: 24, m: 'tree_fig' },
+  { id: 'cafe', isl: 'volcan', t: 200, seed: 110000, lvl: 27, m: 'tree_coffee' },
+  { id: 'grenade', isl: 'volcan', t: 230, seed: 150000, lvl: 28, m: 'tree_pomegranate' },
+  { id: 'dragon', isl: 'volcan', t: 280, seed: 210000, lvl: 29, m: 'tree_dragon' },
 ];
 const TREE = Object.fromEntries(TREES.map(t => [t.id, t]));
 const TSLOT_REL = [[-1.7, -5.2], [1.7, -5.2], [-1.7, -0.6], [1.7, -0.6], [-5.1, -5.2], [5.1, -5.2], [-5.1, -0.6], [5.1, -0.6]];
@@ -1427,6 +1522,8 @@ const PENS = [
   { id: 'peche', isl: 'lagon', kind: 'static', n: 'Ponton de pêche', an: 'barque', anP: 'barques', animal: 'rowboat', product: 'poisson', feed: null, t: 75, lvl: 14, cost: 60000, aCost: 12000, sc: 0.95, float: true, ...xz(rel('lagon', -5.2, 8.8)),
     slots: [[-0.6, 7.0], [2.6, 6.4], [4.6, 8.8], [0.6, 10.0], [3.0, 11.2], [-1.4, 10.8]].map(([a, b]) => rel('lagon', a, b)) },
   { id: 'alpagas', isl: 'pics', kind: 'walk', n: 'Ferme des alpagas', an: 'alpaga', anP: 'alpagas', animal: 'alpaca', product: 'alpaga', feed: 'myrtille', t: 110, lvl: 19, cost: 250000, aCost: 50000, shed: 'shed_snow', sc: 1, ...xz(rel('pics', 0, 6.4)) },
+  { id: 'chevres', isl: 'oasis', kind: 'walk', n: 'Enclos des chèvres', an: 'chèvre', anP: 'chèvres', animal: 'goat', product: 'laitchevre', feed: 'datte', t: 120, lvl: 23, cost: 900000, aCost: 180000, shed: 'shed_goat', sc: 1.05, ...xz(rel('oasis', 0, 6.4)) },
+  { id: 'poulesfeu', isl: 'volcan', kind: 'walk', n: 'Nid des poules de feu', an: 'poule de feu', anP: 'poules de feu', animal: 'firehen', product: 'oeuffeu', feed: 'grenade', t: 130, lvl: 28, cost: 3000000, aCost: 600000, shed: 'coop_lava', sc: 1.3, ...xz(rel('volcan', 0, 6.4)) },
 ];
 function xz([x, z]) { return { x, z }; }
 const PEN = Object.fromEntries(PENS.map(p => [p.id, p]));
@@ -1443,6 +1540,10 @@ const WS = [
   { id: 'paillote', isl: 'lagon', n: 'Paillote', model: 'paillote', lvl: 15, cost: 160000, ...xz(rel('lagon', 4.6, -13)), rec: [{ o: 'smoothie', i: { banane: 2, fraise: 1 }, t: 60 }, { o: 'laitcoco', i: { coco: 2 }, t: 50 }, { o: 'poissongrille', i: { poisson: 2 }, t: 70, lvl: 16 }] },
   { id: 'chalet', isl: 'pics', n: 'Chalet des crêpes', model: 'chalet', lvl: 19, cost: 400000, ...xz(rel('pics', -4.6, -13)), rec: [{ o: 'crepe', i: { farine: 1, oeuf: 1, sirop: 1 }, t: 80 }, { o: 'marrons', i: { chataigne: 3, miel: 1 }, t: 100, lvl: 20 }] },
   { id: 'alpine', isl: 'pics', n: 'Atelier alpin', model: 'alpine', lvl: 20, cost: 550000, ...xz(rel('pics', 4.6, -13)), rec: [{ o: 'bonnet', i: { alpaga: 2 }, t: 120 }] },
+  { id: 'souk', isl: 'oasis', n: 'Bar à jus du souk', model: 'w_souk', lvl: 23, cost: 1600000, ...xz(rel('oasis', -4.6, -13)), rec: [{ o: 'jusorange', i: { orange: 3 }, t: 90 }, { o: 'makroud', i: { datte: 2, farine: 1, miel: 1 }, t: 120, lvl: 24 }] },
+  { id: 'fromagerie', isl: 'oasis', n: 'Fromagerie du désert', model: 'w_orient', lvl: 24, cost: 2200000, ...xz(rel('oasis', 4.6, -13)), rec: [{ o: 'fromagechevre', i: { laitchevre: 2 }, t: 130 }] },
+  { id: 'torrefacteur', isl: 'volcan', n: 'Torréfacteur', model: 'w_roaster', lvl: 28, cost: 7000000, ...xz(rel('volcan', -4.6, -13)), rec: [{ o: 'espresso', i: { cafe: 3 }, t: 110 }, { o: 'sorbet', i: { dragon: 2, sirop: 1 }, t: 140, lvl: 29 }] },
+  { id: 'cuisinelave', isl: 'volcan', n: 'Cuisine de lave', model: 'w_lava', lvl: 29, cost: 9000000, ...xz(rel('volcan', 4.6, -13)), rec: [{ o: 'omelette', i: { oeuffeu: 2, tomate: 1 }, t: 150 }] },
 ];
 const WSD = Object.fromEntries(WS.map(w => [w.id, w]));
 const UPG = [
@@ -1461,8 +1562,46 @@ const HELPERS = [
   { id: 'marchande', n: 'Lina la marchande', d: 'Vend le surplus quand la grange déborde', icon: 'market', lvl: 7, cost: 8000 },
   { id: 'artisan', n: "Hugo l'artisan", d: 'Vide les ateliers et relance la dernière recette', icon: 'windmill', lvl: 8, cost: 15000 },
 ];
-const GAME_VERSION = '1.0', BUILD_ID = '8e249a385d';
+const GAME_VERSION = '1.0', BUILD_ID = '67c34be5c7';
 const GEM_OFFERS = [[10, 1, ''], [30, 2.7, '-10 %'], [80, 6.4, '-20 %']];
+// ---------- route des récompenses : tout ce que tu fais remplit une jauge, chaque palier donne un cadeau ----------
+const ROAD_MAX = 40, roadNeed = k => 30 + 14 * k;
+function roadTier(p = S.road.pts) { let k = 0; while (p >= roadNeed(k) && k < 500) { p -= roadNeed(k); k++; } return { k, into: p, need: roadNeed(k) }; }
+function roadReward(i) { return i > ROAD_MAX ? { g: 10 } : i % 20 === 0 ? { legend: true, g: 30 } : i % 10 === 0 ? { g: 40, chest: true } : i % 5 === 0 ? { chest: true } : i % 3 === 0 ? { g: 6 + Math.floor(i / 4) } : i % 3 === 1 ? { c: 120 + i * 25 } : { boost: i % 2 ? 'grow' : 'sell', min: 10 }; }
+function roadLabel(r) { return r.legend ? ['u_star', "Vache d'or + " + r.g + ' gemmes'] : r.chest ? ['i_chest', r.g ? 'Grand coffre + ' + r.g + ' gemmes' : 'Coffre surprise'] : r.g ? ['i_gem', r.g + ' gemmes'] : r.c ? ['i_coin', fmt(Math.round(r.c * (1 + 0.25 * (L() - 1)))) + ' pièces'] : [r.boost === 'sell' ? 'i_coin' : 'crop_sprout', (r.boost === 'sell' ? 'Ventes ×2 · ' : 'Pousse ×2 · ') + r.min + ' min']; }
+function roadAdd(n) {
+  if (SIM || !S.road) return; const a = roadTier().k; S.road.pts += n; const b = roadTier().k;
+  if (b > a) { try { if (started) { toast('Route des récompenses : palier ' + b + ' atteint !'); sfx('goal'); bump('[data-open=road]'); } } catch (e) { } uiDirty = true; }
+}
+// ---------- parrainage ----------
+const newRefId = () => { const C = 'ABCDEFGHJKLMNPQRSTUVWXYZ23456789'; let r = ''; for (let i = 0; i < 7; i++) r += C[Math.floor(Math.random() * C.length)]; return r; };
+const refSig = (a, b) => hashStr('fermidor-parrain|' + a + '|' + b).toString(36).toUpperCase().padStart(5, '0').slice(0, 5);
+const refN = () => Math.min(10, (S.ref && S.ref.friends ? S.ref.friends.length : 0));
+const refLink = () => location.origin + location.pathname + '?parrain=' + S.ref.id;
+const REF_STEPS = [[1, { g: 100 }, '100 gemmes'], [3, { g: 300, chest: true }, '300 gemmes + coffre'], [5, { legend: true }, "Vache d'or légendaire"], [10, { g: 1000 }, '1 000 gemmes']];
+function refJoin(code, manual) {
+  code = String(code || '').trim().toUpperCase();
+  if (!/^[A-Z0-9]{7}$/.test(code)) { if (manual) { toast('Code parrain invalide'); sfx('error'); } return false; }
+  if (S.ref.by) { if (manual) toast('Tu as déjà un parrain'); return false; }
+  if (code === S.ref.id) { if (manual) { toast("C'est ton propre code !"); sfx('error'); } return false; }
+  if (S.level > 3) { if (manual) toast('Le code parrain se saisit avant le niveau 4'); return false; }
+  S.ref.by = code; addGems(50, 'parrainage'); addCoins(2000, 'parrainage'); addBoost('grow', 30); sfx('chest');
+  showModal({ ribbon: 'Bienvenue !', rcls: 'green', art: 'i_chest', title: 'Invité par un ami', text: 'Voici ton cadeau de bienvenue. Au niveau 4, envoie ton code merci à ton ami pour lui offrir sa récompense (Boutique → Inviter des amis).', rewards: [{ ic: 'i_gem', t: '+50' }, { ic: 'i_coin', t: '+2 000' }, { ic: 'crop_sprout', t: 'Turbo 30 min' }] });
+  save(true); uiDirty = true; return true;
+}
+function applyReferral() { const code = lsGet('fermidor_parrain'); if (!code) return; lsDel('fermidor_parrain'); refJoin(code, false); }
+function refThank(code) {
+  const m = /^([A-Z0-9]{7})-([A-Z0-9]{5})$/.exec(String(code || '').trim().toUpperCase().replace(/\s+/g, ''));
+  if (!m) { toast('Code merci invalide'); sfx('error'); return; }
+  if (m[1] === S.ref.id || m[2] !== refSig(S.ref.id, m[1])) { toast("Ce code merci n'est pas pour toi"); sfx('error'); return; }
+  if (S.ref.friends.includes(m[1])) { toast('Cet ami est déjà compté'); return; }
+  S.ref.friends.push(m[1]); const n = S.ref.friends.length, rw = [{ ic: 'i_gem', t: '+60' }, { ic: 'i_coin', t: 'Ventes ×2 · 30 min' }];
+  addGems(60, 'parrainage'); addBoost('sell', 30);
+  const st = REF_STEPS.find(x => x[0] === n); if (st) rw.push(...grant({ ...st[1], scale: false }, 'parrainage'));
+  sfx('gold'); CONF.burst(90); showModal({ ribbon: 'Ami parrainé !', rcls: 'gold', art: 'i_chest', big: n, title: n > 1 ? 'amis parrainés' : 'ami parrainé', text: n <= 10 ? 'Toutes tes ventes rapportent maintenant +' + refN() * 2 + ' % pour toujours.' : 'Merci de faire connaître Fermidor !', rewards: rw });
+  save(true); uiDirty = true;
+}
+function copyText(t, okMsg) { const done = () => { toast(okMsg); sfx('coin'); }; try { navigator.clipboard.writeText(t).then(done, () => toast(t)); } catch (e) { toast(t); } }
 // ---------- achats en argent réel (liens de paiement Stripe) ----------
 // Chaque lien Stripe renvoie vers le jeu avec ?achat=<id>&cs={CHECKOUT_SESSION_ID} ; tant qu'un lien est vide, l'offre n'apparaît pas.
 const PAY = { depart: '', poignee: '', sac: '', coffre: '', montagne: '' };
@@ -1482,7 +1621,8 @@ const payOn = id => typeof PAY[id] === 'string' && /^https:\/\/(buy|checkout)\.s
       const used = JSON.parse(localStorage.getItem('fermidor_paid') || '[]'), un = JSON.parse(localStorage.getItem('fermidor_unclaimed') || '[]');
       if (!used.includes(cs) && !un.some(x => x.cs === cs)) { un.push({ pack: a, cs, t: Date.now() }); localStorage.setItem('fermidor_unclaimed', JSON.stringify(un)); }
     }
-    if (q.has('achat') || q.has('cs')) { q.delete('achat'); q.delete('cs'); const qs = q.toString(); history.replaceState(null, '', location.pathname + (qs ? '?' + qs : '') + location.hash); }
+    const pr = q.get('parrain'); if (pr && /^[A-Za-z0-9]{7}$/.test(pr)) localStorage.setItem('fermidor_parrain', pr.toUpperCase());
+    if (q.has('achat') || q.has('cs') || q.has('parrain')) { q.delete('achat'); q.delete('cs'); q.delete('parrain'); const qs = q.toString(); history.replaceState(null, '', location.pathname + (qs ? '?' + qs : '') + location.hash); }
   } catch (e) { }
 })();
 
@@ -1558,6 +1698,7 @@ function fresh() {
     daily: { i: 0, last: '' }, miss: { date: '', list: [], bonus: false }, wheel: { last: '' },
     stats: { harv: 0, coins: 0, orders: 0, crafted: 0, gold: 0 }, epis: 0, seasons: 0, season: 0,
     tut: 0, set: { sfx: true, music: true, gfx: 'auto' }, goals: {}, goalsInit: 1, crate: 0, lastSeen: Date.now(), savedAt: 0, firstOrder: true, starter: false,
+    paid: {}, gard: 1, road: { pts: 0, got: 0 }, streak: { n: 0, until: 0 }, ref: { id: newRefId(), by: null, friends: [] },
     isl: { vallee: true }, trees: Object.fromEntries(NEW_ISL.map(I => [I.id, TSLOT_REL.map((_, k) => ({ u: k < 2, sp: null, p: 0, m: false }))])), cur: 'vallee', ach: {},
   };
 }
@@ -1860,8 +2001,10 @@ const SONGS = {
 };
 // ---------- musique vivante : chaque passage est réarrangé, et une partie « C » est improvisée à chaque fois ----------
 // tonalité de chaque île (pour improviser des mélodies justes) + instruments de remplacement
-const SONG_KEY = { vallee: [67, 0], vergers: [65, 0], lagon: [72, 0], pics: [62, 1] };
-const SONG_ALT = { vallee: ['flute', 'bell', 'marimba', 'pluck'], vergers: ['bell', 'celesta', 'flute'], lagon: ['steel', 'marimba', 'bell'], pics: ['celesta', 'flute', 'bell'] };
+SONGS.oasis = { ...SONGS.pics, gain: 0.8, bpm: 94, lead: 'flute', comp: 'pluck', perc: 'calypso', pad: false, swing: 0.08 };
+SONGS.volcan = { ...SONGS.pics, gain: 0.85, bpm: 86, lead: 'marimba', comp: 'marimba', perc: 'folk', pad: true };
+const SONG_KEY = { vallee: [67, 0], vergers: [65, 0], lagon: [72, 0], pics: [62, 1], oasis: [62, 1], volcan: [62, 1] };
+const SONG_ALT = { oasis: ['flute', 'pluck', 'steel'], volcan: ['marimba', 'bell', 'steel'], vallee: ['flute', 'bell', 'marimba', 'pluck'], vergers: ['bell', 'celesta', 'flute'], lagon: ['steel', 'marimba', 'bell'], pics: ['celesta', 'flute', 'bell'] };
 const SCALE = [[0, 2, 4, 5, 7, 9, 11], [0, 2, 3, 5, 7, 8, 10]];
 const ARRANGE = [['-', 'A', 'B', 'C', 'A', '~'], ['A', 'C', 'B', '~'], ['-', 'B', 'A', 'C', 'C', '~'], ['A', 'B', '-', 'C', 'A'], ['~', 'A', 'C', 'B', 'A'], ['-', 'C', 'A', 'B', '~']];
 const ARR_NIGHT = [['~', 'A', 'C', '~'], ['~', 'C', '~', 'B'], ['-', 'A', '~', 'C', '~']];
@@ -2143,8 +2286,8 @@ window.addEventListener('resize', resize); resize();
 const waterMat = new THREE.ShaderMaterial({
   uniforms: { uT: { value: 0 }, uGlint: { value: 1 }, uDeep: { value: new THREE.Color('#2f9fcf') }, uShallow: { value: new THREE.Color('#7fdde8') }, uFog: { value: FOG }, uNear: { value: 70 }, uFar: { value: 175 }, uIsl: { value: ISLANDS.map(I => new THREE.Vector4(I.ox, I.oz, islHW(I), islHD(I))) } },
   vertexShader: `varying vec3 vW; varying float vD; void main(){ vec4 w=modelMatrix*vec4(position,1.0); vW=w.xyz; vec4 mv=viewMatrix*w; vD=-mv.z; gl_Position=projectionMatrix*mv; }`,
-  fragmentShader: `uniform float uT; uniform float uGlint; uniform vec3 uDeep,uShallow,uFog; uniform float uNear,uFar; uniform vec4 uIsl[4]; varying vec3 vW; varying float vD;
-  void main(){ float r=9.0; for(int i=0;i<4;i++){ vec2 q=abs(vW.xz-uIsl[i].xy)/uIsl[i].zw; r=min(r,pow(pow(q.x,4.0)+pow(q.y,4.0),0.25)); }
+  fragmentShader: `uniform float uT; uniform float uGlint; uniform vec3 uDeep,uShallow,uFog; uniform float uNear,uFar; uniform vec4 uIsl[6]; varying vec3 vW; varying float vD;
+  void main(){ float r=9.0; for(int i=0;i<6;i++){ vec2 q=abs(vW.xz-uIsl[i].xy)/uIsl[i].zw; r=min(r,pow(pow(q.x,4.0)+pow(q.y,4.0),0.25)); }
     float d=smoothstep(1.02,1.5,r); vec3 col=mix(uShallow,uDeep,d);
     float w=sin(vW.x*0.8+uT*1.2)*sin(vW.z*0.65-uT*0.9)+0.6*sin((vW.x-vW.z)*1.5+uT*1.9);
     col+=smoothstep(1.05,1.5,w)*0.16*(1.0-d*0.4)*uGlint;
@@ -2271,10 +2414,37 @@ function islandTerrain(I) {
   foam.traverse(m => { if (m.isMesh) m.material = W.foamMat; }); scene.add(foam);
 }
 function pick3(R, a) { return a[Math.floor(R() * a.length)]; }
+// modèles dérivés : on réutilise des modèles existants avec de nouvelles couleurs (nouvelles îles)
+function deriveAssets() {
+  const dv = (n, src, map) => { if (!A[src]) return; const o = A[src].clone(true); o.name = n; o.traverse(m => { if (!m.isMesh) return; const k = (m.material.name || '').replace('M_', ''); if (map[k]) { m.material = m.material.clone(); m.material.color.set(map[k]); if (map._glow && map._glow.includes(k)) { m.material.emissive = new THREE.Color(map[k]); m.material.emissiveIntensity = 0.55; } } }); A[n] = o; };
+  for (const f of ['', '_f']) {
+    dv('tree_date' + f, 'tree_coco' + f, { palm: '#86b13f', palm_dk: '#5f8f33', coco: '#c9772b' });
+    dv('tree_orange' + f, 'tree_lemon' + f, { lemon: '#ff9422' });
+    dv('tree_fig' + f, 'tree_cacao' + f, { cacao: '#7a3b8f', pumpkin_dk: '#5c2a70' });
+    dv('tree_coffee' + f, 'tree_blueberry' + f, { blueberry: '#d0281e', leaf_dk: '#2f7a3a' });
+    dv('tree_pomegranate' + f, 'tree_apple' + f, { apple: '#d81e5b', leaf: '#4f9a45', leaf_lt: '#73b552' });
+    dv('tree_dragon' + f, 'tree_cacao' + f, { cacao: '#ff3fa0', pumpkin_dk: '#d81e7a', leaf_dk: '#3aa06a', palm_dk: '#2f8f5c' });
+  }
+  dv('i_date', 'i_cacao', { cacao: '#b5651d', pumpkin_dk: '#8a4513' }); dv('i_orange', 'i_lemon', { lemon: '#ff9422' }); dv('i_fig', 'i_apple', { apple: '#7a3b8f' });
+  dv('i_goatmilk', 'i_milk', { roof_blue: '#e0a03a', milk: '#fff6e0' }); dv('i_orangejuice', 'i_juice', { apple: '#ff9422' });
+  dv('i_makroud', 'i_cake', { cake: '#d9a04a', tomato: '#b5651d', cream2: '#fff0c9' }); dv('i_goatcheese', 'i_cheese', { cheese: '#fbf3dc', wheat_dk: '#d9c9a0' });
+  dv('i_coffee', 'i_blueberry', { blueberry: '#d0281e' }); dv('i_pomegranate', 'i_apple', { apple: '#d81e5b' }); dv('i_dragon', 'i_cacao', { cacao: '#ff3fa0', pumpkin_dk: '#3aa06a' });
+  dv('i_fireegg', 'i_egg', { egg: '#ff7a3d', _glow: ['egg'] }); dv('i_espresso', 'i_cocomilk', { coco: '#f6f0e5', coco_in: '#4b2c1d', flower_r: '#f5c246', scarf: '#d0281e' });
+  dv('i_sorbet', 'i_smoothie', { blossom: '#ff3fa0', stripe_b: '#ffd166' }); dv('i_omelette', 'i_crepe', { bread: '#f6d73c', blueberry: '#e7433c', syrup: '#ff7a3d' });
+  dv('goat', 'sheep', { wool: '#d9b98a', white: '#e8d5b0', sheep_face: '#6b4a2e' }); dv('firehen', 'chicken', { chick: '#3a2f2f', comb: '#ff5a1f', beak: '#ffb300', _glow: ['comb'] });
+  dv('shed_goat', 'shed_sheep', { roof_blue: '#d98a3a' }); dv('coop_lava', 'coop', { red: '#3a2f2f', plank: '#6b5a52' });
+  dv('w_souk', 'paillote', { thatch: '#f2e6c4', thatch_dk: '#c9a05a', straw: '#2f9fc8', bamboo: '#e2d2a6' });
+  dv('w_orient', 'patisserie', { roof_rose: '#2f8fb5', wall_cream2: '#f6e3b5', blossom: '#ffd166', cake: '#d9a04a', cherry: '#b5651d' });
+  dv('w_roaster', 'alpine', { snow: '#5a524e', roof_slate: '#3a2f2f', stripe_b: '#d0281e', alpaca: '#6f422e', white: '#e8d5b0' });
+  dv('w_lava', 'chocolaterie', { roof_choco: '#3a2f2f', wall_choco: '#6b5a52', cacao: '#ff5a1f', choc_bar: '#ff3fa0', _glow: ['cacao'] });
+  dv('mini_desert', 'mini_tropic', { sand: '#f2c979', sand_wet: '#d9a85a', palm: '#86b13f', thatch: '#f2e6c4' });
+  dv('mini_volcano', 'mini_snow', { snow: '#4f4743', snow_sh: '#362f2d', pine: '#3a5a40', log: '#ff5a1f', _glow: ['log'] });
+  dv('pine_ash', 'pine', { pine: '#55554e', trunk: '#2e2622' }); dv('rock_lava', 'rock_a', { rock: '#3d3836', rock_dk: '#2a2523' }); dv('rock_sand', 'rock_a', { rock: '#d9b98a', rock_dk: '#b5905a' });
+}
 // =========================================================
 // DÉCOR ENRICHI : petits détails au sol + archipel vivant autour des îles
 // =========================================================
-const FERRY_PTS = [[58, 31], [40, 8], [32, -30], [16, -50], [-8, -57], [-30, -48], [-38, -28], [-44, 8], [-74, 31], [-96, 6], [-86, -70], [0, -130], [86, -70], [92, 6]];
+const FERRY_PTS = [[58, 31], [40, 8], [33, -32], [44, -52], [57, -57], [34, -55], [14, -52], [-8, -57], [-30, -52], [-52, -54], [-74, -57], [-52, -46], [-40, -30], [-44, 8], [-74, 31], [-98, 6], [-104, -70], [-90, -124], [0, -134], [90, -124], [104, -70], [96, 6]];
 const PATHS = [], FREE = {};
 const SUR = { boats: [], gulls: [], dols: [], bob: null, sh: null, clear: null, t: 0 };
 const onPath = (x, z, pad) => PATHS.some(([px, pz, w, d]) => Math.abs(x - px) < w / 2 + pad && Math.abs(z - pz) < d / 2 + pad);
@@ -2304,6 +2474,10 @@ function makeProps() {
   reg('p_snow', [[ico, '#ffffff', TM(0, 0.06, 0, 0, 0.3, 0, 0.42, 0.16, 0.36)], [ico, '#e6f1fa', TM(0.3, 0.04, 0.12, 0, 1, 0, 0.22, 0.1, 0.2)]]);
   reg('p_cairn', [[ico, '#8fa0b3', TM(0, 0.1, 0, 0, 0.2, 0, 0.22, 0.12, 0.2)], [ico, '#a9b7c6', TM(0.01, 0.27, 0, 0, 1.1, 0, 0.16, 0.09, 0.15)], [ico, '#c5d0dc', TM(0, 0.4, 0.01, 0, 2, 0, 0.1, 0.07, 0.1)], [ico, '#ffffff', TM(0, 0.47, 0.01, 0, 0, 0, 0.08, 0.03, 0.08)]]);
   reg('p_drift', [[cyl, '#cdb89a', TM(0, 0.07, 0, 0, 0, Math.PI / 2 + 0.06, 0.06, 1.1, 0.06)], [cyl, '#bfa888', TM(0.2, 0.12, 0.12, 0.9, 0, 0.5, 0.035, 0.4, 0.035)]]);
+  reg('p_cactus', [[cyl, '#4f9a55', TM(0, 0.8, 0, 0, 0, 0, 0.26, 1.6, 0.26)], [cap, '#5fae62', TM(0, 1.6, 0, 0, 0, 0, 0.26, 0.24, 0.26)], [cyl, '#4f9a55', TM(0.42, 0.85, 0, 0, 0, Math.PI / 2, 0.13, 0.4, 0.13)], [cyl, '#5fae62', TM(0.58, 1.12, 0, 0, 0, 0, 0.13, 0.6, 0.13)], [cap, '#5fae62', TM(0.58, 1.42, 0, 0, 0, 0, 0.13, 0.12, 0.13)],
+    [cyl, '#4f9a55', TM(-0.4, 0.6, 0, 0, 0, Math.PI / 2, 0.12, 0.36, 0.12)], [cyl, '#5fae62', TM(-0.54, 0.8, 0, 0, 0, 0, 0.12, 0.46, 0.12)], [cap, '#5fae62', TM(-0.54, 1.03, 0, 0, 0, 0, 0.12, 0.11, 0.12)], [ico, '#ff6fa5', TM(0, 1.86, 0, 0, 0, 0, 0.09)]]);
+  reg('p_cactus_s', [[ico, '#5fae62', TM(0, 0.16, 0, 0, 0, 0, 0.2, 0.2, 0.2)], [ico, '#4f9a55', TM(0.22, 0.1, 0.08, 0, 1, 0, 0.12)], [ico, '#ff6fa5', TM(0, 0.37, 0, 0, 0, 0, 0.06)]]);
+  reg('p_ember', [[ico, '#3a3431', TM(0, 0.09, 0, 0, 0.4, 0, 0.24, 0.13, 0.2)], [ico, '#ff7a1f', TM(0.05, 0.13, 0.03, 0, 1.2, 0, 0.13, 0.08, 0.1)], [ico, '#ffc23d', TM(0.07, 0.165, 0.04, 0, 0, 0, 0.06, 0.04, 0.05)], [ico, '#2a2523', TM(-0.24, 0.05, 0.1, 0, 2, 0, 0.1, 0.07, 0.1)]]);
   // taches d'herbe plus sombres ou plus claires : le sol n'est plus uni
   const blob = new THREE.Shape(); for (let i = 0; i <= 11; i++) { const a = i / 11 * 6.283, r = 1 + Math.sin(a * 3 + 1) * 0.16 + Math.cos(a * 2) * 0.1; i ? blob.lineTo(Math.cos(a) * r, Math.sin(a) * r * 0.78) : blob.moveTo(Math.cos(a) * r, Math.sin(a) * r * 0.78); }
   const bg = new THREE.ShapeGeometry(blob); bg.rotateX(-Math.PI / 2); bg.translate(0, 0.008, 0);
@@ -2319,15 +2493,18 @@ function detailIslands(put) {
     const grass = (x, z, pad) => inIsl(I, x, z, 0.84) && free(x, z, pad) && !onPath(x, z, 0.25) && !near(x, z);
     const scat = (names, n, cond, s0 = 0.8, s1 = 0.5) => { let k = 0, t = 0; while (k < n && t++ < n * 40) { const [x, z] = rp(); if (!cond(x, z)) continue; put(I.id, names[Math.floor(R() * names.length)], x, z, R() * 6.283, s0 + R() * s1); k++; } };
     for (let k = 0, t = 0; k < 16 && t < 500; t++) { const [x, z] = rp(), s = 1.6 + R() * 2.6; if (!inIsl(I, x, z, 0.8) || !inIsl(I, x + s, z, 0.86) || !inIsl(I, x - s, z, 0.86) || !inIsl(I, x, z + s, 0.86) || !inIsl(I, x, z - s, 0.86)) continue; put(I.id, R() < 0.6 ? 'p_patch_d' : 'p_patch_l', x, z, R() * 6.283, s); k++; }
-    if (snow) { scat(['p_snow'], 46, (x, z) => grass(x, z, 0.3), 0.7, 0.9); scat(['p_cairn'], 6, (x, z) => grass(x, z, 0.5), 0.9, 0.5); scat(['p_log', 'p_stump'], 4, (x, z) => grass(x, z, 0.8), 0.9, 0.3); }
+    const ash = I.id === 'volcan', dry = I.id === 'lagon' || I.id === 'oasis';
+    if (ash) { scat(['p_ember', 'p_pebble', 'p_pebble', 'p_ember'], 80, (x, z) => grass(x, z, 0.2), 0.8, 1); scat(['p_log', 'p_stump'], 5, (x, z) => grass(x, z, 0.8), 0.9, 0.3); }
+    else if (snow) { scat(['p_snow'], 46, (x, z) => grass(x, z, 0.3), 0.7, 0.9); scat(['p_cairn'], 6, (x, z) => grass(x, z, 0.5), 0.9, 0.5); scat(['p_log', 'p_stump'], 4, (x, z) => grass(x, z, 0.8), 0.9, 0.3); }
     else {
-      scat([I.id === 'lagon' ? 'p_tuft_dry' : 'p_tuft', 'p_tuft'], 150, (x, z) => grass(x, z, 0.15), 0.8, 0.9);
-      if (I.id !== 'lagon') { scat(['p_mushroom'], 10, (x, z) => grass(x, z, 0.6), 0.9, 0.6); scat(['p_stump', 'p_log'], 6, (x, z) => grass(x, z, 0.9), 0.9, 0.3); }
+      scat(I.id === 'oasis' ? ['p_tuft_dry', 'p_tuft_dry', 'p_cactus_s'] : [dry ? 'p_tuft_dry' : 'p_tuft', 'p_tuft'], I.id === 'oasis' ? 90 : 150, (x, z) => grass(x, z, 0.15), 0.8, 0.9);
+      if (!dry) { scat(['p_mushroom'], 10, (x, z) => grass(x, z, 0.6), 0.9, 0.6); scat(['p_stump', 'p_log'], 6, (x, z) => grass(x, z, 0.9), 0.9, 0.3); }
       scat(['p_pebble'], 22, (x, z) => grass(x, z, 0.2), 0.8, 1);
     }
     // plage : coquillages, étoiles de mer, bois flotté
     const beach = (x, z) => !inIsl(I, x, z, 0.925) && inIsl(I, x, z, 0.985) && free(x, z, 0.4) && !onPath(x, z, 0.6);
     if (snow) scat(['p_snow'], 14, beach, 0.8, 0.8);
+    else if (ash) scat(['p_pebble', 'p_ember'], 16, beach, 0.9, 0.8);
     else { scat(['p_starfish', 'p_shell', 'p_shell'], I.id === 'lagon' ? 22 : 9, beach, 0.9, 0.8); scat(['p_drift'], I.id === 'lagon' ? 6 : 4, beach, 0.8, 0.5); scat(['p_tuft_dry'], 14, (x, z) => !inIsl(I, x, z, 0.88) && inIsl(I, x, z, 0.95) && free(x, z, 0.3) && !onPath(x, z, 0.4), 0.9, 0.7); }
     // bord des chemins : cailloux, touffes et fleurs
     for (const [px, pz, w, d] of PATHS) {
@@ -2337,7 +2514,7 @@ function detailIslands(put) {
         if (R() > 0.6) continue;
         const off = sd * (hwid + 0.28 + R() * 0.22), uu = u + (R() - .5), x = alongZ ? px + off : px + uu, z = alongZ ? pz + uu : pz + off;
         if (!inIsl(I, x, z, 0.9) || onPath(x, z, 0.08) || !free(x, z, -0.5) || near(x, z)) continue;
-        const q = R(); put(I.id, snow ? (q < 0.6 ? 'p_pebble' : 'p_snow') : q < 0.45 ? 'p_pebble' : q < 0.8 ? 'p_tuft' : (I.id === 'vergers' ? 'flowers_c' : 'flowers_a'), x, z, R() * 6.283, snow && q >= 0.6 ? 0.5 : q >= 0.8 ? 0.55 : 0.8 + R() * 0.6);
+        const q = R(); put(I.id, ash ? (q < 0.7 ? 'p_pebble' : 'p_ember') : I.id === 'oasis' && q >= 0.45 ? 'p_tuft_dry' : snow ? (q < 0.6 ? 'p_pebble' : 'p_snow') : q < 0.45 ? 'p_pebble' : q < 0.8 ? 'p_tuft' : (I.id === 'vergers' ? 'flowers_c' : 'flowers_a'), x, z, R() * 6.283, snow && q >= 0.6 ? 0.5 : q >= 0.8 ? 0.55 : 0.8 + R() * 0.6);
       }
     }
   }
@@ -2353,6 +2530,34 @@ function lathe(buf, cx, cz, R, prof, seg, rng, jit, apexH = 0.04) {
   for (let i = 0; i < seg; i++) tri(apex, pt(prof.length - 1, i + 1), pt(prof.length - 1, i), top[2]);
 }
 const bufGeo = b => { const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(b.pos, 3)); g.setAttribute('color', new THREE.Float32BufferAttribute(b.col, 3)); g.computeVertexNormals(); return g; };
+// volcan de l'île du Volcan Ardent : cône facetté, cratère de lave qui pulse, fumée et petites éruptions
+function buildVolcano(x, z, R, lx, lz) {
+  const buf = { pos: [], col: [] }, rng = mulberry(4242);
+  lathe(buf, x, z, R, [[1.04, 0.0], [0.93, 0.55, '#4f4743'], [0.72, 1.9, '#403936'], [0.5, 3.3, '#35302d'], [0.33, 4.3, '#2b2624'], [0.25, 4.55, '#7a2e12']], 11, rng, 0.1, -0.7);
+  const m = new THREE.Mesh(bufGeo(buf), new THREE.MeshStandardMaterial({ vertexColors: true, flatShading: true, roughness: 1 })); m.castShadow = true; m.receiveShadow = true; scene.add(m);
+  const lavaMat = new THREE.MeshBasicMaterial({ color: '#ff8a1f' });
+  const lava = new THREE.Mesh(new THREE.CircleGeometry(R * 0.24, 14), lavaMat); lava.rotation.x = -Math.PI / 2; lava.position.set(x, 4.25, z); scene.add(lava);
+  // coulées de lave sur les pentes + mare de lave au pied
+  for (const a of [0.6, 2.5, 4.4]) { const s = new THREE.Mesh(new THREE.BoxGeometry(0.34, 0.06, 2.6), lavaMat); const d = R * 0.5; s.position.set(x + Math.sin(a) * d, 2.55, z + Math.cos(a) * d); s.rotation.set(0, a, 0); s.rotateX(1.0); scene.add(s); }
+  const pool = new THREE.Mesh(new THREE.CircleGeometry(1, 26), lavaMat); pool.rotation.x = -Math.PI / 2; pool.scale.set(2.1, 1.5, 1); pool.position.set(lx, 0.05, lz); scene.add(pool);
+  const rim = new THREE.Mesh(new THREE.CircleGeometry(1, 26), new THREE.MeshStandardMaterial({ color: '#241f1d', roughness: 1, polygonOffset: true, polygonOffsetFactor: -3, polygonOffsetUnits: -3 })); rim.rotation.x = -Math.PI / 2; rim.scale.set(2.6, 1.95, 1); rim.position.set(lx, 0.03, lz); scene.add(rim);
+  const cv = document.createElement('canvas'); cv.width = cv.height = 64; const c = cv.getContext('2d'), gr = c.createRadialGradient(32, 32, 0, 32, 32, 32); gr.addColorStop(0, 'rgba(255,170,60,1)'); gr.addColorStop(1, 'rgba(255,90,20,0)'); c.fillStyle = gr; c.fillRect(0, 0, 64, 64);
+  const glow = new THREE.Sprite(new THREE.SpriteMaterial({ map: new THREE.CanvasTexture(cv), transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, opacity: .8 })); glow.scale.set(5, 5, 1); glow.position.set(x, 4.9, z); scene.add(glow);
+  addPick(null, { t: 'volcano' }, [R * 1.3, 4.6, R * 1.3], [x, 2.3, z]);
+  W.volc = { x, z, lx, lz, lavaMat, glow, smoke: 0, next: 18, boom: 0 };
+}
+function volcErupt(tap) {
+  const V = W.volc; if (!V || V.boom > 0) return; V.boom = 2.2; V.next = 25 + Math.random() * 30;
+  if (curIsl === 'volcan') { sfx('swoosh'); if (tap) { buzz(20); toast('Le volcan gronde !'); } }
+}
+function volcFrame(dt, time) {
+  const V = W.volc; if (!V) return;
+  const k = 0.75 + 0.25 * Math.sin(time * 2.3) + (V.boom > 0 ? 0.6 : 0); V.lavaMat.color.setRGB(1, 0.42 * k + 0.1, 0.08 * k); V.glow.material.opacity = 0.5 + 0.3 * k; V.glow.scale.setScalar(4.4 + k * 1.6);
+  if (curIsl !== 'volcan' || document.hidden) return;
+  V.smoke -= dt; if (V.smoke <= 0) { V.smoke = V.boom > 0 ? 0.12 : 0.55; spawnSmoke(V.x + rnd(-0.4, 0.4), 4.9, V.z + rnd(-0.4, 0.4), V.boom > 0 ? 2.2 : 1.5); if (Math.random() < 0.3) PFX.emit(V.lx + rnd(-1.4, 1.4), 0.2, V.lz + rnd(-0.9, 0.9), { n: 2, col: ['#ffb02e', '#ff5a1f'], spd: 0.4, up: 2.2, grav: 3, life: .9, size: .22, spread: .2 }); }
+  V.next -= dt; if (V.next <= 0) volcErupt(false);
+  if (V.boom > 0) { V.boom -= dt; PFX.emit(V.x, 4.7, V.z, { n: 5, col: ['#ffb02e', '#ff5a1f', '#ffe27a', '#ff3d1f'], spd: 3.2, up: 9, grav: 10, life: 1.5, size: .42, spread: .5 }); }
+}
 function shorePt(I, a, d) { // point situé à d mètres au large du rivage, dans la direction a
   const c = Math.cos(a), s = Math.sin(a), k = Math.pow(Math.pow(Math.abs(c), 4) + Math.pow(Math.abs(s), 4), -0.25), bx = c * k * islHW(I), bz = s * k * islHD(I), l = Math.hypot(bx, bz) || 1;
   return [I.ox + bx + bx / l * d, I.oz + bz + bz / l * d];
@@ -2377,7 +2582,9 @@ function surroundScatter(put) {
     const B = { vallee: { trees: ['tree_a', 'tree_b', 'pine', 'tree_c'], small: ['bush_a', 'bush_b', 'flowers_a', 'flowers_b', 'p_tuft', 'p_tuft', 'rock_a'], rock: ['rock_a', 'rock_b'], st: ['#6e757d', '#979da4', '#b3b8bd', C.g], sh: '#8fe9e2' },
       vergers: { trees: ['tree_cherry', 'tree_cherry', 'tree_a', 'tree_apple'], small: ['bush_c', 'flowers_c', 'fallen_blossom', 'p_tuft', 'flowers_c', 'rock_b'], rock: ['rock_b', 'rock_a'], st: ['#77727a', '#a39ca6', '#c0b9c2', C.g], sh: '#9aeedd' },
       lagon: { trees: ['tree_coco', 'tree_coco', 'tree_banana'], small: ['bush_a', 'p_tuft_dry', 'p_starfish', 'p_shell', 'p_tuft_dry', 'p_drift'], rock: ['rock_a', 'rock_b'], st: ['#7b6f62', '#a89a88', '#c4b7a4', C.g], sh: '#7ff3e4' },
-      pics: { trees: ['pine_snow', 'pine_snow', 'pine'], small: ['rock_snow', 'p_snow', 'p_cairn', 'p_snow'], rock: ['rock_snow'], st: ['#6f8196', '#93a5b9', '#c2d0de', '#ffffff'], sh: '#c9f0ff' } }[id];
+      pics: { trees: ['pine_snow', 'pine_snow', 'pine'], small: ['rock_snow', 'p_snow', 'p_cairn', 'p_snow'], rock: ['rock_snow'], st: ['#6f8196', '#93a5b9', '#c2d0de', '#ffffff'], sh: '#c9f0ff' },
+      oasis: { trees: ['tree_coco', 'tree_coco', 'p_cactus'], small: ['p_tuft_dry', 'rock_sand', 'p_cactus_s', 'p_shell', 'p_tuft_dry'], rock: ['rock_sand'], st: ['#a8824e', '#cfa76c', '#e6c890', C.g], sh: '#8ff0dc' },
+      volcan: { trees: ['pine_ash', 'pine_ash', 'rock_lava'], small: ['rock_lava', 'p_ember', 'p_pebble', 'p_ember'], rock: ['rock_lava'], st: ['#2a2523', '#3d3836', '#544c48', '#ff6a1f'], sh: '#8ed9cf' } }[id];
     const find = (r, d0, d1, north) => { for (let t = 0; t < 260; t++) { const a = north ? Math.PI * (1.08 + R() * 0.84) : R() * 6.283, [x, z] = shorePt(I, a, d0 + R() * (d1 - d0) + r); if (clear(x, z, r)) return [x, z]; } return null; };
     const islet = (x, z, r, sandy) => {
       const prof = sandy ? [[1.17, WY + 0.015], [1.03, WY + 0.025, '#ffffff'], [0.98, -0.5, C.wet], [0.8, -0.1, C.sand], [0.5, 0.02, C.sand]]
@@ -2390,7 +2597,7 @@ function surroundScatter(put) {
       for (let k = 0; k < nS; k++) { const a = R() * 6.283, d = hole * 0.8 + R() * Math.max(0.2, r * 0.6 - hole * 0.8); put(id, B.small[Math.floor(R() * B.small.length)], x + Math.cos(a) * d, z + Math.sin(a) * d, R() * 6.283, 0.7 + R() * 0.5); }
     };
     // 1) deux grands îlots « carte postale », placés au nord là où le regard porte
-    const LM = { vallee: [['lighthouse', 1], ['windmill', 0.8]], vergers: [['gazebo', 1.1], ['chalet', 0.8]], lagon: [['beachhut', 1.1], ['lighthouse', 0.9]], pics: [['chalet', 0.9], ['igloo', 1.2]] }[id];
+    const LM = { vallee: [['lighthouse', 1], ['windmill', 0.8]], vergers: [['gazebo', 1.1], ['chalet', 0.8]], lagon: [['beachhut', 1.1], ['lighthouse', 0.9]], pics: [['chalet', 0.9], ['igloo', 1.2]], oasis: [['beachhut', 1.1], ['well', 1.7]], volcan: [['lighthouse', 0.9], ['windmill', 0.8]] }[id];
     for (const [model, sc] of LM) {
       const r = 5.4 + R() * 1.2, p = find(r, 7, 17, true) || find(r, 5, 26, false); if (!p) continue; const [x, z] = p;
       islet(x, z, r); const o = place(model, x - 0.2, z - 0.4, (R() - .5) * 0.8, sc); o.traverse(m => { if (m.isMesh) m.receiveShadow = true; });
@@ -2418,7 +2625,7 @@ function surroundScatter(put) {
     // 5) rochers au ras de l'eau près du rivage, bancs de sable, récifs colorés, bouées
     for (let k = 0; k < 13; k++) { const [x, z] = shorePt(I, R() * 6.283, 0.5 + R() * 2.4); if (Math.abs(x - 3.2) < 3.5 && z > 20) continue; if (NEW_ISL.includes(I) && Math.abs(x - (I.ox - 8.6)) < 3 && z > I.oz) continue; put(id, B.rock[Math.floor(R() * B.rock.length)], x, z, R() * 6.283, 0.9 + R() * 0.9, -0.5 - R() * 0.12); }
     for (let k = 0; k < 9; k++) { const [x, z] = shorePt(I, R() * 6.283, 5 + R() * 30); disc(x, z, 3.5 + R() * 5, 2 + R() * 3, R() * 3.14, snow ? '#e3f7ff' : '#c4f5e6', 0.5 + R() * 0.3); }
-    const reef = { vallee: ['#2f9f78', '#3fb98c', '#278a6a'], vergers: ['#ff9ec4', '#3fb98c', '#ffc2dc'], lagon: ['#ff8fa3', '#ffb26b', '#b58cff', '#ff6f91', '#ffd86b'], pics: ['#a8e4ff', '#ffffff'] }[id];
+    const reef = { vallee: ['#2f9f78', '#3fb98c', '#278a6a'], vergers: ['#ff9ec4', '#3fb98c', '#ffc2dc'], lagon: ['#ff8fa3', '#ffb26b', '#b58cff', '#ff6f91', '#ffd86b'], pics: ['#a8e4ff', '#ffffff'], oasis: ['#ffb26b', '#3fb98c', '#ffd86b'], volcan: ['#ff6a1f', '#ffb02e', '#6b5a52'] }[id];
     for (let k = 0; k < (id === 'lagon' ? 34 : 14); k++) { const [x, z] = shorePt(I, R() * 6.283, 1.5 + R() * 9), s = 0.5 + R() * 1.1; disc(x, z, s, s * (0.6 + R() * 0.5), R() * 3.14, reef[Math.floor(R() * reef.length)], 0.85); }
     for (let k = 0; k < 4; k++) { const p = find(0.4, 4, 26, false); if (!p) continue; const red = R() < 0.5 ? '#e6483c' : '#f2a62c'; lathe(bob, p[0], p[1], 0.3, [[1, -0.8], [1, -0.42, red], [0.82, -0.12, '#ffffff'], [0.3, 0.42, red]], 6, R, 0, 0.22); islets.push({ x: p[0], z: p[1], r: 0.4 }); }
     for (let k = 0; k < 3; k++) { const p = find(1.2, 3, 22, false); if (p) put(id, 'rowboat', p[0], p[1], R() * 6.283, 0.8, -0.82); }
@@ -2435,7 +2642,7 @@ function surroundScatter(put) {
   im.frustumCulled = false; im.renderOrder = 1; scene.add(im); SUR.sh = sm;
   // voiliers, mouettes, dauphins
   const SAILS = ['#ffffff', '#ff6b6b', '#ffd166', '#6bc5ff', '#ff9f43', '#b28dff'], cyl = new THREE.CylinderGeometry(1, 1, 1, 6), hullG = new THREE.CylinderGeometry(0.44, 0.26, 0.4, 6), box = new THREE.BoxGeometry(1, 1, 1);
-  ['vallee', 'vallee', 'vergers', 'lagon', 'lagon', 'pics'].forEach((isl, k) => {
+  ['vallee', 'vallee', 'vergers', 'lagon', 'lagon', 'pics', 'oasis', 'volcan'].forEach((isl, k) => {
     const g = new THREE.Group(), hull = new THREE.Mesh(bakeGeo([[hullG, k % 2 ? '#f4efe6' : '#8a5a33', TM(0, -0.5, 0, 0, 0, 0, 1, 1, 2.7)], [box, '#d9b27c', TM(0, -0.29, 0, 0, 0, 0, 0.62, 0.04, 1.9)], [box, '#f4efe6', TM(0, -0.17, -0.45, 0, 0, 0, 0.42, 0.22, 0.6)], [cyl, '#6b4526', TM(0, 0.95, 0.12, 0, 0, 0, 0.035, 2.5, 0.035)]]), PROPMAT);
     const sg = new THREE.BufferGeometry(); sg.setAttribute('position', new THREE.Float32BufferAttribute([0, -0.05, 0.02, 0, 2.15, 0.06, 0, -0.05, -1.25, 0, 0.0, 0.22, 0, 1.7, 0.2, 0, 0.0, 1.05], 3)); sg.computeVertexNormals();
     const sail = new THREE.Mesh(sg, new THREE.MeshStandardMaterial({ color: SAILS[k % SAILS.length], side: THREE.DoubleSide, roughness: .9, flatShading: true }));
@@ -2452,6 +2659,7 @@ function surroundScatter(put) {
   for (let k = 0; k < 2; k++) { const m = new THREE.Mesh(dg, PROPMAT); m.visible = false; m.scale.setScalar(1.25); scene.add(m); SUR.dols.push({ m, t: -1, next: 5 + k * 6, x: 0, z: 0, yaw: 0 }); }
 }
 function surFrame(dt, time) {
+  try { volcFrame(dt, time); } catch (e) { }
   if (!SUR.clear) return;
   if (SUR.bob) SUR.bob.position.y = Math.sin(time * 0.7) * 0.05;
   if (SUR.sh) SUR.sh.color.setScalar(1 - 0.62 * clamp(dnNight, 0, 1));
@@ -2511,6 +2719,13 @@ function buildWorld() {
       const iceRim = new THREE.Mesh(new THREE.RingGeometry(0.98, 1.1, 40), new THREE.MeshStandardMaterial({ color: '#93a7bd', roughness: 1, polygonOffset: true, polygonOffsetFactor: -3, polygonOffsetUnits: -3 })); iceRim.rotation.x = -Math.PI / 2; iceRim.scale.set(3.4, 2.3, 1); iceRim.position.set(X - 2.4, 0.035, Z + 13.2); scene.add(iceRim);
       place('igloo', X + 5.8, Z + 13.2, -0.4); place('sled', X + 1.6, Z + 15.4, 0.6);
     }
+    if (I.id === 'oasis') { // point d'eau entouré de palmiers
+      const wtr = new THREE.Mesh(new THREE.CircleGeometry(1, 40), new THREE.MeshStandardMaterial({ color: '#43c4dc', roughness: .08, metalness: .1, emissive: '#0d5f73', emissiveIntensity: .3, polygonOffset: true, polygonOffsetFactor: -4, polygonOffsetUnits: -4 }));
+      wtr.rotation.x = -Math.PI / 2; wtr.scale.set(3.3, 2.2, 1); wtr.position.set(X - 2.4, 0.04, Z + 13.2); wtr.receiveShadow = true; scene.add(wtr);
+      const rim = new THREE.Mesh(new THREE.CircleGeometry(1, 40), new THREE.MeshStandardMaterial({ color: '#9ccf5f', roughness: 1, polygonOffset: true, polygonOffsetFactor: -3, polygonOffsetUnits: -3 })); rim.rotation.x = -Math.PI / 2; rim.scale.set(4.1, 2.9, 1); rim.position.set(X - 2.4, 0.03, Z + 13.2); rim.receiveShadow = true; scene.add(rim);
+      place('well', X + 5.8, Z + 13.1, 0.3); place('bench', X + 2.6, Z + 15.4, Math.PI);
+    }
+    if (I.id === 'volcan') buildVolcano(X + 6.5, Z + 13, 4.6, X - 5.5, Z + 13.4);
     place('portsign', X - 11, Z + hd - 2.6, 0.15);
     pier(X - 8.6, Z + hd - 1, Z + hd + 9, 2.8);
     W.docks[I.id] = [I.ox - 8.6, I.oz + hd + 9];
@@ -2538,7 +2753,7 @@ function buildWorld() {
   const tr = mk('truck'); tr.position.set(3.2, 0, TRUCK_Z); tr.scale.setScalar(1.15); scene.add(tr); W.truck = { o: tr, st: 'park', t: 0 };
   addPick(tr, { t: 'orders' }, [2.8, 3, 4.8], [3.2, 1.3, TRUCK_Z]);
   // parcelles + arbres fruitiers
-  W.plotBase = new Inst('plot', PLOT_POS.length); W.plotGhost = new Inst('plot', PLOT_POS.length, { cast: false, mat: PLATE }); W.signs = new Inst('sign', 90, { cast: true }); W.beds = new Inst('tree_bed', 32);
+  W.plotBase = new Inst('plot', PLOT_POS.length); W.plotGhost = new Inst('plot', PLOT_POS.length, { cast: false, mat: PLATE }); W.signs = new Inst('sign', 90, { cast: true }); W.beds = new Inst('tree_bed', 48);
   PLOT_POS.forEach(([x, z], i) => addPick(null, { t: 'plot', i, isl: 'vallee' }, [3.0, 0.8, 3.0], [x, 0.3, z]));
   for (const c of CROPS) for (const m of c.st) if (!W.crops[m]) W.crops[m] = new Inst(m, PLOT_POS.length * 9, { cast: true });
   W.trees.tree_sapling = new Inst('tree_sapling', 24);
@@ -2608,6 +2823,8 @@ function buildWorld() {
   }
   // décor des nouvelles îles
   const BIOME = {
+    oasis: { big: [['tree_coco', .45], ['p_cactus', .55]], small: ['p_tuft_dry', 'rock_sand', 'p_cactus_s', 'p_tuft_dry', 'p_cactus_s'], rocks: ['rock_sand', 'rock_sand'], nBig: 26, nSmall: 44 },
+    volcan: { big: [['pine_ash', .7], ['rock_lava', .3]], small: ['rock_lava', 'p_ember', 'p_ember'], rocks: ['rock_lava', 'rock_lava'], nBig: 30, nSmall: 36 },
     vergers: { big: [['tree_cherry', .4], ['tree_a', .3], ['tree_apple', .15], ['tree_b', .15]], small: ['bush_c', 'flowers_c', 'flowers_a', 'fallen_blossom', 'flowers_c'], rocks: ['rock_b', 'rock_a'], nBig: 34, nSmall: 60 },
     lagon: { big: [['tree_coco', .55], ['tree_banana', .25], ['tree_a', .2]], small: ['bush_a', 'flowers_b', 'bush_c', 'flowers_a'], rocks: ['rock_a', 'rock_b'], beach: 'parasol', nBig: 32, nSmall: 34 },
     pics: { big: [['pine_snow', .75], ['pine', .25]], small: ['rock_snow', 'bush_a'], rocks: ['rock_snow', 'rock_snow'], nBig: 44, nSmall: 18 },
@@ -2619,6 +2836,8 @@ function buildWorld() {
     if (I.id === 'vergers') zr.push([-4.2, 2.8, 4.2, 10.2], [-8.6, 11.6, 3.2, 14.0], [-4.8, 10.2, 0.8, 16.4], [2.6, 9.8, 8.6, 15.8]);
     if (I.id === 'lagon') zr.push([-8.2, 2.8, 8.4, 14.4], [7.7, 2.2, 9.6, 14], [9.2, 12.4, 14.6, 18], [-5.4, 15.2, 2.8, 18.8]);
     if (I.id === 'pics') zr.push([-4.2, 2.8, 4.2, 10.2], [-6.2, 10.6, 1.4, 16.2], [3.6, 11.2, 7.8, 15.2]);
+    if (I.id === 'oasis') zr.push([-4.2, 2.8, 4.2, 10.2], [-6.8, 10.1, 2, 16.3], [4.4, 11.6, 7.2, 14.6], [1.6, 14.6, 3.6, 16.2]);
+    if (I.id === 'volcan') zr.push([-4.2, 2.8, 4.2, 10.2], [1.6, 8.1, 11.4, 17.9], [-8.2, 11.4, -2.8, 15.4]);
     const zones = zr.map(([a, b, c, d]) => [I.ox + a, I.oz + b, I.ox + c, I.oz + d]);
     const free = (x, z, pad) => zones.every(([a, b, c, d]) => !(x > a - pad && x < c + pad && z > b - pad && z < d + pad));
     FREE[I.id] = free;
@@ -2637,6 +2856,7 @@ function buildWorld() {
     tries = 0; n = 0;
     while (n < 12 && tries++ < 3000) { const [x, z] = rnd2(); if (inIsl(I, x, z, 0.85) || !inIsl(I, x, z, 0.99) || !free(x, z, 0.2)) continue; add(pick3(R, B.rocks), x, z, R() * 6.28, 0.7 + R() * 0.7); n++; }
     if (B.beach) { tries = 0; n = 0; const pp = []; while (n < 5 && tries++ < 3000) { const [x, z] = rnd2(); if (inIsl(I, x, z, 0.93) || !inIsl(I, x, z, 1.02) || !free(x, z, 1.6) || z < I.oz || pp.some(([a, c]) => Math.hypot(a - x, c - z) < 4.5)) continue; add(B.beach, x, z, R() * 6.28, 1); pp.push([x, z]); n++; } }
+    if (I.id === 'oasis') for (let k = 0; k < 7; k++) { const a = k / 7 * 6.28 + 0.3; add(k % 3 ? 'tree_coco' : 'p_tuft_dry', I.ox - 2.4 + Math.cos(a) * 4.5, I.oz + 13.2 + Math.sin(a) * 3.3, a, 0.8 + (k % 2) * 0.2); }
     if (I.id === 'pics') { add('snowman', I.ox - 6.8, I.oz + 14.4, 0.3, 1); add('snowman', I.ox + 10.6, I.oz - 10.2, -0.4, 0.9); }
     if (I.id === 'vergers') for (let k = 0; k < 8; k++) { const a = k / 8 * 6.28; add('flowers_c', I.ox + Math.cos(a) * 3.7, I.oz + 6.4 + Math.sin(a) * 3.4, a, 0.9); }
     if (I.id === 'lagon') { for (const [x, z, r] of [[-6.6, 4.2, .3], [-6.8, 13.2, 1.2], [6.8, 13.4, 2], [6.9, 4.0, 2.6]]) add('tree_banana', I.ox + x, I.oz + z, r, 0.75); for (const [x, z] of [[-7.4, 10.2], [-7.2, 11.1]]) add('crate', I.ox + x, I.oz + z, 0.3, 1); }
@@ -2797,7 +3017,7 @@ const invTotal = () => { let t = 0; for (const k in S.inv) t += S.inv[k]; return
 const space = () => Math.max(0, cap() - invTotal());
 const have = k => S.inv[k] || 0;
 const boostOn = k => S.boost[k] > (SIM ? simNow : Date.now());
-const sellMult = () => (1 + 0.05 * S.upg.nego) * (1 + 0.05 * S.epis) * (boostOn('sell') ? 2 : 1) * (1 + 0.2 * (S.legend || 0));
+const sellMult = () => (1 + 0.02 * refN()) * (1 + 0.05 * S.upg.nego) * (1 + 0.05 * S.epis) * (boostOn('sell') ? 2 : 1) * (1 + 0.2 * (S.legend || 0));
 const orderCoins = o => Math.round(o.c * sellMult());
 const growMult = () => (1 + 0.1 * S.upg.engrais) * (boostOn('grow') ? 2 : 1) * (rainOn() ? 1.5 : 1);
 const animMult = () => (1 + 0.1 * S.upg.bienetre) * (boostOn('grow') ? 2 : 1) * (1 + 0.2 * (S.legend || 0));
@@ -2842,7 +3062,7 @@ function addXP(n, src) {
   while (S.xp >= xpNeed(S.level)) {
     S.xp -= xpNeed(S.level); S.level++;
     const g = Math.round((2 + Math.ceil(S.level / 2)) * BAL.lvGems), c = 60 * S.level; addGems(g, 'niveau'); S.coins += c; econ('c', 'niveau', c);
-    pendingLv.push({ L: S.level, g, c }); signsDirty = true;
+    pendingLv.push({ L: S.level, g, c }); signsDirty = true; if (S.road) S.road.pts += 25;
   }
   uiDirty = true;
 }
@@ -3079,6 +3299,12 @@ function refreshMissions() {
   S.miss = { date: d, bonus: false, list: pool.map((m, i) => ({ k: m.k, n: m.n(L()), p: 0, done: false, rw: i === 1 ? { g: 5 } : { c: (i ? 200 : 100) * L() } })) };
 }
 function track(k, n = 1) { for (const m of S.miss.list) if (m.k === k && !m.done) m.p = Math.min(m.n, m.p + n); }
+on('order', d => { // série de commandes : livrer vite à la suite augmente le bonus
+  if (SIM) return; const now = Date.now(), st = S.streak; st.n = now < st.until ? st.n + 1 : 1; st.until = now + 120000;
+  const pc = Math.min(st.n - 1, 10) * 5; if (pc > 0) { const b = Math.round(orderCoins(d.o) * pc / 100); addCoins(b, 'série'); setTimeout(() => toast('Série ×' + st.n + ' : +' + pc + ' % · +' + fmt(b) + ' pièces'), 700); }
+  roadAdd(12);
+});
+on('harvest', d => { if (!d.auto) roadAdd(1); }); on('craft', d => { if (!d.auto) roadAdd(3); }); on('collect', d => { if (!d.auto) roadAdd(1); });
 on('harvest', d => track('harvest', d.n)); on('plant', () => track('plant')); on('order', () => track('orders')); on('earn', n => track('earn', n));
 on('collect', d => track('collect', d.k)); on('craft', () => track('craft')); on('harvest', d => { if (d.tree) track('fruit', d.n); });
 function grant(r, from) {
@@ -3120,7 +3346,9 @@ function badgesUpdate() {
   setDot('#dUpg', up);
   setDot('#dIsl', NEW_ISL.some(I => !S.isl[I.id] && L() >= I.lvl && S.coins >= I.cost));
   setDot('#dAch', ACH.some(a => !S.ach[a.id] && achVal(a.k) >= a.v));
+  setDot('#dRoad', Math.max(0, roadTier().k - S.road.got) || 0);
   const bx = $('#boosts'); let h = '';
+  if (S.streak.n > 1 && Date.now() < S.streak.until) h += `<div class="boost streak">${ic('truck')}Série ×${S.streak.n} · ${fmtT((S.streak.until - Date.now()) / 1000)}</div>`;
   if (boostOn('sell')) h += `<div class="boost">${ic('i_coin')}×2 ${fmtT((S.boost.sell - Date.now()) / 1000)}</div>`;
   if (boostOn('grow')) h += `<div class="boost">${ic('crop_sprout')}×2 ${fmtT((S.boost.grow - Date.now()) / 1000)}</div>`;
   if (bx.innerHTML !== h) bx.innerHTML = h;
@@ -3563,7 +3791,8 @@ const PANELS = {
     const cards = PACKS.filter(p => !p.once && payOn(p.id)).map(P => `<button class="gp ${P.hot ? 'hot' : ''} ${P.best ? 'best' : ''}" data-act="buypack" data-p="${P.id}">${P.tag ? `<span class="gp-tag">${P.tag}</span>` : ''}${gpArt(P)}<b>${fmt(P.g)}</b><span class="gp-n">gemmes</span><span class="gp-price">${P.price}</span></button>`).join('');
     const prem = cards || starterOn ? `<h3>Gemmes</h3>${starterOn ? `<button class="gpstart" data-act="buypack" data-p="depart"><span class="gp-tag">${P0.tag}</span><span class="gps-art">${ic('i_chest')}</span><span class="gps-txt"><b>${P0.n}</b><span>${ic('i_gem')} ${P0.g} gemmes · ${ic('i_coin')} ${fmt(P0.c)} pièces · Turbo 1 h</span></span><span class="gp-price">${P0.price}</span></button>` : ''}
       ${cards ? `<div class="gemshop">${cards}</div>` : ''}<p class="paynote">Paiement sécurisé par Stripe · <a href="cgv.html" target="_blank" rel="noopener">Conditions de vente</a></p>` : '';
-    return { title: 'Boutique', icon: 'u_shop', html: `${prem}${gift}<h3>Boosts</h3>${boosts}<h3>Échanger des pièces contre des gemmes</h3><div class="grid">${gems}</div><h3>Acheter des pièces</h3><div class="grid">${coins}</div><p class="muted" style="text-align:center">Gagne aussi des gemmes avec le cadeau du jour, la roue, les missions, les succès et les commandes dorées.</p>` };
+    const inv = `<button class="invite" data-open="friends">${ic('mailbox')}<span><b>Invite tes amis</b><small>Gemmes offertes et ventes +2 % par ami, pour toujours</small></span><i>›</i></button>`;
+    return { title: 'Boutique', icon: 'u_shop', html: `${prem}${inv}${gift}<h3>Boosts</h3>${boosts}<h3>Échanger des pièces contre des gemmes</h3><div class="grid">${gems}</div><h3>Acheter des pièces</h3><div class="grid">${coins}</div><p class="muted" style="text-align:center">Gagne aussi des gemmes avec le cadeau du jour, la roue, les missions, les succès et les commandes dorées.</p>` };
   },
   farm() {
     const gain = Math.floor(Math.pow(S.season / 10000, 0.55));
@@ -3595,6 +3824,28 @@ const PANELS = {
       <div class="card"><div class="art">${ic(ICONS.app ? 'app' : 'farmhouse')}</div><div class="txt"><b>Fermidor · Ferme Tycoon</b><span>Version ${GAME_VERSION} · modèles 3D créés dans Blender, illustrations et sons originaux.</span><span>Confidentialité : aucune publicité, aucun achat réel, aucune donnée personnelle collectée. Ta partie est enregistrée sur ton appareil${cloud.ok ? ' et sur ton compte' : ''}.</span></div></div>
       <button class="btn red wide" data-act="reset">Recommencer à zéro</button>`
     };
+  },
+  road() {
+    const t = roadTier(), got = S.road.got, rows = [];
+    for (let i = Math.max(1, got); i <= Math.max(got, t.k) + 6; i++) {
+      const r = roadReward(i), [icn, lab] = roadLabel(r), done = i <= got, ready = !done && i <= t.k, next = i === got + 1;
+      rows.push(`<div class="rd ${done ? 'done' : ready ? 'ready' : ''} ${i % 5 === 0 ? 'big' : ''}"><span class="rd-n">${i}</span><span class="rd-ic">${ic(icn)}</span><b>${lab}</b>${done ? '<span class="lvlpip" style="background:#dff3d2;color:#2e7a31">Reçu ✓</span>' : ready && next ? '<button class="btn gold sm" data-act="roadclaim">Récupérer</button>' : ready ? '<span class="lvlpip">Prêt</span>' : `<span class="lvlpip">${lk()}</span>`}</div>`);
+    }
+    return { title: 'Route des récompenses', icon: 'i_chest', html: `<div class="rdhead"><div class="rd-star">${ic('u_star')}<b>${t.k}</b></div><div class="rd-prog"><span>Palier ${t.k + 1} dans <b>${t.need - t.into}</b> points</span><div class="bar2 gold"><i style="width:${Math.max(3, t.into / t.need * 100).toFixed(0)}%"></i></div><small>Commande livrée +12 · produit fabriqué +3 · récolte +1 · niveau +25</small></div></div>
+      <div class="rdlist">${rows.join('')}</div><p class="muted" style="text-align:center">Paliers 20 et 40 : une Vache d'or légendaire. La route ne s'arrête jamais.</p>` };
+  },
+  friends() {
+    const n = S.ref.friends.length, by = S.ref.by, thank = by && L() >= 4 ? S.ref.id + '-' + refSig(by, S.ref.id) : '';
+    const steps = REF_STEPS.map(([k, , lab]) => `<div class="rd ${n >= k ? 'done' : ''}"><span class="rd-n">${k}</span><span class="rd-ic">${ic(k === 5 ? 'u_star' : 'i_gem')}</span><b>${lab}</b>${n >= k ? '<span class="lvlpip" style="background:#dff3d2;color:#2e7a31">Reçu ✓</span>' : `<span class="lvlpip">${n}/${k}</span>`}</div>`).join('');
+    return { title: 'Inviter des amis', icon: 'mailbox', html: `
+      <div class="card hi refcard"><div class="art">${ic('mailbox')}</div><div class="txt"><b>Ton lien d'invitation</b><span>Ton ami reçoit 50 gemmes, 2 000 pièces et un Turbo en arrivant.</span><code class="refcode">${S.ref.id}</code></div></div>
+      <div class="mrow2"><button class="btn gold" data-act="refshare">Partager mon lien</button><button class="btn ghost" data-act="refcopy">Copier le lien</button></div>
+      <h3>Tes récompenses</h3>
+      <div class="card"><div class="art">${ic('i_coin')}</div><div class="txt"><b>${n} ami${n > 1 ? 's' : ''} parrainé${n > 1 ? 's' : ''} · ventes +${refN() * 2} %</b><span>Chaque ami validé : 60 gemmes, ventes ×2 pendant 30 min et +2 % sur toutes tes ventes pour toujours (jusqu'à +20 %).</span></div></div>
+      <div class="rdlist">${steps}</div>
+      <button class="btn blue wide" data-act="refenter">J'ai reçu un code merci</button>
+      <p class="muted">Comment ça marche : ton ami joue avec ton lien, atteint le niveau 4, puis t'envoie son « code merci ». Saisis-le ici pour valider le parrainage.</p>
+      ${by ? `<h3>Ton parrain</h3><div class="card"><div class="art">${ic('i_chest')}</div><div class="txt"><b>Invité par ${by}</b><span>${thank ? 'Envoie ce code merci à ton ami pour lui offrir sa récompense :' : 'Atteins le niveau 4 pour débloquer ton code merci.'}</span>${thank ? `<code class="refcode">${thank}</code>` : ''}</div>${thank ? '<button class="btn sm" data-act="refthankcopy">Copier</button>' : ''}</div>` : L() <= 3 ? '<button class="btn ghost wide" data-act="refjoin">J\'ai un code parrain</button>' : ''}` };
   },
   daily() {
     const can = S.daily.last !== dayKey(), cur = S.daily.i % 7;
@@ -3666,6 +3917,12 @@ ui.shBody.addEventListener('click', e => {
     wsup() { upgradeWS(d.id); },
     tab() { sheetTab = +d.t; sfx('tap'); },
     upg() { const u = d.u; if (S.upg[u] >= UPGD[u].max) return; if (buyUpgrade(u)) { sfx('buy'); toast(UPGD[u].n + ' niveau ' + S.upg[u]); } },
+    roadclaim() { const i = S.road.got + 1; if (i > roadTier().k) return; S.road.got = i; const out = grant(roadReward(i), 'route'); sfx(i % 5 === 0 ? 'gold' : 'chest'); CONF.burst(i % 5 === 0 ? 90 : 40); showModal({ ribbon: 'Palier ' + i, rcls: 'gold', art: roadLabel(roadReward(i))[0], title: 'Récompense de la route', rewards: out }); save(true); },
+    refshare() { const url = refLink(), text = 'Rejoins-moi sur Fermidor, ma ferme en 3D ! Avec mon lien tu commences avec 50 gemmes offertes :'; if (navigator.share) navigator.share({ title: 'Fermidor', text, url }).catch(() => { }); else copyText(text + ' ' + url, 'Invitation copiée !'); },
+    refcopy() { copyText(refLink(), 'Lien copié !'); },
+    refthankcopy() { copyText(S.ref.id + '-' + refSig(S.ref.by, S.ref.id), 'Code merci copié ! Envoie-le à ton ami.'); },
+    refenter() { showModal({ ribbon: 'Code merci', rcls: 'blue', art: 'mailbox', title: 'Le code de ton ami', text: 'Il le trouve dans Boutique → Inviter des amis, à partir du niveau 4.', extra: '<input id="refIn" class="namein" maxlength="14" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="ABCDEFG-12345">', buttons: [{ label: 'Annuler', cls: 'ghost' }, { label: 'Valider', cls: '', fn: () => refThank(($('#refIn') || {}).value) }] }); },
+    refjoin() { showModal({ ribbon: 'Code parrain', rcls: 'green', art: 'mailbox', title: 'Le code de ton parrain', text: '7 lettres et chiffres.', extra: '<input id="refIn" class="namein" maxlength="7" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="ABCDEFG">', buttons: [{ label: 'Annuler', cls: 'ghost' }, { label: 'Valider', cls: '', fn: () => refJoin(($('#refIn') || {}).value, true) }] }); },
     gardup() { const lv = S.gard || 1; if (lv >= GARD_MAX) return; if (L() < gardUpLvl(lv)) { lockToast(gardUpLvl(lv)); sfx('error'); return; } if (!spend(gardUpCost(lv))) return; S.gard = lv + 1; const g = gardStats(); sfx('level'); CONF.burst(50); showModal({ ribbon: 'Amélioré !', rcls: 'green', art: 'scarecrow', title: 'Jardiniers niveau ' + S.gard, text: g.n > gardStats(lv).n ? GVAR[g.n - 1].name + ' rejoint l\'équipe : regarde-la arriver dans tes champs !' : 'Ils marchent et récoltent plus vite.' }); uiDirty = true; },
     hire() { const h = HELPERS.find(x => x.id === d.h); if (hire(h.id)) { sfx('chest'); showModal({ ribbon: 'Embauché !', rcls: 'green', art: h.icon, title: h.n, text: h.d + '.' }); } },
     starter() { if (S.starter || L() < 3) return; S.starter = true; addGems(100, 'coffre'); addBoost('grow', 30); sfx('chest'); CONF.burst(60); showModal({ ribbon: 'Coffre du fermier', rcls: 'gold', art: 'i_chest', rewards: [{ ic: 'i_gem', t: '+100' }, { ic: 'crop_sprout', t: 'Pousse ×2 · 30 min' }] }); },
@@ -3719,7 +3976,7 @@ function spinWheel() {
   }, 4700);
 }
 function doPrestige(gain) {
-  const keep = { name: S.name, gems: S.gems, help: S.help, gard: S.gard, set: S.set, stats: S.stats, daily: S.daily, wheel: S.wheel, miss: S.miss, epis: S.epis + gain, seasons: S.seasons + 1, starter: S.starter };
+  const keep = { name: S.name, gems: S.gems, help: S.help, gard: S.gard, road: S.road, ref: S.ref, paid: S.paid, set: S.set, stats: S.stats, daily: S.daily, wheel: S.wheel, miss: S.miss, epis: S.epis + gain, seasons: S.seasons + 1, starter: S.starter };
   keep.ach = S.ach;
   S = Object.assign(fresh(), keep, { tut: TUT.length, firstOrder: false }); S.coins = 60 + 300 * S.epis;
   cropsDirty = signsDirty = true; for (const k in plotAnim) delete plotAnim[k]; travelTo('vallee', true);
@@ -3933,6 +4190,7 @@ function onPick(p) {
   if (p.t === 'orders') { bounceObj(W.bld.board.o); openSheet('orders'); return; }
   if (p.t === 'farm') { bounceObj(W.bld.farmhouse.o); openSheet('farm'); return; }
   if (p.t === 'gold') { catchGold(); return; }
+  if (p.t === 'volcano') { volcErupt(true); return; }
 }
 function bounceObj(o) { if (o) W.bounce.push({ o, t: 0, s: o.scale.x }); }
 
@@ -4416,6 +4674,10 @@ function sanitize(o) {
   o.name = typeof o.name === 'string' ? o.name.replace(/[<>&"]/g, '').trim().slice(0, 16) : '';
   o.paid = o.paid && typeof o.paid === 'object' && !Array.isArray(o.paid) ? o.paid : {};
   o.gard = clamp(Math.floor(num(o.gard, 1, 1)), 1, GARD_MAX);
+  o.road = o.road && typeof o.road === 'object' ? { pts: num(o.road.pts, 0, 0), got: Math.floor(num(o.road.got, 0, 0)) } : { pts: 0, got: 0 };
+  o.streak = o.streak && typeof o.streak === 'object' ? { n: Math.floor(num(o.streak.n, 0, 0)), until: num(o.streak.until, 0, 0) } : { n: 0, until: 0 };
+  const rf = o.ref && typeof o.ref === 'object' ? o.ref : {};
+  o.ref = { id: /^[A-Z0-9]{7}$/.test(rf.id) ? rf.id : newRefId(), by: /^[A-Z0-9]{7}$/.test(rf.by) ? rf.by : null, friends: Array.isArray(rf.friends) ? rf.friends.filter(x => /^[A-Z0-9]{7}$/.test(x)).slice(0, 60) : [] };
   o.coins = num(o.coins, 60, 0); o.gems = Math.floor(num(o.gems, 20, 0)); o.level = Math.max(1, Math.floor(num(o.level, 1, 1))); o.xp = num(o.xp, 0, 0);
   const inv = {}; for (const k in (o.inv || {})) if (ITEMS[k]) { const v = Math.floor(num(o.inv[k], 0, 0)); if (v > 0) inv[k] = v; } o.inv = inv;
   o.plots = PLOT_POS.map((_, i) => { const p = Array.isArray(o.plots) && o.plots[i] || {}; const c = CROP[p.c] ? p.c : null; return { u: !!p.u || i < 4, c, p: c ? num(p.p, 0, 0) : 0, l: CROP[p.l] ? p.l : null }; });
@@ -4680,7 +4942,7 @@ function animateWorld(dt) {
 // =========================================================
 const ICON_LIST = () => [...new Set([...Object.values(ITEMS).map(i => i.ic), 'i_coin', 'i_gem', 'i_chest', 'barn', 'truck', 'farmhouse', 'board', 'scarecrow', 'crop_sprout', 'plot', 'market', 'chicken_gold',
   ...CROPS.map(c => c.st[1]), ...PENS.map(p => p.animal), ...WS.map(w => w.model), ...UPG.map(u => u.icon), ...HELPERS.map(h => h.icon),
-  ...TREES.flatMap(t => [t.m, t.m + '_f']), ...ISLANDS.map(I => I.mini), 'tree_sapling', 'tree_bed', 'i_map', 'i_trophy'])];
+  ...TREES.flatMap(t => [t.m, t.m + '_f']), ...ISLANDS.map(I => I.mini), 'mailbox', 'tree_sapling', 'tree_bed', 'i_map', 'i_trophy'])];
 // visuels générés avec ChatGPT : remplacent les icônes 3D quand ils existent
 // les icônes deviennent des adresses courtes (blob:) : panneaux bien plus légers et rapides à afficher
 function iconsToBlobs() {
@@ -4724,6 +4986,7 @@ async function boot(hot) {
   }
   const gltf = await new Promise((res, rej) => new GLTFLoader().setMeshoptDecoder(MeshoptDecoder).parse(glbBuf, '', res, rej));
   for (const o of [...gltf.scene.children]) { o.position.set(0, 0, 0); A[o.name] = o; }
+  try { deriveAssets(); } catch (e) { console.error('[Fermidor] modèles dérivés', e); }
   setLoad(0.3, 'Peinture des icônes…');
   await makeIcons(ICON_LIST(), p => setLoad(0.3 + p * 0.4));
   applyChatGptArt(); iconsToBlobs();
@@ -4797,7 +5060,7 @@ function startGame(fromSave) {
   if (S.tut === 0 && !fromSave) showModal({ ribbon: 'Bienvenue !', rcls: 'green', art: ICONS.app ? 'app' : 'farmhouse', title: S.name ? 'La ferme de ' + esc(S.name) : 'Ta ferme t\'attend', text: 'Plante, récolte, livre les commandes et fais grandir ton domaine. Les fermiers travailleront même quand tu dors !', buttons: [{ label: 'C\'est parti !', cls: '' }] });
   if (!S.name) renameModal(true);
   started = true; lastT = performance.now(); acc = 0; save(true);
-  setTimeout(claimPurchases, 700);
+  setTimeout(claimPurchases, 700); setTimeout(applyReferral, 1200);
 }
 function renameModal(first) {
   showModal({ ribbon: first ? 'Ta ferme' : 'Pseudo', rcls: 'green', art: ICONS.app ? 'app' : 'farmhouse', title: first ? 'Choisis ton pseudo' : 'Change ton pseudo', text: first ? 'Il donnera son nom à ta ferme.' : '', extra: `<input id="renameIn" class="namein" maxlength="16" autocomplete="off" spellcheck="false" placeholder="Ton pseudo" value="${esc(S.name || '')}">`,
@@ -4855,7 +5118,7 @@ document.addEventListener('visibilitychange', () => { if (document.hidden && sta
 window.addEventListener('pagehide', () => { if (started) save(true); });
 function buyUpgrade(u) { if (S.upg[u] >= UPGD[u].max || L() < UPGD[u].lvl) return false; if (!spend(upgCost(u))) return false; S.upg[u]++; return true; }
 function hire(id) { const h = HELPERS.find(x => x.id === id); if (!h || S.help[id] || L() < h.lvl) return false; if (!spend(h.cost)) return false; S.help[id] = true; return true; }
-if (/debug/.test(location.search)) window.__fd = { PFX, SUR, rig, updateCam, GARD, gardStats, travelTo, PAY, PACKS, claimPurchases, payModal, makePlan, improvise, queueGain, flushGain, setNow: v => { simNow = v; }, audioRender, SONGS, prodRate, setOffline: v => { OFFLINE = v; }, DAILY, WHEEL, addBoost, ECON, grant, achVal, ACH, GOALD, MT, OFFLINE_EFF, crateReward, refreshMissions, CROPS, TREES, ITEMS, PENS, setSim: v => { SIM = v; }, BAL, adviceNow, curGoal, genOrder, idleHint, recommendCrop, GOALS, setIdle: ms => { lastInput = performance.now() - ms; lastHint = -Infinity; }, resetState: () => { S = fresh(); S.tut = 99; cropsDirty = signsDirty = true; }, plant, harvest, fillOrder, sell, buyPlot, buyPen, buyAnimal, buildWS, queueRecipe, canQueue, collectPen, collectWS, treePlant, treeHarvest, buyTreeSlot, discardOrder, canFill, canGet, buyUpgrade, hire, upgradeWS, wsUpCost,
+if (/debug/.test(location.search)) window.__fd = { PFX, roadAdd, roadTier, refSig, refThank, refJoin, SUR, rig, updateCam, GARD, gardStats, travelTo, PAY, PACKS, claimPurchases, payModal, makePlan, improvise, queueGain, flushGain, setNow: v => { simNow = v; }, audioRender, SONGS, prodRate, setOffline: v => { OFFLINE = v; }, DAILY, WHEEL, addBoost, ECON, grant, achVal, ACH, GOALD, MT, OFFLINE_EFF, crateReward, refreshMissions, CROPS, TREES, ITEMS, PENS, setSim: v => { SIM = v; }, BAL, adviceNow, curGoal, genOrder, idleHint, recommendCrop, GOALS, setIdle: ms => { lastInput = performance.now() - ms; lastHint = -Infinity; }, resetState: () => { S = fresh(); S.tut = 99; cropsDirty = signsDirty = true; }, plant, harvest, fillOrder, sell, buyPlot, buyPen, buyAnimal, buildWS, queueRecipe, canQueue, collectPen, collectWS, treePlant, treeHarvest, buyTreeSlot, discardOrder, canFill, canGet, buyUpgrade, hire, upgradeWS, wsUpCost,
   CROP, TREE, PEN, WSD, UPG, UPGD, HELPERS, ISL, NEW_ISL, PLOT_COST, PLOT_LVL, upgCost, animalCost, tslotCost, tslotLvl, cap, space, invTotal, have, price, xpNeed, pendingLv, ICONS, ITEMS, CROPS, TREES, PANELS, fmtT, THREE, renderer, scene, camera, W, travelTo, unlockIsland, ISLANDS, TSLOT, get S() { return S; }, onPick, toScreen, PLOT_POS, PENS, WS, openSheet, closeSheet, tick, simulate, addXP, rig, updateCam, save };
 // ---------- adaptation PC / mobile : son, plein écran, raccourcis clavier ----------
 const FINE = matchMedia('(hover:hover) and (pointer:fine)');
