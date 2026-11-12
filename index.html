@@ -1176,6 +1176,48 @@ html.dark .upd-box{background:#2b2119}
 @keyframes resGain{0%{box-shadow:0 0 0 0 rgba(255,214,74,0)}30%{transform:scale(1.12);box-shadow:0 0 0 3px rgba(255,214,74,.9),0 0 18px rgba(255,214,74,.8)}100%{transform:none;box-shadow:0 0 0 0 rgba(255,214,74,0)}}
 @keyframes resGainBig{0%{box-shadow:0 0 0 0 rgba(255,214,74,0)}25%{transform:scale(1.2) rotate(-2deg);box-shadow:0 0 0 4px #ffd54a,0 0 30px rgba(255,214,74,1)}50%{transform:scale(1.1) rotate(2deg)}100%{transform:none;box-shadow:0 0 0 0 rgba(255,214,74,0)}}
 @media (prefers-reduced-motion:reduce){.gainpop{animation:none}}
+/* ---------- boutique de gemmes (argent réel) ---------- */
+.gemshop{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
+.gp,.gpstart{position:relative;font:inherit;color:var(--ink);cursor:pointer;border-radius:18px;border:3px solid var(--wood-dk);background:linear-gradient(#fffaf0,#f6e7c8);box-shadow:0 4px 0 var(--wood-dk),0 8px 14px rgba(0,0,0,.15)}
+.gp{display:flex;flex-direction:column;align-items:center;gap:1px;padding:16px 8px 10px}
+.gp:active,.gpstart:active{transform:translateY(3px);box-shadow:0 1px 0 var(--wood-dk)}
+.gp-art{position:relative;height:56px;width:100%;display:flex;justify-content:center;align-items:flex-end}
+.gp-art img.ic{width:44px;height:44px;margin:0 -12px;filter:drop-shadow(0 3px 0 rgba(0,0,0,.25))}
+.gp-art.k1 img.ic{width:50px;height:50px}
+.gp-art.k3 img.ic:nth-child(2),.gp-art.k4 img.ic:nth-child(2){transform:translateY(-12px) scale(1.15);z-index:1}
+.gp-art.k4 img.ic:nth-child(3){transform:translateY(-6px)}
+.gp b{font-family:var(--f-display);font-weight:400;font-size:26px;line-height:1.05;color:#16794a}
+.gp-n{font-size:12px;font-weight:900;color:var(--ink-2);margin-top:-2px}
+.gp-price{margin-top:7px;padding:6px 14px;border-radius:12px;background:linear-gradient(#8fe063,#4aa83a);border:2.5px solid #24581b;box-shadow:0 3px 0 #24581b;font-family:var(--f-display);font-size:18px;color:#fff;text-shadow:0 1.5px 0 #24581b;white-space:nowrap}
+.gp-tag{position:absolute;top:-11px;left:50%;transform:translateX(-50%);padding:2px 10px;border-radius:10px;background:linear-gradient(#ff7a83,#d9364a);border:2px solid #7a1622;color:#fff;font-size:11px;font-weight:900;white-space:nowrap;text-transform:uppercase;letter-spacing:.3px}
+.gp.hot{border-color:#b07a10;background:linear-gradient(#fff6d8,#ffe7a3);box-shadow:0 4px 0 #b07a10,0 0 0 3px rgba(255,197,61,.45),0 8px 16px rgba(0,0,0,.18)}
+.gp.best{border-color:#5b2fa0;background:linear-gradient(#f6eaff,#e6d2ff);box-shadow:0 4px 0 #5b2fa0,0 0 0 3px rgba(178,110,232,.45),0 8px 16px rgba(0,0,0,.18)}
+.gp.best .gp-tag{background:linear-gradient(#c58cff,#7b3fd0);border-color:#3e1a73}
+.gpstart{display:flex;align-items:center;gap:10px;width:100%;padding:14px 12px 12px;margin-bottom:12px;text-align:left;border-color:#b07a10;background:linear-gradient(100deg,#fff3c4,#ffd97a);box-shadow:0 4px 0 #b07a10,0 0 0 3px rgba(255,197,61,.5),0 10px 18px rgba(0,0,0,.2)}
+.gpstart .gp-tag{left:16px;transform:none}
+.gps-art img.ic{width:58px;height:58px;filter:drop-shadow(0 3px 0 rgba(0,0,0,.25));animation:ldFloat 3s ease-in-out infinite}
+.gps-txt{flex:1;min-width:0;display:flex;flex-direction:column;gap:3px}
+.gps-txt b{font-family:var(--f-display);font-weight:400;font-size:19px}
+.gps-txt span{font-size:12px;font-weight:900;color:var(--ink-2);line-height:1.35}
+.gps-txt span img.ic{width:15px;height:15px;vertical-align:-3px}
+.gpstart .gp-price{margin-top:0;flex:0 0 auto}
+.paynote{text-align:center;font-size:12px;color:var(--ink-3);font-weight:800;margin:8px 0 4px}
+.paynote a,.paychk a{color:inherit;text-decoration:underline}
+.paychk{display:flex;gap:10px;align-items:flex-start;text-align:left;font-size:12.5px;font-weight:800;color:var(--ink-2);line-height:1.35;padding:10px 12px;border-radius:14px;background:rgba(58,38,24,.07);margin:4px 0}
+.paychk input{width:22px;height:22px;flex:0 0 auto;accent-color:#4aa83a;margin:0}
+.paysafe{font-size:11.5px;color:var(--ink-3);font-weight:800;margin:2px 0 4px}
+html.dark .gp,html.dark .gpstart{background:linear-gradient(#3b2d21,#33271d);border-color:#1d120a}
+html.dark .gp.hot{background:linear-gradient(#4a3a12,#3d3020)}
+html.dark .gp.best{background:linear-gradient(#3a2a52,#2e2240)}
+html.dark .gpstart{background:linear-gradient(100deg,#4a3a12,#5c4614)}
+html.dark .gp b{color:#7be3a6}
+html.dark .paychk{background:rgba(255,255,255,.06)}
+/* ---------- jardiniers ---------- */
+.gstats{display:flex;flex-wrap:wrap;gap:5px;margin-top:5px}
+.gstats span{padding:2px 9px;border-radius:999px;background:rgba(58,38,24,.08);font-size:11.5px;font-weight:800;color:var(--ink-2)}
+.gstats b{color:var(--ink)}
+.card.gardup{border-color:var(--honey-dk)}
+html.dark .gstats span{background:rgba(255,255,255,.08)}
 /* ---------- fenêtre d'orientation ---------- */
 #rotHint{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);z-index:200;display:none}
 </style>
@@ -1414,13 +1456,36 @@ const UPG = [
 ];
 const UPGD = Object.fromEntries(UPG.map(u => [u.id, u]));
 const HELPERS = [
-  { id: 'jardinier', n: 'Léon le jardinier', d: 'Récolte, replante et cueille les fruits sur toutes les îles', icon: 'scarecrow', lvl: 4, cost: 2500 },
+  { id: 'jardinier', n: 'Léon le jardinier', d: 'Tu le vois marcher dans tes champs : il récolte, replante et cueille les fruits sur toutes les îles', icon: 'scarecrow', lvl: 4, cost: 2500 },
   { id: 'eleveuse', n: "Rose l'éleveuse", d: 'Ramasse œufs, lait, miel, poissons et laine', icon: 'chicken', lvl: 5, cost: 4000 },
   { id: 'marchande', n: 'Lina la marchande', d: 'Vend le surplus quand la grange déborde', icon: 'market', lvl: 7, cost: 8000 },
   { id: 'artisan', n: "Hugo l'artisan", d: 'Vide les ateliers et relance la dernière recette', icon: 'windmill', lvl: 8, cost: 15000 },
 ];
-const GAME_VERSION = '1.0', BUILD_ID = 'b80cb6eda5';
+const GAME_VERSION = '1.0', BUILD_ID = 'd9a0ec2cea';
 const GEM_OFFERS = [[10, 1, ''], [30, 2.7, '-10 %'], [80, 6.4, '-20 %']];
+// ---------- achats en argent réel (liens de paiement Stripe) ----------
+// Chaque lien Stripe renvoie vers le jeu avec ?achat=<id>&cs={CHECKOUT_SESSION_ID} ; tant qu'un lien est vide, l'offre n'apparaît pas.
+const PAY = { depart: '', poignee: '', sac: '', coffre: '', montagne: '' };
+const PACKS = [
+  { id: 'depart', n: 'Pack de départ', g: 250, c: 5000, boost: ['grow', 60], price: '1,99 €', once: true, tag: 'Une seule fois', ic: 'i_chest', k: 2 },
+  { id: 'poignee', n: 'Poignée de gemmes', g: 80, price: '0,99 €', ic: 'i_gem', k: 1 },
+  { id: 'sac', n: 'Sac de gemmes', g: 450, price: '4,99 €', tag: '+12 %', ic: 'i_gem', k: 2 },
+  { id: 'coffre', n: 'Coffre de gemmes', g: 1000, price: '9,99 €', tag: 'Populaire', hot: true, ic: 'i_gem', k: 3 },
+  { id: 'montagne', n: 'Montagne de gemmes', g: 2200, price: '19,99 €', tag: 'Meilleure offre', best: true, ic: 'i_gem', k: 4 },
+];
+const payOn = id => typeof PAY[id] === 'string' && /^https:\/\/(buy|checkout)\.stripe\.com\//.test(PAY[id]);
+// retour de Stripe : on note l'achat (une seule fois par paiement) puis on nettoie l'adresse
+(function () {
+  try {
+    const q = new URLSearchParams(location.search), a = q.get('achat'), cs = q.get('cs');
+    if (a && cs && /^cs_(live|test)_[A-Za-z0-9]+$/.test(cs)) {
+      const used = JSON.parse(localStorage.getItem('fermidor_paid') || '[]'), un = JSON.parse(localStorage.getItem('fermidor_unclaimed') || '[]');
+      if (!used.includes(cs) && !un.some(x => x.cs === cs)) { un.push({ pack: a, cs, t: Date.now() }); localStorage.setItem('fermidor_unclaimed', JSON.stringify(un)); }
+    }
+    if (q.has('achat') || q.has('cs')) { q.delete('achat'); q.delete('cs'); const qs = q.toString(); history.replaceState(null, '', location.pathname + (qs ? '?' + qs : '') + location.hash); }
+  } catch (e) { }
+})();
+
 const DAILY = [{ c: 200 }, { g: 10 }, { c: 600 }, { boost: 'grow', min: 10 }, { g: 20 }, { c: 2000 }, { g: 50, c: 4000, chest: true }];
 const WHEEL = [ // p = chance en %, la somme fait 100
   { id: 'c1', p: 22, col: '#ffc53d', c: 60, ic: 'i_coin', r: 'commun' },
@@ -1475,6 +1540,9 @@ const xpNeed = L => Math.max(20, Math.round(BAL.xk * Math.pow(L, BAL.xp) * (L < 
 const PRESTIGE_LVL = 20;
 const OFFLINE_EFF = 0.5; // production hors-ligne à mi-temps
 const HDELAY = 20; // les fermiers attendent 20 s avant d'agir : le joueur garde le plaisir de récolter
+// jardinier visible : améliorable du niveau 1 à 10 (vitesse, rapidité, équipe de 1 à 3 jardiniers)
+const GARD_MAX = 10, gardUpCost = lv => Math.round(3000 * Math.pow(1.85, lv)), gardUpLvl = lv => 3 + lv * 2;
+const gardStats = (lv = (typeof S === 'object' && S && S.gard) || 1) => ({ lv, spd: 1 + 0.12 * (lv - 1), work: 1.5 / (1 + 0.12 * (lv - 1)), n: lv >= 8 ? 3 : lv >= 4 ? 2 : 1, react: Math.max(1, 8 - 0.75 * (lv - 1)), bg: Math.max(4, HDELAY - 1.8 * (lv - 1)) });
 
 // =========================================================
 // ÉTAT + SAUVEGARDE
@@ -2729,7 +2797,7 @@ function tick(dt) {
   for (let i = 0; i < S.plots.length; i++) {
     const pl = S.plots[i]; if (!pl.c) continue; const c = CROP[pl.c];
     if (pl.p < c.t) { pl.p = Math.min(c.t, pl.p + dt * gm); pl.w = 0; } else pl.w = (pl.w || 0) + dt;
-    if (pl.p >= c.t && S.help.jardinier && pl.w >= HDELAY) { const cid = pl.c; if (harvest(i, true)) plant(i, cid, true); }
+    if (pl.p >= c.t && S.help.jardinier && pl.w >= (SIM ? HDELAY : gardStats().bg) && !gardLive('vallee')) { const cid = pl.c; if (harvest(i, true)) plant(i, cid, true); }
   }
   // arbres fruitiers
   for (const I of NEW_ISL) {
@@ -2737,7 +2805,7 @@ function tick(dt) {
     for (let i = 0; i < arr.length; i++) {
       const t = arr[i]; if (!t.sp) continue; const T = TREE[t.sp];
       if (t.p < T.t) { t.p = Math.min(T.t, t.p + dt * gm); t.w = 0; } else t.w = (t.w || 0) + dt;
-      if (t.p >= T.t && S.help.jardinier && t.w >= HDELAY) treeHarvest(I.id, i, true);
+      if (t.p >= T.t && S.help.jardinier && t.w >= (SIM ? HDELAY : gardStats().bg) && !gardLive(I.id)) treeHarvest(I.id, i, true);
     }
   }
   // animaux
@@ -2817,7 +2885,7 @@ const ui = {
 let shownCoins = 0;
 function hudUpdate(dt) {
   shownCoins = Math.abs(S.coins - shownCoins) < 1 ? S.coins : lerp(shownCoins, S.coins, Math.min(1, dt * 10));
-  setTxt(ui.coins, fmt(shownCoins)); setTxt(ui.gems, fmt(S.gems)); setTxt(ui.lvl, S.level);
+  setTxt(ui.coins, fmt(shownCoins)); setTxt(ui.gems, S.gems < 1000 ? String(Math.floor(S.gems)) : S.gems < 10000 ? (Math.floor(S.gems / 10) / 100).toString().replace('.', ',') + 'k' : fmt(S.gems)); setTxt(ui.lvl, S.level);
   const need = xpNeed(S.level); ui.xpF.style.width = (S.xp / need * 100).toFixed(1) + '%'; setTxt(ui.xpT, fmtC(S.xp) + '/' + fmtC(need));
   const t = performance.now(); while (incomeLog.length && t - incomeLog[0][0] > 60000) incomeLog.shift();
   let r = 0; for (const [, v] of incomeLog) r += v; setTxt(ui.rate, r > 0 ? '+' + fmt(r) + '/min' : '');
@@ -3251,6 +3319,14 @@ const PANELS = {
     }).join('');
     else h = HELPERS.map(hp => {
       const own = S.help[hp.id], lock = L() < hp.lvl;
+      if (hp.id === 'jardinier' && own) {
+        const g = gardStats(), lv = g.lv, nx = lv < GARD_MAX ? gardStats(lv + 1) : null, need = gardUpLvl(lv);
+        const team = GVAR.slice(0, g.n).map(v => v.name).join(', ');
+        const gain = nx ? (nx.n > g.n ? `${GVAR[nx.n - 1].name} rejoint l'équipe ! · ` : '') + `vitesse ×${nx.spd.toFixed(2).replace('.', ',')}, récolte en ${nx.work.toFixed(1).replace('.', ',')} s` : '';
+        return `<div class="card hi gardcard"><div class="art">${ic(hp.icon)}</div><div class="txt"><b>${hp.n} · niv. ${lv}/${GARD_MAX}</b><span>${hp.d}.</span>
+          <div class="gstats"><span>Équipe : <b>${team}</b></span><span>Vitesse <b>×${g.spd.toFixed(2).replace('.', ',')}</b></span><span>Récolte <b>${g.work.toFixed(1).replace('.', ',')} s</b></span></div></div></div>
+          ${nx ? `<div class="card gardup"><div class="txt"><b>Améliorer au niveau ${lv + 1}</b><span>${gain}</span></div>${L() < need ? `<span class="lvlpip">${lk()} Niv. ${need}</span>` : costBtn('gardup', gardUpCost(lv), '', 'gold')}</div>` : '<div class="card"><div class="txt"><b>Équipe au maximum</b><span>Léon, Léa et Paulo travaillent à pleine vitesse.</span></div><span class="lvlpip">MAX</span></div>'}`;
+      }
       return `<div class="card ${own ? 'hi' : lock ? 'dim' : ''}"><div class="art">${ic(hp.icon)}</div><div class="txt"><b>${hp.n}</b><span>${hp.d}</span></div>
       ${own ? '<span class="lvlpip" style="background:#dff3d2;color:#2e7a31">Au travail ✓</span>' : lock ? `<span class="lvlpip">${lk()} Niv. ${hp.lvl}</span>` : costBtn('hire" data-h="' + hp.id, hp.cost)}</div>`;
     }).join('') + '<p class="muted">Les fermiers continuent de travailler quand tu fermes le jeu (dans la limite de ta sieste).</p>';
@@ -3265,7 +3341,12 @@ const PANELS = {
       ['grow', 'Turbo ferme', 'Cultures, animaux et ateliers ×2 plus vite pendant 10 min', 20, 'u_seeds'],
       ['rush', 'Récolte éclair', 'Toutes tes cultures et tous tes arbres sont prêts tout de suite', 8, 'u_sickle'],
     ].map(([k, n, d, g, i]) => `<div class="card"><div class="art">${ic(i)}</div><div class="txt"><b>${n}</b><span>${d}</span></div>${costBtn('boost" data-k="' + k + '" data-g="' + g, g, '', 'blue', '', true)}</div>`).join('');
-    return { title: 'Boutique', icon: 'u_shop', html: `${gift}<h3>Boosts</h3>${boosts}<h3>Acheter des gemmes</h3><div class="grid">${gems}</div><h3>Acheter des pièces</h3><div class="grid">${coins}</div><p class="muted" style="text-align:center">Gagne aussi des gemmes avec le cadeau du jour, la roue, les missions, les succès et les commandes dorées.</p>` };
+    const P0 = PACKS.find(p => p.id === 'depart'), starterOn = payOn('depart') && !(S.paid && S.paid.depart);
+    const gpArt = (P) => `<span class="gp-art k${P.k}">${[...Array(P.k)].map(() => ic(P.ic === 'i_chest' && P.id !== 'depart' ? 'i_gem' : 'i_gem')).join('')}</span>`;
+    const cards = PACKS.filter(p => !p.once && payOn(p.id)).map(P => `<button class="gp ${P.hot ? 'hot' : ''} ${P.best ? 'best' : ''}" data-act="buypack" data-p="${P.id}">${P.tag ? `<span class="gp-tag">${P.tag}</span>` : ''}${gpArt(P)}<b>${fmt(P.g)}</b><span class="gp-n">gemmes</span><span class="gp-price">${P.price}</span></button>`).join('');
+    const prem = cards || starterOn ? `<h3>Gemmes</h3>${starterOn ? `<button class="gpstart" data-act="buypack" data-p="depart"><span class="gp-tag">${P0.tag}</span><span class="gps-art">${ic('i_chest')}</span><span class="gps-txt"><b>${P0.n}</b><span>${ic('i_gem')} ${P0.g} gemmes · ${ic('i_coin')} ${fmt(P0.c)} pièces · Turbo 1 h</span></span><span class="gp-price">${P0.price}</span></button>` : ''}
+      ${cards ? `<div class="gemshop">${cards}</div>` : ''}<p class="paynote">Paiement sécurisé par Stripe · <a href="cgv.html" target="_blank" rel="noopener">Conditions de vente</a></p>` : '';
+    return { title: 'Boutique', icon: 'u_shop', html: `${prem}${gift}<h3>Boosts</h3>${boosts}<h3>Échanger des pièces contre des gemmes</h3><div class="grid">${gems}</div><h3>Acheter des pièces</h3><div class="grid">${coins}</div><p class="muted" style="text-align:center">Gagne aussi des gemmes avec le cadeau du jour, la roue, les missions, les succès et les commandes dorées.</p>` };
   },
   farm() {
     const gain = Math.floor(Math.pow(S.season / 10000, 0.55));
@@ -3368,9 +3449,11 @@ ui.shBody.addEventListener('click', e => {
     wsup() { upgradeWS(d.id); },
     tab() { sheetTab = +d.t; sfx('tap'); },
     upg() { const u = d.u; if (S.upg[u] >= UPGD[u].max) return; if (buyUpgrade(u)) { sfx('buy'); toast(UPGD[u].n + ' niveau ' + S.upg[u]); } },
+    gardup() { const lv = S.gard || 1; if (lv >= GARD_MAX) return; if (L() < gardUpLvl(lv)) { lockToast(gardUpLvl(lv)); sfx('error'); return; } if (!spend(gardUpCost(lv))) return; S.gard = lv + 1; const g = gardStats(); sfx('level'); CONF.burst(50); showModal({ ribbon: 'Amélioré !', rcls: 'green', art: 'scarecrow', title: 'Jardiniers niveau ' + S.gard, text: g.n > gardStats(lv).n ? GVAR[g.n - 1].name + ' rejoint l\'équipe : regarde-la arriver dans tes champs !' : 'Ils marchent et récoltent plus vite.' }); uiDirty = true; },
     hire() { const h = HELPERS.find(x => x.id === d.h); if (hire(h.id)) { sfx('chest'); showModal({ ribbon: 'Embauché !', rcls: 'green', art: h.icon, title: h.n, text: h.d + '.' }); } },
     starter() { if (S.starter || L() < 3) return; S.starter = true; addGems(100, 'coffre'); addBoost('grow', 30); sfx('chest'); CONF.burst(60); showModal({ ribbon: 'Coffre du fermier', rcls: 'gold', art: 'i_chest', rewards: [{ ic: 'i_gem', t: '+100' }, { ic: 'crop_sprout', t: 'Pousse ×2 · 30 min' }] }); },
     gempack() { const g = +d.g, m = +d.m; if (spend(coinPack(m))) { addGems(g, 'echange'); sfx('chest'); flyFromEl('i_gem', b, '#gemsBox', 6); } },
+    buypack() { const P = PACKS.find(x => x.id === d.p); if (!P || !payOn(P.id)) return; if (P.once && S.paid && S.paid[P.id]) { toast('Tu as déjà ce pack'); return; } sfx('open'); payModal(P); },
     coinpack() { const g = +d.g, m = +d.m; if (spendGems(g)) { const c = coinPack(m); addCoins(c); sfx('coin'); flyFromEl('i_coin', b, '#coinsBox', 8); } },
     boost() { const g = +d.g; if (d.k === 'rush') { if (!anyGrowing()) { toast('Rien ne pousse en ce moment'); return; } if (spendGems(g)) { finishAllCrops(); sfx('pop'); closeSheet(); } return; } if (spendGems(g)) { addBoost(d.k, 10); sfx('chest'); toast(d.k === 'sell' ? 'Pluie dorée : ventes ×2 !' : 'Turbo : tout va 2× plus vite !'); } },
     prestige() { if (L() < PRESTIGE_LVL) { lockToast(PRESTIGE_LVL); return; } const gain = Math.floor(Math.pow(S.season / 10000, 0.55)); if (gain <= 0) { toast('Gagne encore des pièces cette saison'); return; }
@@ -3419,7 +3502,7 @@ function spinWheel() {
   }, 4700);
 }
 function doPrestige(gain) {
-  const keep = { name: S.name, gems: S.gems, help: S.help, set: S.set, stats: S.stats, daily: S.daily, wheel: S.wheel, miss: S.miss, epis: S.epis + gain, seasons: S.seasons + 1, starter: S.starter };
+  const keep = { name: S.name, gems: S.gems, help: S.help, gard: S.gard, set: S.set, stats: S.stats, daily: S.daily, wheel: S.wheel, miss: S.miss, epis: S.epis + gain, seasons: S.seasons + 1, starter: S.starter };
   keep.ach = S.ach;
   S = Object.assign(fresh(), keep, { tut: TUT.length, firstOrder: false }); S.coins = 60 + 300 * S.epis;
   cropsDirty = signsDirty = true; for (const k in plotAnim) delete plotAnim[k]; travelTo('vallee', true);
@@ -3440,6 +3523,39 @@ function nextModal() {
     ${o.rewards ? `<div class="rewards">${o.rewards.map(r => `<span class="rw">${ic(r.ic)}${r.t}</span>`).join('')}</div>` : ''}
     ${o.extra || ''}<div class="mrow">${btns.map((b, i) => `<button class="btn ${b.cls}" data-mb="${i}">${b.label}</button>`).join('')}</div></div>`;
   ui.modal.querySelectorAll('[data-mb]').forEach(el => el.onclick = () => { const b = btns[+el.dataset.mb]; audioInit(); sfx('tap'); nextModal(); b.fn && b.fn(); uiDirty = true; });
+}
+// ---------- achat : confirmation, départ vers Stripe, puis livraison au retour ----------
+let payOK = false;
+function packRewards(P) { const rw = []; if (P.g) rw.push({ ic: 'i_gem', t: '+' + fmt(P.g) }); if (P.c) rw.push({ ic: 'i_coin', t: '+' + fmt(P.c) }); if (P.boost) rw.push({ ic: 'u_seeds', t: 'Turbo ' + (P.boost[1] >= 60 ? P.boost[1] / 60 + ' h' : P.boost[1] + ' min') }); return rw; }
+function payModal(P) {
+  payOK = false;
+  showModal({ ribbon: P.n, rcls: P.best || P.hot ? 'green' : '', art: P.ic, title: P.price, rewards: packRewards(P),
+    extra: `<label class="paychk"><input type="checkbox" id="payOk"><span>Je veux recevoir mon achat tout de suite et je renonce à mon droit de rétractation de 14 jours. <a href="cgv.html" target="_blank" rel="noopener">Conditions de vente</a></span></label><p class="paysafe">Paiement sécurisé par Stripe (carte, Apple Pay, Google Pay). Ta partie est sauvegardée avant le paiement.</p>`,
+    buttons: [{ label: 'Annuler', cls: 'ghost' }, { label: 'Payer ' + P.price, cls: 'gold', fn: () => { if (!payOK) { toast('Coche la case pour continuer'); setTimeout(() => payModal(P), 250); return; } goPay(P); } }] });
+  const cb = $('#payOk'); if (cb) cb.onchange = () => { payOK = cb.checked; };
+}
+function goPay(P) {
+  const rid = 'f' + Date.now().toString(36) + Math.random().toString(36).slice(2, 8);
+  try { save(true); } catch (e) { }
+  lsSet('fermidor_pay', JSON.stringify({ pack: P.id, slot: SLOT, rid, t: Date.now() }));
+  const u = PAY[P.id] + (PAY[P.id].includes('?') ? '&' : '?') + 'client_reference_id=' + rid;
+  toast('Ouverture du paiement sécurisé…'); setTimeout(() => { location.href = u; }, 350);
+}
+function payReturnSlot() { // après un paiement, on rouvre directement la partie qui a acheté
+  try { if (!JSON.parse(lsGet('fermidor_unclaimed') || '[]').length) return -1; const p = JSON.parse(lsGet('fermidor_pay') || 'null'); return p && Number.isInteger(p.slot) && p.slot >= 0 && p.slot < NSLOT ? p.slot : -1; } catch (e) { return -1; }
+}
+function claimPurchases() {
+  if (SLOT < 0) return; let un = [], used = [];
+  try { un = JSON.parse(lsGet('fermidor_unclaimed') || '[]'); used = JSON.parse(lsGet('fermidor_paid') || '[]'); } catch (e) { }
+  if (!un.length) return;
+  for (const x of un) {
+    if (used.includes(x.cs)) continue; const P = PACKS.find(p => p.id === x.pack); if (!P) continue; used.push(x.cs);
+    S.paid[P.id] = (S.paid[P.id] || 0) + 1;
+    if (P.g) addGems(P.g, 'achat'); if (P.c) addCoins(P.c, 'achat'); if (P.boost) addBoost(P.boost[0], P.boost[1]);
+    showModal({ ribbon: 'Merci !', rcls: 'green', art: P.ic, title: P.n, text: 'Ton achat est arrivé dans ta ferme. Merci de soutenir Fermidor !', rewards: packRewards(P) });
+    try { sfx('gold'); CONF.burst(90); } catch (e) { }
+  }
+  lsSet('fermidor_paid', JSON.stringify(used.slice(-300))); lsDel('fermidor_unclaimed'); lsDel('fermidor_pay'); save(true); uiDirty = true;
 }
 function unlocksAt(a, b = a) {
   const inR = x => x >= a && x <= b, out = [];
@@ -4081,6 +4197,8 @@ function idleHint() {
 function sanitize(o) {
   const num = (v, d = 0, min = -Infinity) => (typeof v === 'number' && isFinite(v)) ? Math.max(min, v) : d;
   o.name = typeof o.name === 'string' ? o.name.replace(/[<>&"]/g, '').trim().slice(0, 16) : '';
+  o.paid = o.paid && typeof o.paid === 'object' && !Array.isArray(o.paid) ? o.paid : {};
+  o.gard = clamp(Math.floor(num(o.gard, 1, 1)), 1, GARD_MAX);
   o.coins = num(o.coins, 60, 0); o.gems = Math.floor(num(o.gems, 20, 0)); o.level = Math.max(1, Math.floor(num(o.level, 1, 1))); o.xp = num(o.xp, 0, 0);
   const inv = {}; for (const k in (o.inv || {})) if (ITEMS[k]) { const v = Math.floor(num(o.inv[k], 0, 0)); if (v > 0) inv[k] = v; } o.inv = inv;
   o.plots = PLOT_POS.map((_, i) => { const p = Array.isArray(o.plots) && o.plots[i] || {}; const c = CROP[p.c] ? p.c : null; return { u: !!p.u || i < 4, c, p: c ? num(p.p, 0, 0) : 0, l: CROP[p.l] ? p.l : null }; });
@@ -4161,6 +4279,7 @@ function step(rdt, dt) {
     if (signsDirty) { buildSigns(); signsDirty = false; }
     lastCropBuild += dt; if (cropsDirty || lastCropBuild > 0.12 || Object.keys(plotAnim).length || Object.keys(treeAnim).length) { buildCrops(clock); cropsDirty = false; lastCropBuild = 0; }
     syncAgents(dt, clock);
+    try { gardFrame(dt, clock); } catch (e) { if (errN++ < 5) console.error('[Fermidor] jardinier', e); }
     animateWorld(dt);
     if (started) { bubT += dt; if (bubT >= 0.1) { bubT = 0; worldBubbles(clock); } bubblesFrame(); }
   }
@@ -4169,6 +4288,139 @@ function step(rdt, dt) {
   try { dayNightFrame(dt); } catch (e) { if (errN++ < 5) console.error('[Fermidor]', e); }
   if (W.plotBase) lifeFrame(dt);
   waterMat.uniforms.uT.value = clock;
+}
+// =========================================================
+// JARDINIERS VISIBLES : ils marchent jusqu'aux champs et aux arbres, récoltent, replantent
+// =========================================================
+const GVAR = [
+  { name: 'Léon', shirt: '#d9534f', over: '#3f6fb5', band: '#b8322a', must: true },
+  { name: 'Léa', shirt: '#55b360', over: '#8a5f3c', band: '#2e7a31', must: false, hair: '#8a4b22' },
+  { name: 'Paulo', shirt: '#f2b632', over: '#3f6fb5', band: '#8e44ad', must: false, hair: '#2b1d14' },
+];
+const GARD = { ags: [], isl: null, last: 0, res: new Set(), empty: {}, fullUntil: 0, fullMsg: 0 };
+function gardLive(isl) { try { return !SIM && started && curIsl === isl && S.help && S.help.jardinier && !document.hidden; } catch (e) { return false; } }
+function makeGardener(v) {
+  const g = new THREE.Group(), M = c => new THREE.MeshStandardMaterial({ color: c, roughness: .85, flatShading: true });
+  const skin = M('#f1c49b'), shirt = M(v.shirt), over = M(v.over), boot = M('#5a3a22'), straw = M('#ecc66d'), band = M(v.band), dark = M('#2b1d14'), white = M('#f7f3ea'), wood = M('#9a6a3c');
+  const add = (geo, mat, x, y, z, par) => { const m = new THREE.Mesh(geo, mat); m.position.set(x, y, z); m.castShadow = true; (par || g).add(m); return m; };
+  const grp = (x, y, z, par) => { const o = new THREE.Group(); o.position.set(x, y, z); (par || g).add(o); return o; };
+  const legL = grp(-0.12, 0.6, 0), legR = grp(0.12, 0.6, 0);
+  for (const L of [legL, legR]) { add(new THREE.BoxGeometry(0.17, 0.48, 0.19), over, 0, -0.24, 0, L); add(new THREE.BoxGeometry(0.2, 0.12, 0.28), boot, 0, -0.53, 0.04, L); }
+  const body = grp(0, 0.6, 0);
+  add(new THREE.CylinderGeometry(0.25, 0.28, 0.42, 8), over, 0, 0.2, 0, body);
+  add(new THREE.CylinderGeometry(0.24, 0.25, 0.24, 8), shirt, 0, 0.52, 0, body);
+  add(new THREE.BoxGeometry(0.2, 0.18, 0.06), over, 0, 0.36, 0.23, body); // bavette de la salopette
+  for (const sx of [-1, 1]) add(new THREE.BoxGeometry(0.05, 0.26, 0.04), over, sx * 0.12, 0.52, 0.22, body); // bretelles
+  add(new THREE.BoxGeometry(0.06, 0.06, 0.02), M('#f2d06b'), 0, 0.4, 0.265, body); // bouton
+  const armL = grp(-0.31, 0.6, 0, body), armR = grp(0.31, 0.6, 0, body);
+  for (const A of [armL, armR]) { add(new THREE.BoxGeometry(0.13, 0.4, 0.14), shirt, 0, -0.18, 0, A); add(new THREE.SphereGeometry(0.075, 8, 6), skin, 0, -0.41, 0, A); }
+  const head = grp(0, 0.86, 0, body);
+  add(new THREE.IcosahedronGeometry(0.25, 1), skin, 0, 0, 0, head);
+  add(new THREE.SphereGeometry(0.06, 8, 6), M('#e9a77f'), 0, -0.03, 0.24, head);
+  for (const sx of [-1, 1]) { add(new THREE.SphereGeometry(0.034, 6, 5), dark, sx * 0.09, 0.05, 0.215, head); add(new THREE.SphereGeometry(0.045, 6, 5), M('#f2a0a0'), sx * 0.15, -0.05, 0.18, head); }
+  if (v.must) add(new THREE.BoxGeometry(0.24, 0.06, 0.07), white, 0, -0.1, 0.22, head);
+  if (v.hair) { add(new THREE.SphereGeometry(0.26, 10, 6, 0, Math.PI * 2, 0, Math.PI * 0.55), M(v.hair), 0, 0.02, -0.02, head); if (v.name === 'Léa') for (const sx of [-1, 1]) add(new THREE.SphereGeometry(0.09, 8, 6), M(v.hair), sx * 0.26, -0.08, -0.06, head); }
+  add(new THREE.CylinderGeometry(0.44, 0.44, 0.04, 14), straw, 0, 0.17, 0, head);
+  add(new THREE.CylinderGeometry(0.2, 0.24, 0.2, 10), straw, 0, 0.28, 0, head);
+  add(new THREE.CylinderGeometry(0.245, 0.245, 0.06, 10), band, 0, 0.21, 0, head);
+  // panier (visible quand il rapporte la récolte)
+  const basket = grp(0, -0.47, 0.08, armR);
+  add(new THREE.CylinderGeometry(0.15, 0.11, 0.14, 8), wood, 0, -0.04, 0, basket);
+  const prodMat = M('#f2c14e'); const prod = add(new THREE.SphereGeometry(0.11, 8, 6), prodMat, 0, 0.04, 0, basket);
+  basket.visible = false;
+  // binette sur le dos
+  const hoe = grp(0.05, 0.45, -0.27, body); hoe.rotation.z = 0.5;
+  add(new THREE.CylinderGeometry(0.025, 0.025, 0.85, 5), wood, 0, 0, 0, hoe); add(new THREE.BoxGeometry(0.16, 0.05, 0.09), M('#9aa3ad'), 0.05, 0.42, 0, hoe);
+  g.traverse(o => { if (o.isMesh) o.receiveShadow = false; });
+  return { g, body, legL, legR, armL, armR, head, basket, prodMat };
+}
+function gardHome(isl, k) { if (isl === 'vallee') return [-14.5 + (k % 2) * 0.95, 0.2 + k * 1.15]; const I = ISL[isl]; return [I.ox - 1.1 + k * 1.1, I.oz + 2.4]; }
+function gardTargets(isl, st) {
+  const out = [], full = performance.now() < GARD.fullUntil;
+  if (isl === 'vallee') S.plots.forEach((pl, i) => {
+    if (!pl.u) return; const [x, z] = PLOT_POS[i];
+    if (pl.c && pl.p >= CROP[pl.c].t && (pl.w || 0) >= st.react) { if (!full) out.push({ key: 'p' + i, kind: 'harv', i, x, z: z + 1.35, fx: x, fz: z }); }
+    else if (!pl.c && pl.l && CROP[pl.l] && L() >= CROP[pl.l].lvl && S.coins >= CROP[pl.l].seed && (GARD.empty[i] || 0) >= st.react + 4) out.push({ key: 'p' + i, kind: 'plant', i, cid: pl.l, x, z: z + 1.35, fx: x, fz: z });
+  });
+  else if (S.isl[isl] && S.trees[isl] && !full) S.trees[isl].forEach((t, i) => { if (!t.sp) return; if (t.p >= TREE[t.sp].t && (t.w || 0) >= st.react) { const [x, z] = TSLOT[isl][i]; out.push({ key: 't' + i, kind: 'tree', i, x, z: z + 1.3, fx: x, fz: z }); } });
+  return out;
+}
+function gardStill(tg, isl) {
+  if (tg.kind === 'tree') { const t = S.trees[isl] && S.trees[isl][tg.i]; return !!(t && t.sp && t.p >= TREE[t.sp].t); }
+  const pl = S.plots[tg.i]; if (!pl) return false;
+  return tg.kind === 'harv' ? !!(pl.c && pl.p >= CROP[pl.c].t) : !pl.c && S.coins >= CROP[tg.cid].seed;
+}
+function gardFull(a) { GARD.fullUntil = performance.now() + 6000; if (performance.now() - GARD.fullMsg > 12000) { GARD.fullMsg = performance.now(); floatText({ x: a.x, y: 0.4, z: a.z }, 'Grange pleine !', ''); } }
+function gardWork(a, isl) {
+  const tg = a.tgt; a.carry = 0;
+  if (tg.kind === 'harv') { const cid = S.plots[tg.i].c; if (harvest(tg.i, true)) { plant(tg.i, cid, true); a.carry = 1.6; a.m.prodMat.color.set((FXCOL[cid] || ['#f2c14e'])[0]); } else gardFull(a); }
+  else if (tg.kind === 'plant') { if (plant(tg.i, tg.cid, true)) { PFX.emit(tg.fx, 0.3, tg.fz, { n: 8, col: ['#8a5a33', '#a9764a', '#7cc853'], spd: 1.2, up: 2.4, grav: 9, life: .6, size: .25, spread: .9 }); cropsDirty = true; } }
+  else if (tg.kind === 'tree') { const sp = S.trees[isl][tg.i].sp; if (treeHarvest(isl, tg.i, true)) { a.carry = 1.6; a.m.prodMat.color.set(FXCOL[sp] ? FXCOL[sp][0] : '#e5483c'); } else gardFull(a); }
+}
+function gardFrame(dt, time) {
+  const on = !!(S && S.help && S.help.jardinier && started && !SIM);
+  if (!on) { for (const a of GARD.ags) a.m.g.visible = false; return; }
+  GARD.last = performance.now();
+  const isl = curIsl, st = gardStats();
+  if (isl === 'vallee') S.plots.forEach((pl, i) => { GARD.empty[i] = !pl.c && pl.u ? (GARD.empty[i] || 0) + dt : 0; });
+  while (GARD.ags.length < st.n) {
+    const k = GARD.ags.length, m = makeGardener(GVAR[k]); m.g.scale.setScalar(1.3); scene.add(m.g); const [x, z] = gardHome(isl, k);
+    GARD.ags.push({ k, m, x, z, yaw: 0.4, yawTo: 0.4, st: 'idle', tgt: null, t: 0.5 + k * 0.6, ph: Math.random() * 6, idle: 0, carry: 0 });
+    if (started && GARD.isl === isl) { PFX.emit(x, 0.8, z, { n: 14, col: ['#ffe27a', '#ffffff', '#9fd36a'], spd: 2, up: 3, grav: 6, life: .8, size: .3, spread: .6 }); }
+  }
+  if (GARD.isl !== isl) { GARD.isl = isl; GARD.res.clear(); for (const a of GARD.ags) { const [x, z] = gardHome(isl, a.k); a.x = x; a.z = z; a.st = 'idle'; a.tgt = null; a.t = 0.3 + a.k * 0.4; } }
+  for (const a of GARD.ags) {
+    if (a.k >= st.n) { a.m.g.visible = false; continue; }
+    a.m.g.visible = true; gardStep(a, dt, st, isl); gardPose(a, dt, st, time);
+  }
+}
+function gardRelease(a) { if (a.tgt && a.tgt.key) GARD.res.delete(a.tgt.key); a.tgt = null; }
+function gardStep(a, dt, st, isl) {
+  const v = 2.4 * st.spd;
+  if (a.st === 'idle') {
+    a.idle += dt; a.t -= dt;
+    if (a.t <= 0) {
+      a.t = 0.35; let best = null, bd = 1e9;
+      for (const tg of gardTargets(isl, st)) { if (GARD.res.has(tg.key)) continue; const d = Math.hypot(tg.x - a.x, tg.z - a.z); if (d < bd) { bd = d; best = tg; } }
+      if (best) { a.tgt = best; GARD.res.add(best.key); a.st = 'walk'; a.idle = 0; }
+      else { const [hx, hz] = gardHome(isl, a.k); if (Math.hypot(hx - a.x, hz - a.z) > 0.3) { a.tgt = { home: true, x: hx, z: hz }; a.st = 'walk'; } }
+    }
+  } else if (a.st === 'walk') {
+    const tg = a.tgt; if (!tg.home && !gardStill(tg, isl)) { gardRelease(a); a.st = 'idle'; a.t = 0; return; }
+    const dx = tg.x - a.x, dz = tg.z - a.z, d = Math.hypot(dx, dz);
+    if (d < 0.06) { a.x = tg.x; a.z = tg.z; if (tg.home) { a.tgt = null; a.st = 'idle'; a.yawTo = 0.5; a.t = 0.6; } else { a.st = 'work'; a.t = st.work; a.yawTo = Math.atan2(tg.fx - a.x, tg.fz - a.z); } }
+    else { const s = Math.min(d, v * dt); a.x += dx / d * s; a.z += dz / d * s; a.yawTo = Math.atan2(dx, dz); }
+  } else if (a.st === 'work') {
+    if (!gardStill(a.tgt, isl)) { gardRelease(a); a.st = 'idle'; a.t = 0; return; }
+    a.t -= dt;
+    if (a.t <= 0) { gardWork(a, isl); gardRelease(a); a.st = 'idle'; a.t = 0.2; a.hop = 0.35; }
+  }
+}
+function gardPose(a, dt, st, time) {
+  const m = a.m, k = Math.min(1, dt * 12), lr = (o, p, v) => { o[p] = lerp(o[p], v, k); };
+  let dy = a.yawTo - a.yaw; dy = Math.atan2(Math.sin(dy), Math.cos(dy)); a.yaw += dy * Math.min(1, dt * 10);
+  a.hop = Math.max(0, (a.hop || 0) - dt); a.carry = Math.max(0, a.carry - dt);
+  const hopY = a.hop > 0 ? Math.sin((1 - a.hop / 0.35) * Math.PI) * 0.18 : 0;
+  m.g.position.set(a.x, hopY, a.z); m.g.rotation.y = a.yaw;
+  if (a.st === 'walk') {
+    a.ph += dt * 8.5 * st.spd; const sw = Math.sin(a.ph);
+    lr(m.legL.rotation, 'x', sw * 0.75); lr(m.legR.rotation, 'x', -sw * 0.75);
+    lr(m.armL.rotation, 'x', -sw * 0.65); lr(m.armR.rotation, 'x', a.carry > 0 ? -0.5 : sw * 0.65); lr(m.armR.rotation, 'z', 0);
+    m.body.position.y = 0.6 + Math.abs(Math.cos(a.ph)) * 0.05; lr(m.body.rotation, 'x', 0.1); lr(m.head.rotation, 'y', 0);
+  } else if (a.st === 'work') {
+    a.ph += dt * 13 * st.spd;
+    lr(m.body.rotation, 'x', 0.62); m.body.position.y = lerp(m.body.position.y, 0.5, k);
+    lr(m.legL.rotation, 'x', -0.45); lr(m.legR.rotation, 'x', 0.35);
+    lr(m.armL.rotation, 'x', -1.25 + Math.sin(a.ph) * 0.55); lr(m.armR.rotation, 'x', -1.25 + Math.sin(a.ph + Math.PI) * 0.55); lr(m.armR.rotation, 'z', 0);
+    lr(m.head.rotation, 'y', 0);
+  } else {
+    a.ph += dt * 2; const wave = a.idle > 5 && (a.idle % 9) < 1.6;
+    lr(m.legL.rotation, 'x', 0); lr(m.legR.rotation, 'x', 0); lr(m.body.rotation, 'x', 0); m.body.position.y = lerp(m.body.position.y, 0.6 + Math.sin(a.ph) * 0.012, k);
+    lr(m.armL.rotation, 'x', Math.sin(a.ph) * 0.05);
+    if (wave) { lr(m.armR.rotation, 'z', 2.5 + Math.sin(time * 9) * 0.3); lr(m.armR.rotation, 'x', 0); } else { lr(m.armR.rotation, 'z', 0); lr(m.armR.rotation, 'x', a.carry > 0 ? -0.5 : -Math.sin(a.ph) * 0.05); }
+    lr(m.head.rotation, 'y', Math.sin(time * 0.45 + a.k * 2) * 0.55);
+  }
+  m.basket.visible = a.carry > 0;
 }
 function animateWorld(dt) {
   for (const w of WS) {
@@ -4283,6 +4535,7 @@ async function boot(hot) {
     btn.onclick = () => { btn.onclick = null; const had = loadSlot(0, SAVES[0], SAVES[0] ? null : 'Testeur'); startGame(had); };
     return;
   }
+  const pk = payReturnSlot(); if (pk >= 0 && SAVES[pk]) { setTimeout(() => { const had = loadSlot(pk, SAVES[pk]); startGame(had); }, 350); return; }
   setTimeout(() => { $('#loader').classList.add('ready', 'picking'); showSlots(false); }, 350);
 }
 // ---------- choix de la partie ----------
@@ -4327,6 +4580,7 @@ function startGame(fromSave) {
   if (S.tut === 0 && !fromSave) showModal({ ribbon: 'Bienvenue !', rcls: 'green', art: ICONS.app ? 'app' : 'farmhouse', title: S.name ? 'La ferme de ' + esc(S.name) : 'Ta ferme t\'attend', text: 'Plante, récolte, livre les commandes et fais grandir ton domaine. Les fermiers travailleront même quand tu dors !', buttons: [{ label: 'C\'est parti !', cls: '' }] });
   if (!S.name) renameModal(true);
   started = true; lastT = performance.now(); acc = 0; save(true);
+  setTimeout(claimPurchases, 700);
 }
 function renameModal(first) {
   showModal({ ribbon: first ? 'Ta ferme' : 'Pseudo', rcls: 'green', art: ICONS.app ? 'app' : 'farmhouse', title: first ? 'Choisis ton pseudo' : 'Change ton pseudo', text: first ? 'Il donnera son nom à ta ferme.' : '', extra: `<input id="renameIn" class="namein" maxlength="16" autocomplete="off" spellcheck="false" placeholder="Ton pseudo" value="${esc(S.name || '')}">`,
@@ -4384,7 +4638,7 @@ document.addEventListener('visibilitychange', () => { if (document.hidden && sta
 window.addEventListener('pagehide', () => { if (started) save(true); });
 function buyUpgrade(u) { if (S.upg[u] >= UPGD[u].max || L() < UPGD[u].lvl) return false; if (!spend(upgCost(u))) return false; S.upg[u]++; return true; }
 function hire(id) { const h = HELPERS.find(x => x.id === id); if (!h || S.help[id] || L() < h.lvl) return false; if (!spend(h.cost)) return false; S.help[id] = true; return true; }
-if (/debug/.test(location.search)) window.__fd = { PFX, makePlan, improvise, queueGain, flushGain, setNow: v => { simNow = v; }, audioRender, SONGS, prodRate, setOffline: v => { OFFLINE = v; }, DAILY, WHEEL, addBoost, ECON, grant, achVal, ACH, GOALD, MT, OFFLINE_EFF, crateReward, refreshMissions, CROPS, TREES, ITEMS, PENS, setSim: v => { SIM = v; }, BAL, adviceNow, curGoal, genOrder, idleHint, recommendCrop, GOALS, setIdle: ms => { lastInput = performance.now() - ms; lastHint = -Infinity; }, resetState: () => { S = fresh(); S.tut = 99; cropsDirty = signsDirty = true; }, plant, harvest, fillOrder, sell, buyPlot, buyPen, buyAnimal, buildWS, queueRecipe, canQueue, collectPen, collectWS, treePlant, treeHarvest, buyTreeSlot, discardOrder, canFill, canGet, buyUpgrade, hire, upgradeWS, wsUpCost,
+if (/debug/.test(location.search)) window.__fd = { PFX, GARD, gardStats, travelTo, PAY, PACKS, claimPurchases, payModal, makePlan, improvise, queueGain, flushGain, setNow: v => { simNow = v; }, audioRender, SONGS, prodRate, setOffline: v => { OFFLINE = v; }, DAILY, WHEEL, addBoost, ECON, grant, achVal, ACH, GOALD, MT, OFFLINE_EFF, crateReward, refreshMissions, CROPS, TREES, ITEMS, PENS, setSim: v => { SIM = v; }, BAL, adviceNow, curGoal, genOrder, idleHint, recommendCrop, GOALS, setIdle: ms => { lastInput = performance.now() - ms; lastHint = -Infinity; }, resetState: () => { S = fresh(); S.tut = 99; cropsDirty = signsDirty = true; }, plant, harvest, fillOrder, sell, buyPlot, buyPen, buyAnimal, buildWS, queueRecipe, canQueue, collectPen, collectWS, treePlant, treeHarvest, buyTreeSlot, discardOrder, canFill, canGet, buyUpgrade, hire, upgradeWS, wsUpCost,
   CROP, TREE, PEN, WSD, UPG, UPGD, HELPERS, ISL, NEW_ISL, PLOT_COST, PLOT_LVL, upgCost, animalCost, tslotCost, tslotLvl, cap, space, invTotal, have, price, xpNeed, pendingLv, ICONS, ITEMS, CROPS, TREES, PANELS, fmtT, THREE, renderer, scene, camera, W, travelTo, unlockIsland, ISLANDS, TSLOT, get S() { return S; }, onPick, toScreen, PLOT_POS, PENS, WS, openSheet, closeSheet, tick, simulate, addXP, rig, updateCam, save };
 // ---------- adaptation PC / mobile : son, plein écran, raccourcis clavier ----------
 const FINE = matchMedia('(hover:hover) and (pointer:fine)');
