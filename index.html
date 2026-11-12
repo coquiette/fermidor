@@ -1461,7 +1461,7 @@ const HELPERS = [
   { id: 'marchande', n: 'Lina la marchande', d: 'Vend le surplus quand la grange déborde', icon: 'market', lvl: 7, cost: 8000 },
   { id: 'artisan', n: "Hugo l'artisan", d: 'Vide les ateliers et relance la dernière recette', icon: 'windmill', lvl: 8, cost: 15000 },
 ];
-const GAME_VERSION = '1.0', BUILD_ID = 'd9a0ec2cea';
+const GAME_VERSION = '1.0', BUILD_ID = '8e249a385d';
 const GEM_OFFERS = [[10, 1, ''], [30, 2.7, '-10 %'], [80, 6.4, '-20 %']];
 // ---------- achats en argent réel (liens de paiement Stripe) ----------
 // Chaque lien Stripe renvoie vers le jeu avec ?achat=<id>&cs={CHECKOUT_SESSION_ID} ; tant qu'un lien est vide, l'offre n'apparaît pas.
@@ -2245,7 +2245,7 @@ function pathMats(col, edge) {
     new THREE.MeshStandardMaterial({ color: col, roughness: 1, polygonOffset: true, polygonOffsetFactor: -2, polygonOffsetUnits: -2 })];
 }
 function path(x, z, w, d, col = '#e0bd86', edge = '#c99f68') {
-  const [em, pm] = pathMats(col, edge);
+  const [em, pm] = pathMats(col, edge); PATHS.push([x, z, w, d]);
   for (const [m, e, y] of [[em, 0.35, 0.012], [pm, 0, 0.02]]) {
     const g = new THREE.ShapeGeometry(roundRect(w + e, d + e, Math.min(w, d) / 2 + e / 2)); g.rotateX(-Math.PI / 2);
     const p = new THREE.Mesh(g, m); p.position.set(x, y, z); p.receiveShadow = true; scene.add(p);
@@ -2271,11 +2271,224 @@ function islandTerrain(I) {
   foam.traverse(m => { if (m.isMesh) m.material = W.foamMat; }); scene.add(foam);
 }
 function pick3(R, a) { return a[Math.floor(R() * a.length)]; }
+// =========================================================
+// DÉCOR ENRICHI : petits détails au sol + archipel vivant autour des îles
+// =========================================================
+const FERRY_PTS = [[58, 31], [40, 8], [32, -30], [16, -50], [-8, -57], [-30, -48], [-38, -28], [-44, 8], [-74, 31], [-96, 6], [-86, -70], [0, -130], [86, -70], [92, 6]];
+const PATHS = [], FREE = {};
+const SUR = { boats: [], gulls: [], dols: [], bob: null, sh: null, clear: null, t: 0 };
+const onPath = (x, z, pad) => PATHS.some(([px, pz, w, d]) => Math.abs(x - px) < w / 2 + pad && Math.abs(z - pz) < d / 2 + pad);
+let PROPMAT = null;
+function bakeGeo(parts) { // [géométrie, couleur, matrice] -> une seule géométrie colorée
+  const pos = [], col = [], c = new THREE.Color(), v = new THREE.Vector3();
+  for (const [g0, color, m] of parts) {
+    const g = g0.index ? g0.toNonIndexed() : g0, p = g.attributes.position; c.set(color);
+    for (let i = 0; i < p.count; i++) { v.fromBufferAttribute(p, i); if (m) v.applyMatrix4(m); pos.push(v.x, v.y, v.z); col.push(c.r, c.g, c.b); }
+  }
+  const geo = new THREE.BufferGeometry(); geo.setAttribute('position', new THREE.Float32BufferAttribute(pos, 3)); geo.setAttribute('color', new THREE.Float32BufferAttribute(col, 3)); geo.computeVertexNormals(); return geo;
+}
+const TM = (x, y, z, rx = 0, ry = 0, rz = 0, sx = 1, sy = sx, sz = sx) => new THREE.Matrix4().compose(new THREE.Vector3(x, y, z), new THREE.Quaternion().setFromEuler(new THREE.Euler(rx, ry, rz)), new THREE.Vector3(sx, sy, sz));
+function makeProps() {
+  PROPMAT = new THREE.MeshStandardMaterial({ vertexColors: true, flatShading: true, roughness: .92 });
+  const reg = (n, parts, mat) => { A[n] = new THREE.Mesh(bakeGeo(parts), mat || PROPMAT); };
+  const cone = new THREE.ConeGeometry(0.06, 0.38, 4), ico = new THREE.IcosahedronGeometry(1, 0), cyl = new THREE.CylinderGeometry(1, 1, 1, 7), cap = new THREE.SphereGeometry(1, 7, 4, 0, Math.PI * 2, 0, Math.PI / 2);
+  reg('p_tuft', [[cone, '#6fbf47', TM(0, 0.17, 0, 0.12, 0, 0.1)], [cone, '#8ad65c', TM(0.08, 0.14, 0.03, -0.2, 0, -0.32, 0.9)], [cone, '#5cab3c', TM(-0.07, 0.13, -0.04, 0.25, 0, 0.36, 0.85)], [cone, '#9be06a', TM(0.01, 0.12, 0.09, 0.4, 0, 0, 0.75)]]);
+  reg('p_tuft_dry', [[cone, '#cdbf5e', TM(0, 0.19, 0, 0.1, 0, 0.12, 1.15)], [cone, '#b7c356', TM(0.08, 0.15, 0.02, -0.2, 0, -0.38, 1)], [cone, '#d8cf78', TM(-0.08, 0.15, -0.03, 0.2, 0, 0.4, 1)], [cone, '#a9b84c', TM(0, 0.13, 0.09, 0.45, 0, 0, 0.85)]]);
+  reg('p_pebble', [[ico, '#a8adb3', TM(0, 0.05, 0, 0, 0.4, 0, 0.14, 0.08, 0.12)], [ico, '#8f959c', TM(0.17, 0.035, 0.06, 0, 1.2, 0, 0.09, 0.06, 0.1)], [ico, '#c2c6cb', TM(-0.1, 0.03, 0.14, 0, 2, 0, 0.07, 0.05, 0.07)]]);
+  reg('p_mushroom', [[cyl, '#f6efe2', TM(0, 0.09, 0, 0, 0, 0, 0.045, 0.18, 0.045)], [cap, '#e2473d', TM(0, 0.17, 0, 0, 0, 0, 0.15, 0.12, 0.15)], [cyl, '#f6efe2', TM(0.2, 0.06, 0.08, 0, 0, 0, 0.03, 0.12, 0.03)], [cap, '#e9682f', TM(0.2, 0.11, 0.08, 0, 0, 0, 0.09, 0.08, 0.09)]]);
+  reg('p_stump', [[cyl, '#8a5a33', TM(0, 0.13, 0, 0, 0, 0, 0.26, 0.26, 0.26)], [cyl, '#d9b27c', TM(0, 0.265, 0, 0, 0, 0, 0.21, 0.02, 0.21)], [cone, '#6fbf47', TM(0.3, 0.14, 0.1, 0, 0, -0.3)], [cap, '#e2473d', TM(-0.3, 0.1, 0.12, 0, 0, 0, 0.09, 0.07, 0.09)]]);
+  reg('p_log', [[cyl, '#7c4f2c', TM(0, 0.17, 0, 0, 0, Math.PI / 2, 0.17, 1.3, 0.17)], [cyl, '#d9b27c', TM(0.655, 0.17, 0, 0, 0, Math.PI / 2, 0.14, 0.02, 0.14)], [cyl, '#d9b27c', TM(-0.655, 0.17, 0, 0, 0, Math.PI / 2, 0.14, 0.02, 0.14)], [cap, '#6fbf47', TM(0.1, 0.3, 0, 0, 0, 0, 0.22, 0.07, 0.14)]]);
+  const arm = new THREE.ConeGeometry(0.05, 0.2, 4), star = []; for (let k = 0; k < 5; k++) { const a = k / 5 * 6.283; star.push([arm, '#ff8a4c', TM(Math.sin(a) * 0.09, 0.035, Math.cos(a) * 0.09, Math.PI / 2, 0, 0).premultiply(new THREE.Matrix4()).multiply(new THREE.Matrix4())]); star[k][2] = new THREE.Matrix4().makeRotationY(a).multiply(TM(0, 0.035, 0.1, Math.PI / 2, 0, 0, 1, 1, 0.6)); }
+  star.push([ico, '#ffa25e', TM(0, 0.04, 0, 0, 0, 0, 0.07, 0.04, 0.07)]); reg('p_starfish', star);
+  reg('p_shell', [[cap, '#ffd1dc', TM(0, 0.01, 0, 0, 0, 0, 0.1, 0.08, 0.12)], [cap, '#fff1d6', TM(0.22, 0.01, 0.1, 0, 0.8, 0, 0.07, 0.05, 0.08)]]);
+  reg('p_snow', [[ico, '#ffffff', TM(0, 0.06, 0, 0, 0.3, 0, 0.42, 0.16, 0.36)], [ico, '#e6f1fa', TM(0.3, 0.04, 0.12, 0, 1, 0, 0.22, 0.1, 0.2)]]);
+  reg('p_cairn', [[ico, '#8fa0b3', TM(0, 0.1, 0, 0, 0.2, 0, 0.22, 0.12, 0.2)], [ico, '#a9b7c6', TM(0.01, 0.27, 0, 0, 1.1, 0, 0.16, 0.09, 0.15)], [ico, '#c5d0dc', TM(0, 0.4, 0.01, 0, 2, 0, 0.1, 0.07, 0.1)], [ico, '#ffffff', TM(0, 0.47, 0.01, 0, 0, 0, 0.08, 0.03, 0.08)]]);
+  reg('p_drift', [[cyl, '#cdb89a', TM(0, 0.07, 0, 0, 0, Math.PI / 2 + 0.06, 0.06, 1.1, 0.06)], [cyl, '#bfa888', TM(0.2, 0.12, 0.12, 0.9, 0, 0.5, 0.035, 0.4, 0.035)]]);
+  // taches d'herbe plus sombres ou plus claires : le sol n'est plus uni
+  const blob = new THREE.Shape(); for (let i = 0; i <= 11; i++) { const a = i / 11 * 6.283, r = 1 + Math.sin(a * 3 + 1) * 0.16 + Math.cos(a * 2) * 0.1; i ? blob.lineTo(Math.cos(a) * r, Math.sin(a) * r * 0.78) : blob.moveTo(Math.cos(a) * r, Math.sin(a) * r * 0.78); }
+  const bg = new THREE.ShapeGeometry(blob); bg.rotateX(-Math.PI / 2); bg.translate(0, 0.008, 0);
+  const pm = (c, o) => new THREE.MeshStandardMaterial({ color: c, transparent: true, opacity: o, depthWrite: false, roughness: 1, polygonOffset: true, polygonOffsetFactor: -0.5, polygonOffsetUnits: -0.5 });
+  A.p_patch_d = new THREE.Mesh(bg, pm('#1f4d14', 0.11)); A.p_patch_l = new THREE.Mesh(bg, pm('#fff7b0', 0.13));
+}
+// petits détails posés sur les îles : touffes d'herbe, cailloux au bord des chemins, champignons, coquillages…
+function detailIslands(put) {
+  for (const I of ISLANDS) {
+    const R = mulberry(hashStr('detail' + I.id)), hw = islHW(I), hd = islHD(I), snow = I.id === 'pics', free = FREE[I.id] || (() => true);
+    const near = (x, z) => PENS.some(P => Math.abs(x - P.x) < 4.2 && Math.abs(z - P.z) < 4.2) || WS.some(w => Math.hypot(x - w.x, z - w.z) < 3.4);
+    const rp = () => [I.ox + (R() * 2 - 1) * hw, I.oz + (R() * 2 - 1) * hd];
+    const grass = (x, z, pad) => inIsl(I, x, z, 0.84) && free(x, z, pad) && !onPath(x, z, 0.25) && !near(x, z);
+    const scat = (names, n, cond, s0 = 0.8, s1 = 0.5) => { let k = 0, t = 0; while (k < n && t++ < n * 40) { const [x, z] = rp(); if (!cond(x, z)) continue; put(I.id, names[Math.floor(R() * names.length)], x, z, R() * 6.283, s0 + R() * s1); k++; } };
+    for (let k = 0, t = 0; k < 16 && t < 500; t++) { const [x, z] = rp(), s = 1.6 + R() * 2.6; if (!inIsl(I, x, z, 0.8) || !inIsl(I, x + s, z, 0.86) || !inIsl(I, x - s, z, 0.86) || !inIsl(I, x, z + s, 0.86) || !inIsl(I, x, z - s, 0.86)) continue; put(I.id, R() < 0.6 ? 'p_patch_d' : 'p_patch_l', x, z, R() * 6.283, s); k++; }
+    if (snow) { scat(['p_snow'], 46, (x, z) => grass(x, z, 0.3), 0.7, 0.9); scat(['p_cairn'], 6, (x, z) => grass(x, z, 0.5), 0.9, 0.5); scat(['p_log', 'p_stump'], 4, (x, z) => grass(x, z, 0.8), 0.9, 0.3); }
+    else {
+      scat([I.id === 'lagon' ? 'p_tuft_dry' : 'p_tuft', 'p_tuft'], 150, (x, z) => grass(x, z, 0.15), 0.8, 0.9);
+      if (I.id !== 'lagon') { scat(['p_mushroom'], 10, (x, z) => grass(x, z, 0.6), 0.9, 0.6); scat(['p_stump', 'p_log'], 6, (x, z) => grass(x, z, 0.9), 0.9, 0.3); }
+      scat(['p_pebble'], 22, (x, z) => grass(x, z, 0.2), 0.8, 1);
+    }
+    // plage : coquillages, étoiles de mer, bois flotté
+    const beach = (x, z) => !inIsl(I, x, z, 0.925) && inIsl(I, x, z, 0.985) && free(x, z, 0.4) && !onPath(x, z, 0.6);
+    if (snow) scat(['p_snow'], 14, beach, 0.8, 0.8);
+    else { scat(['p_starfish', 'p_shell', 'p_shell'], I.id === 'lagon' ? 22 : 9, beach, 0.9, 0.8); scat(['p_drift'], I.id === 'lagon' ? 6 : 4, beach, 0.8, 0.5); scat(['p_tuft_dry'], 14, (x, z) => !inIsl(I, x, z, 0.88) && inIsl(I, x, z, 0.95) && free(x, z, 0.3) && !onPath(x, z, 0.4), 0.9, 0.7); }
+    // bord des chemins : cailloux, touffes et fleurs
+    for (const [px, pz, w, d] of PATHS) {
+      if (!inIsl(I, px, pz, 1.25)) continue;
+      const alongZ = d > w, len = alongZ ? d : w, hwid = (alongZ ? w : d) / 2;
+      for (let u = -len / 2 + 0.6; u < len / 2 - 0.6; u += 1.5) for (const sd of [-1, 1]) {
+        if (R() > 0.6) continue;
+        const off = sd * (hwid + 0.28 + R() * 0.22), uu = u + (R() - .5), x = alongZ ? px + off : px + uu, z = alongZ ? pz + uu : pz + off;
+        if (!inIsl(I, x, z, 0.9) || onPath(x, z, 0.08) || !free(x, z, -0.5) || near(x, z)) continue;
+        const q = R(); put(I.id, snow ? (q < 0.6 ? 'p_pebble' : 'p_snow') : q < 0.45 ? 'p_pebble' : q < 0.8 ? 'p_tuft' : (I.id === 'vergers' ? 'flowers_c' : 'flowers_a'), x, z, R() * 6.283, snow && q >= 0.6 ? 0.5 : q >= 0.8 ? 0.55 : 0.8 + R() * 0.6);
+      }
+    }
+  }
+}
+// relief « tourné » facetté (îlots, rochers, icebergs, bouées)
+function lathe(buf, cx, cz, R, prof, seg, rng, jit, apexH = 0.04) {
+  const sh = []; for (let i = 0; i < seg; i++) sh.push(1 + (rng() - .5) * jit * 2);
+  const a0 = rng() * 6.283, c = new THREE.Color();
+  const pt = (j, i) => { const a = a0 + i / seg * 6.283, r = R * prof[j][0] * sh[i % seg]; return [cx + Math.cos(a) * r, prof[j][1], cz + Math.sin(a) * r]; };
+  const tri = (p, q, r2, col) => { c.set(col); const k = 0.93 + rng() * 0.14; for (const v of [p, q, r2]) { buf.pos.push(v[0], v[1], v[2]); buf.col.push(c.r * k, c.g * k, c.b * k); } };
+  for (let j = 0; j < prof.length - 1; j++) for (let i = 0; i < seg; i++) { const L0 = pt(j, i), L1 = pt(j, i + 1), U0 = pt(j + 1, i), U1 = pt(j + 1, i + 1), col = prof[j + 1][2]; tri(L0, U0, L1, col); tri(L1, U0, U1, col); }
+  const top = prof[prof.length - 1], apex = [cx, top[1] + apexH, cz];
+  for (let i = 0; i < seg; i++) tri(apex, pt(prof.length - 1, i + 1), pt(prof.length - 1, i), top[2]);
+}
+const bufGeo = b => { const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.Float32BufferAttribute(b.pos, 3)); g.setAttribute('color', new THREE.Float32BufferAttribute(b.col, 3)); g.computeVertexNormals(); return g; };
+function shorePt(I, a, d) { // point situé à d mètres au large du rivage, dans la direction a
+  const c = Math.cos(a), s = Math.sin(a), k = Math.pow(Math.pow(Math.abs(c), 4) + Math.pow(Math.abs(s), 4), -0.25), bx = c * k * islHW(I), bz = s * k * islHD(I), l = Math.hypot(bx, bz) || 1;
+  return [I.ox + bx + bx / l * d, I.oz + bz + bz / l * d];
+}
+function surroundScatter(put) {
+  const WY = -0.66, ferry = new THREE.CatmullRomCurve3(FERRY_PTS.map(([x, z]) => new THREE.Vector3(x, 0, z)), true, 'centripetal').getSpacedPoints(240);
+  const islets = [], land = { pos: [], col: [] }, bob = { pos: [], col: [] }, discs = [];
+  const ICOL = {}; A.island.traverse(m => { if (m.isMesh && m.material && m.material.color) ICOL[(m.material.name || '').replace('M_', '')] = '#' + m.material.color.getHexString(); });
+  const clear = (x, z, r, noIslets) => {
+    for (const J of ISLANDS) if (inIsl(J, x, z, 1 + (r + 2.4) / Math.min(islHW(J), islHD(J)))) return false;
+    if (Math.abs(x - 3.2) < r + 4 && z > 24) return false;
+    for (const J of NEW_ISL) { const hd = islHD(J); if (Math.abs(x - (J.ox - 8.6)) < r + 3.6 && z > J.oz + hd - 3 && z < J.oz + hd + 14) return false; }
+    for (const p of ferry) if (Math.abs(p.x - x) < r + 4.6 && Math.abs(p.z - z) < r + 4.6 && Math.hypot(p.x - x, p.z - z) < r + 4.6) return false;
+    if (!noIslets) for (const s of islets) if (Math.hypot(s.x - x, s.z - z) < s.r + r + 1.5) return false;
+    return true;
+  };
+  SUR.clear = clear;
+  const disc = (x, z, rx, rz, ry, col, al = 1) => discs.push([x, z, rx, rz, ry, col, al]);
+  for (const I of ISLANDS) {
+    const R = mulberry(hashStr('sea' + I.id)), P = I.pal || {}, id = I.id, snow = id === 'pics';
+    const C = { sand: P.sand || ICOL.sand || '#ecd39a', wet: P.sand_wet || ICOL.sand_wet || '#d9bd84', g: P.grass || ICOL.grass || '#8fcf5a', gd: P.grass_dk || ICOL.grass_dk || '#74b84a' };
+    const B = { vallee: { trees: ['tree_a', 'tree_b', 'pine', 'tree_c'], small: ['bush_a', 'bush_b', 'flowers_a', 'flowers_b', 'p_tuft', 'p_tuft', 'rock_a'], rock: ['rock_a', 'rock_b'], st: ['#6e757d', '#979da4', '#b3b8bd', C.g], sh: '#8fe9e2' },
+      vergers: { trees: ['tree_cherry', 'tree_cherry', 'tree_a', 'tree_apple'], small: ['bush_c', 'flowers_c', 'fallen_blossom', 'p_tuft', 'flowers_c', 'rock_b'], rock: ['rock_b', 'rock_a'], st: ['#77727a', '#a39ca6', '#c0b9c2', C.g], sh: '#9aeedd' },
+      lagon: { trees: ['tree_coco', 'tree_coco', 'tree_banana'], small: ['bush_a', 'p_tuft_dry', 'p_starfish', 'p_shell', 'p_tuft_dry', 'p_drift'], rock: ['rock_a', 'rock_b'], st: ['#7b6f62', '#a89a88', '#c4b7a4', C.g], sh: '#7ff3e4' },
+      pics: { trees: ['pine_snow', 'pine_snow', 'pine'], small: ['rock_snow', 'p_snow', 'p_cairn', 'p_snow'], rock: ['rock_snow'], st: ['#6f8196', '#93a5b9', '#c2d0de', '#ffffff'], sh: '#c9f0ff' } }[id];
+    const find = (r, d0, d1, north) => { for (let t = 0; t < 260; t++) { const a = north ? Math.PI * (1.08 + R() * 0.84) : R() * 6.283, [x, z] = shorePt(I, a, d0 + R() * (d1 - d0) + r); if (clear(x, z, r)) return [x, z]; } return null; };
+    const islet = (x, z, r, sandy) => {
+      const prof = sandy ? [[1.17, WY + 0.015], [1.03, WY + 0.025, '#ffffff'], [0.98, -0.5, C.wet], [0.8, -0.1, C.sand], [0.5, 0.02, C.sand]]
+        : [[1.17, WY + 0.015], [1.03, WY + 0.025, '#ffffff'], [0.98, -0.5, C.wet], [0.87, -0.12, C.sand], [0.75, 0, C.sand], [0.67, 0.03, C.gd], [0.44, 0.05, C.g]];
+      lathe(land, x, z, r, prof, Math.max(8, Math.round(r * 2.6)), R, 0.13); islets.push({ x, z, r }); disc(x, z, r * 2.15, r * 2.15, 0, B.sh, 0.95);
+    };
+    const dress = (x, z, r, nT, nS, hole = 0) => {
+      const pts = [];
+      for (let k = 0, t = 0; k < nT && t < 40; t++) { const a = R() * 6.283, d = hole + R() * Math.max(0.2, r * 0.42 - hole); const px = x + Math.cos(a) * d, pz = z + Math.sin(a) * d; if (pts.some(([u, v]) => Math.hypot(u - px, v - pz) < 1.5)) continue; pts.push([px, pz]); put(id, B.trees[Math.floor(R() * B.trees.length)], px, pz, R() * 6.283, 0.75 + R() * 0.4); k++; }
+      for (let k = 0; k < nS; k++) { const a = R() * 6.283, d = hole * 0.8 + R() * Math.max(0.2, r * 0.6 - hole * 0.8); put(id, B.small[Math.floor(R() * B.small.length)], x + Math.cos(a) * d, z + Math.sin(a) * d, R() * 6.283, 0.7 + R() * 0.5); }
+    };
+    // 1) deux grands îlots « carte postale », placés au nord là où le regard porte
+    const LM = { vallee: [['lighthouse', 1], ['windmill', 0.8]], vergers: [['gazebo', 1.1], ['chalet', 0.8]], lagon: [['beachhut', 1.1], ['lighthouse', 0.9]], pics: [['chalet', 0.9], ['igloo', 1.2]] }[id];
+    for (const [model, sc] of LM) {
+      const r = 5.4 + R() * 1.2, p = find(r, 7, 17, true) || find(r, 5, 26, false); if (!p) continue; const [x, z] = p;
+      islet(x, z, r); const o = place(model, x - 0.2, z - 0.4, (R() - .5) * 0.8, sc); o.traverse(m => { if (m.isMesh) m.receiveShadow = true; });
+      dress(x, z, r, 4, 9, 2.3);
+      if (id === 'lagon') { put(id, 'parasol', x + 2.2, z + 1.6, R() * 6, 1); put(id, 'parasol', x - 2.4, z + 1.2, R() * 6, 1); }
+      if (snow) put(id, 'snowman', x + 2.1, z + 1.5, -0.4, 0.9);
+      if (model === 'gazebo' || model === 'chalet') put(id, 'p_log', x + 2.3, z + 1.4, 0.5, 1);
+      put(id, 'rowboat', x + r * 1.02, z + r * 0.45, R() * 6.283, 0.8, -0.82);
+    }
+    // 2) îlots boisés
+    for (let k = 0; k < 10; k++) { const r = 2.4 + R() * 2.1, p = find(r, 4, 27, k < 6); if (!p) continue; const sandy = id === 'lagon' && R() < 0.35; islet(p[0], p[1], r, sandy); if (sandy) { put(id, 'tree_coco', p[0], p[1], R() * 6, 0.8); put(id, 'parasol', p[0] + 0.9, p[1] + 0.5, R() * 6, 0.9); put(id, 'p_starfish', p[0] - 0.7, p[1] + 0.6, R() * 6, 1); } else dress(p[0], p[1], r, 1 + Math.floor(R() * 2.4), 3 + Math.floor(R() * 4)); }
+    // 3) cayes : petits bancs avec un buisson ou un arbre
+    for (let k = 0; k < 7; k++) { const r = 1.2 + R() * 0.9, p = find(r, 2.5, 30, k < 4); if (!p) continue; islet(p[0], p[1], r, id === 'lagon' || R() < 0.3); const q = R(); put(id, q < 0.4 ? B.trees[0] : B.small[Math.floor(R() * B.small.length)], p[0], p[1], R() * 6, q < 0.4 ? 0.62 : 0.8); }
+    // 4) rochers dressés (ou icebergs sur les Pics Givrés)
+    for (let k = 0; k < (snow ? 5 : 9); k++) {
+      const r = 0.9 + R() * 1.1, p = find(r, 2.5, 32, k < 5); if (!p) continue; const h = 0.8 + R() * 1.3;
+      lathe(land, p[0], p[1], r, [[1.22, WY + 0.015], [1.07, WY + 0.025, '#ffffff'], [1, -0.3, B.st[0]], [0.86, 0.5 * h, B.st[1]], [0.62, 1.2 * h, B.st[2]], [0.34, 1.7 * h, B.st[3]]], 7, R, 0.28, 0.25 * h);
+      islets.push({ x: p[0], z: p[1], r }); disc(p[0], p[1], r * 2.3, r * 2.3, 0, B.sh, 0.7);
+    }
+    if (snow) for (let k = 0; k < 11; k++) {
+      const r = 1 + R() * 1.7, p = find(r, 3, 32, k < 7); if (!p) continue; const h = 0.7 + R() * 1.1;
+      lathe(bob, p[0], p[1], r, [[0.95, -1.1], [1.08, -0.56, '#9fdcf5'], [0.84, 0.38 * h, '#dcf4ff'], [0.5, 0.95 * h, '#ffffff']], 6, R, 0.33, 0.3 * h);
+      islets.push({ x: p[0], z: p[1], r }); disc(p[0], p[1], r * 2.4, r * 2.4, 0, '#dff6ff', 1);
+    }
+    // 5) rochers au ras de l'eau près du rivage, bancs de sable, récifs colorés, bouées
+    for (let k = 0; k < 13; k++) { const [x, z] = shorePt(I, R() * 6.283, 0.5 + R() * 2.4); if (Math.abs(x - 3.2) < 3.5 && z > 20) continue; if (NEW_ISL.includes(I) && Math.abs(x - (I.ox - 8.6)) < 3 && z > I.oz) continue; put(id, B.rock[Math.floor(R() * B.rock.length)], x, z, R() * 6.283, 0.9 + R() * 0.9, -0.5 - R() * 0.12); }
+    for (let k = 0; k < 9; k++) { const [x, z] = shorePt(I, R() * 6.283, 5 + R() * 30); disc(x, z, 3.5 + R() * 5, 2 + R() * 3, R() * 3.14, snow ? '#e3f7ff' : '#c4f5e6', 0.5 + R() * 0.3); }
+    const reef = { vallee: ['#2f9f78', '#3fb98c', '#278a6a'], vergers: ['#ff9ec4', '#3fb98c', '#ffc2dc'], lagon: ['#ff8fa3', '#ffb26b', '#b58cff', '#ff6f91', '#ffd86b'], pics: ['#a8e4ff', '#ffffff'] }[id];
+    for (let k = 0; k < (id === 'lagon' ? 34 : 14); k++) { const [x, z] = shorePt(I, R() * 6.283, 1.5 + R() * 9), s = 0.5 + R() * 1.1; disc(x, z, s, s * (0.6 + R() * 0.5), R() * 3.14, reef[Math.floor(R() * reef.length)], 0.85); }
+    for (let k = 0; k < 4; k++) { const p = find(0.4, 4, 26, false); if (!p) continue; const red = R() < 0.5 ? '#e6483c' : '#f2a62c'; lathe(bob, p[0], p[1], 0.3, [[1, -0.8], [1, -0.42, red], [0.82, -0.12, '#ffffff'], [0.3, 0.42, red]], 6, R, 0, 0.22); islets.push({ x: p[0], z: p[1], r: 0.4 }); }
+    for (let k = 0; k < 3; k++) { const p = find(1.2, 3, 22, false); if (p) put(id, 'rowboat', p[0], p[1], R() * 6.283, 0.8, -0.82); }
+  }
+  const mat = new THREE.MeshStandardMaterial({ vertexColors: true, flatShading: true, roughness: 1 });
+  const lm = new THREE.Mesh(bufGeo(land), mat); lm.receiveShadow = true; scene.add(lm);
+  SUR.bob = new THREE.Mesh(bufGeo(bob), mat); scene.add(SUR.bob);
+  // hauts-fonds turquoise, bancs de sable et récifs : des disques doux posés juste au-dessus de l'eau
+  const cv = document.createElement('canvas'); cv.width = cv.height = 64; const g2 = cv.getContext('2d'), gr = g2.createRadialGradient(32, 32, 0, 32, 32, 32);
+  gr.addColorStop(0, 'rgba(255,255,255,.62)'); gr.addColorStop(0.55, 'rgba(255,255,255,.4)'); gr.addColorStop(1, 'rgba(255,255,255,0)'); g2.fillStyle = gr; g2.fillRect(0, 0, 64, 64);
+  const tex = new THREE.CanvasTexture(cv), pg = new THREE.PlaneGeometry(2, 2); pg.rotateX(-Math.PI / 2);
+  const sm = new THREE.MeshBasicMaterial({ map: tex, transparent: true, depthWrite: false }), im = new THREE.InstancedMesh(pg, sm, discs.length), col = new THREE.Color(), q = new THREE.Quaternion(), e = new THREE.Euler(), m4 = new THREE.Matrix4();
+  discs.forEach(([x, z, rx, rz, ry, c, al], i) => { e.set(0, ry, 0); q.setFromEuler(e); m4.compose(new THREE.Vector3(x, WY + 0.012 + (i % 7) * 0.0012, z), q, new THREE.Vector3(rx, 1, rz)); im.setMatrixAt(i, m4); col.set(c).multiplyScalar(al); im.setColorAt(i, col); });
+  im.frustumCulled = false; im.renderOrder = 1; scene.add(im); SUR.sh = sm;
+  // voiliers, mouettes, dauphins
+  const SAILS = ['#ffffff', '#ff6b6b', '#ffd166', '#6bc5ff', '#ff9f43', '#b28dff'], cyl = new THREE.CylinderGeometry(1, 1, 1, 6), hullG = new THREE.CylinderGeometry(0.44, 0.26, 0.4, 6), box = new THREE.BoxGeometry(1, 1, 1);
+  ['vallee', 'vallee', 'vergers', 'lagon', 'lagon', 'pics'].forEach((isl, k) => {
+    const g = new THREE.Group(), hull = new THREE.Mesh(bakeGeo([[hullG, k % 2 ? '#f4efe6' : '#8a5a33', TM(0, -0.5, 0, 0, 0, 0, 1, 1, 2.7)], [box, '#d9b27c', TM(0, -0.29, 0, 0, 0, 0, 0.62, 0.04, 1.9)], [box, '#f4efe6', TM(0, -0.17, -0.45, 0, 0, 0, 0.42, 0.22, 0.6)], [cyl, '#6b4526', TM(0, 0.95, 0.12, 0, 0, 0, 0.035, 2.5, 0.035)]]), PROPMAT);
+    const sg = new THREE.BufferGeometry(); sg.setAttribute('position', new THREE.Float32BufferAttribute([0, -0.05, 0.02, 0, 2.15, 0.06, 0, -0.05, -1.25, 0, 0.0, 0.22, 0, 1.7, 0.2, 0, 0.0, 1.05], 3)); sg.computeVertexNormals();
+    const sail = new THREE.Mesh(sg, new THREE.MeshStandardMaterial({ color: SAILS[k % SAILS.length], side: THREE.DoubleSide, roughness: .9, flatShading: true }));
+    hull.castShadow = true; sail.castShadow = true; g.add(hull, sail); g.scale.setScalar(1.25); scene.add(g);
+    const R = mulberry(77 + k * 13); let p = null; for (let t = 0; t < 300 && !p; t++) { const c = shorePt(ISL[isl], R() * 6.283, 6 + R() * 22); if (clear(c[0], c[1], 2.4)) p = c; }
+    if (!p) { g.visible = false; return; }
+    SUR.boats.push({ g, isl, x: p[0], z: p[1], tx: p[0], tz: p[1], yaw: R() * 6.283, wait: R() * 3, ph: R() * 6, spd: 1.2 + R() * 0.7 });
+  });
+  const wg = new THREE.BufferGeometry(); wg.setAttribute('position', new THREE.Float32BufferAttribute([0, 0, -0.14, 0, 0, 0.16, -0.78, 0.2, 0.04, 0, 0, 0.16, 0, 0, -0.14, 0.78, 0.2, 0.04, -0.05, -0.02, 0.2, 0.05, -0.02, 0.2, 0, 0, -0.3], 3)); wg.computeVertexNormals();
+  const gm = new THREE.MeshStandardMaterial({ color: '#ffffff', side: THREE.DoubleSide, roughness: 1, flatShading: true });
+  for (let k = 0; k < 5; k++) { const m = new THREE.Mesh(wg, gm); m.castShadow = true; scene.add(m); SUR.gulls.push({ m, a: k * 1.3, r: 9 + k * 4.5, h: 7.5 + (k % 3) * 1.4, w: (k % 2 ? -1 : 1) * (0.22 + k * 0.03), ox: (k % 3 - 1) * 9, oz: (k % 2) * 10 - 8, ph: k * 2.1 }); }
+  const sph = new THREE.SphereGeometry(1, 8, 6), cone = new THREE.ConeGeometry(1, 1, 4);
+  const dg = bakeGeo([[sph, '#6f8fa8', TM(0, 0, 0, 0, 0, 0, 0.26, 0.24, 0.85)], [sph, '#e9f0f5', TM(0, -0.08, 0.1, 0, 0, 0, 0.2, 0.17, 0.6)], [cone, '#5f7f98', TM(0, 0.3, -0.05, -0.5, 0, 0, 0.07, 0.34, 0.2)], [cone, '#5f7f98', TM(0, 0, -0.95, Math.PI / 2, 0, 0, 0.3, 0.3, 0.05)], [cone, '#6f8fa8', TM(0, 0, 0.95, Math.PI / 2, 0, 0, 0.11, 0.42, 0.11)]]);
+  for (let k = 0; k < 2; k++) { const m = new THREE.Mesh(dg, PROPMAT); m.visible = false; m.scale.setScalar(1.25); scene.add(m); SUR.dols.push({ m, t: -1, next: 5 + k * 6, x: 0, z: 0, yaw: 0 }); }
+}
+function surFrame(dt, time) {
+  if (!SUR.clear) return;
+  if (SUR.bob) SUR.bob.position.y = Math.sin(time * 0.7) * 0.05;
+  if (SUR.sh) SUR.sh.color.setScalar(1 - 0.62 * clamp(dnNight, 0, 1));
+  for (const b of SUR.boats) {
+    const dx = b.tx - b.x, dz = b.tz - b.z, d = Math.hypot(dx, dz);
+    if (d < 0.4) {
+      b.wait -= dt;
+      if (b.wait <= 0) { b.wait = 1.5; const I = ISL[b.isl]; for (let t = 0; t < 6; t++) { const [x, z] = shorePt(I, Math.random() * 6.283, 6 + Math.random() * 26), L = Math.hypot(x - b.x, z - b.z); if (L < 9 || L > 60 || !SUR.clear(x, z, 2.2)) continue; let ok = true; const n = Math.ceil(L / 2.5); for (let i = 1; i < n && ok; i++) ok = SUR.clear(lerp(b.x, x, i / n), lerp(b.z, z, i / n), 1.5); if (ok) { b.tx = x; b.tz = z; break; } } }
+    } else {
+      const want = Math.atan2(dx, dz); let dy = want - b.yaw; dy = Math.atan2(Math.sin(dy), Math.cos(dy)); b.yaw += dy * Math.min(1, dt * 1.6);
+      const s = Math.min(d, b.spd * dt * (Math.abs(dy) < 0.6 ? 1 : 0.25)); b.x += dx / d * s; b.z += dz / d * s;
+    }
+    b.g.position.set(b.x, Math.sin(time * 1.3 + b.ph) * 0.05, b.z); b.g.rotation.set(Math.sin(time * 1.1 + b.ph) * 0.04, b.yaw, Math.sin(time * 0.9 + b.ph) * 0.07);
+  }
+  const C = HOME(curIsl);
+  for (const g of SUR.gulls) {
+    g.a += g.w * dt; const x = C.x + g.ox + Math.cos(g.a) * g.r, z = C.z + g.oz + Math.sin(g.a) * g.r * 1.25;
+    g.m.position.set(x, g.h + Math.sin(time * 0.6 + g.ph) * 0.6, z); g.m.rotation.set(0, Math.atan2(-Math.sin(g.a) * g.r * g.w, Math.cos(g.a) * g.r * 1.25 * g.w) + Math.PI, Math.sin(g.a) * 0.25 * Math.sign(g.w));
+    const glide = Math.sin(time * 0.5 + g.ph) > 0.55; g.m.scale.set(1.15, glide ? 0.5 : Math.sin(time * 9 + g.ph) * 1.7, 1.15);
+  }
+  for (const d of SUR.dols) {
+    if (d.t < 0) {
+      d.next -= dt; if (d.next > 0 || travel || document.hidden) continue; d.next = 5 + Math.random() * 9;
+      for (let t = 0; t < 8; t++) { const a = Math.random() * 6.283, r = 14 + Math.random() * 24, x = rig.t.x + Math.cos(a) * r, z = rig.t.z - Math.abs(Math.sin(a)) * r + 6; if (!SUR.clear(x, z, 2.6)) continue; d.x = x; d.z = z; d.yaw = Math.random() * 6.283; d.t = 0; d.m.visible = true; PFX.emit(x, -0.5, z, { n: 10, col: ['#ffffff', '#bfeeff'], spd: 1.6, up: 3.2, grav: 9, life: .6, size: .26, spread: .5 }); break; }
+    } else {
+      d.t += dt / 1.25; const k = d.t, fx = Math.sin(d.yaw), fz = Math.cos(d.yaw), u = (k - 0.5) * 3.4;
+      d.m.position.set(d.x + fx * u, -1.0 + Math.sin(Math.PI * k) * 2.0, d.z + fz * u); d.m.rotation.set(-Math.cos(Math.PI * k) * 1.0, d.yaw, 0, 'YXZ');
+      if (k >= 1) { d.t = -1; d.m.visible = false; PFX.emit(d.x + fx * 1.7, -0.5, d.z + fz * 1.7, { n: 12, col: ['#ffffff', '#bfeeff'], spd: 1.8, up: 3.4, grav: 9, life: .6, size: .28, spread: .6 }); }
+    }
+  }
+}
 
 function buildWorld() {
   W.foamMat = new THREE.MeshBasicMaterial({ color: '#ffffff', transparent: true, opacity: .55, depthWrite: false });
   woodMat = new THREE.MeshStandardMaterial({ color: '#c08c58', roughness: .9 }); woodDkMat = new THREE.MeshStandardMaterial({ color: '#8a5a33', roughness: .9 });
   for (const I of ISLANDS) islandTerrain(I);
+  makeProps(); FREE.vallee = isFree;
   // --- Vallée Dorée : chemins, ponton, étang ---
   path(3.2, 21, 2.6, 22); path(0.25, 1.5, 1.8, 17); path(0.5, -7, 30, 2.1); path(1.5, 10, 31, 1.9); path(0, -17.4, 27, 1.8); path(-9.3, -12.2, 1.5, 10.4); path(-1.2, -19.2, 1.6, 3.6); path(10.5, -19.4, 1.6, 2.8);
   pier(3.2, 29, 119, 3.4);
@@ -2368,7 +2581,7 @@ function buildWorld() {
   // décor instancié
   const decor = {};
   let decIsl = 'vallee';
-  const add = (n, x, z, ry, s) => (decor[decIsl + '|' + n] = decor[decIsl + '|' + n] || []).push([x, z, ry, s]);
+  const add = (n, x, z, ry, s, y) => (decor[decIsl + '|' + n] = decor[decIsl + '|' + n] || []).push([x, z, ry, s, y]);
   { // Vallée Dorée
     const R = mulberry(7), placed = [];
     const okSpot = (x, z, pad, sep, m) => inIsland(x, z, m) && isFree(x, z, pad) && placed.every(([a, b, r]) => Math.hypot(a - x, b - z) > Math.max(sep, r));
@@ -2408,6 +2621,7 @@ function buildWorld() {
     if (I.id === 'pics') zr.push([-4.2, 2.8, 4.2, 10.2], [-6.2, 10.6, 1.4, 16.2], [3.6, 11.2, 7.8, 15.2]);
     const zones = zr.map(([a, b, c, d]) => [I.ox + a, I.oz + b, I.ox + c, I.oz + d]);
     const free = (x, z, pad) => zones.every(([a, b, c, d]) => !(x > a - pad && x < c + pad && z > b - pad && z < d + pad));
+    FREE[I.id] = free;
     const ok = (x, z, pad, sep, m) => inIsl(I, x, z, m) && free(x, z, pad) && placed.every(([a, b, r]) => Math.hypot(a - x, b - z) > Math.max(sep, r));
     const hw = islHW(I), hd = islHD(I);
     const rnd2 = () => [I.ox + (R() * 2 - 1) * hw, I.oz + (R() * 2 - 1) * hd];
@@ -2427,16 +2641,19 @@ function buildWorld() {
     if (I.id === 'vergers') for (let k = 0; k < 8; k++) { const a = k / 8 * 6.28; add('flowers_c', I.ox + Math.cos(a) * 3.7, I.oz + 6.4 + Math.sin(a) * 3.4, a, 0.9); }
     if (I.id === 'lagon') { for (const [x, z, r] of [[-6.6, 4.2, .3], [-6.8, 13.2, 1.2], [6.8, 13.4, 2], [6.9, 4.0, 2.6]]) add('tree_banana', I.ox + x, I.oz + z, r, 0.75); for (const [x, z] of [[-7.4, 10.2], [-7.2, 11.1]]) add('crate', I.ox + x, I.oz + z, 0.3, 1); }
   }
+  const putD = (isl, n, x, z, ry, s, y) => { if (!A[n]) return; decIsl = isl; add(n, x, z, ry, s, y); };
+  try { detailIslands(putD); } catch (e) { console.error('[Fermidor] détails', e); }
+  try { surroundScatter(putD); } catch (e) { console.error('[Fermidor] archipel', e); }
   for (const key in decor) {
-    const n = key.split('|')[1], list = decor[key], I = new Inst(n, list.length, { cast: !/flowers|lily|fallen/.test(n) });
-    list.forEach(([x, z, ry, s], i) => I.set(i, compose(x, n === 'lily' ? 0.07 : 0, z, ry, s))); I.count(list.length);
+    const n = key.split('|')[1], list = decor[key], I = new Inst(n, list.length, { cast: !/flowers|lily|fallen|p_tuft|p_pebble|p_patch|p_shell|p_starfish|p_snow/.test(n) });
+    list.forEach(([x, z, ry, s, y], i) => I.set(i, compose(x, y ?? (n === 'lily' ? 0.07 : 0), z, ry, s))); I.count(list.length);
     for (const p of I.parts) { p.im.computeBoundingSphere(); p.im.frustumCulled = true; }
   }
   // nuages autour de l'archipel
   for (let k = 0; k < 14; k++) { const c = mk(k % 2 ? 'cloud_a' : 'cloud_b'); c.traverse(m => { if (m.isMesh) { m.castShadow = false; m.receiveShadow = false; } }); const ca = rnd(0, 6.28), cr = rnd(120, 170); c.position.set(Math.sin(ca) * cr, rnd(8, 18), Math.cos(ca) * cr - 40); c.scale.setScalar(rnd(2.4, 3.8)); const mats = []; c.traverse(m => { if (m.isMesh) { m.material = m.material.clone(); m.material.transparent = true; m.material.depthWrite = false; mats.push(m.material); } }); scene.add(c); W.clouds.push({ o: c, v: rnd(0.4, 0.9), mats, a: 1 }); }
   // ferry
   const fr = mk('ferry'); scene.add(fr);
-  const pts = [[58, 31], [40, 8], [32, -30], [16, -50], [-8, -57], [-30, -48], [-38, -28], [-44, 8], [-74, 31], [-96, 6], [-86, -70], [0, -130], [86, -70], [92, 6]].map(([x, z]) => new THREE.Vector3(x, 0, z));
+  const pts = FERRY_PTS.map(([x, z]) => new THREE.Vector3(x, 0, z));
   W.ferry = { o: fr, curve: new THREE.CatmullRomCurve3(pts, true, 'centripetal'), u: 0 }; W.ferry.len = W.ferry.curve.getLength();
   // fumée
   const sg = new THREE.IcosahedronGeometry(0.35, 1);
@@ -4638,7 +4855,7 @@ document.addEventListener('visibilitychange', () => { if (document.hidden && sta
 window.addEventListener('pagehide', () => { if (started) save(true); });
 function buyUpgrade(u) { if (S.upg[u] >= UPGD[u].max || L() < UPGD[u].lvl) return false; if (!spend(upgCost(u))) return false; S.upg[u]++; return true; }
 function hire(id) { const h = HELPERS.find(x => x.id === id); if (!h || S.help[id] || L() < h.lvl) return false; if (!spend(h.cost)) return false; S.help[id] = true; return true; }
-if (/debug/.test(location.search)) window.__fd = { PFX, GARD, gardStats, travelTo, PAY, PACKS, claimPurchases, payModal, makePlan, improvise, queueGain, flushGain, setNow: v => { simNow = v; }, audioRender, SONGS, prodRate, setOffline: v => { OFFLINE = v; }, DAILY, WHEEL, addBoost, ECON, grant, achVal, ACH, GOALD, MT, OFFLINE_EFF, crateReward, refreshMissions, CROPS, TREES, ITEMS, PENS, setSim: v => { SIM = v; }, BAL, adviceNow, curGoal, genOrder, idleHint, recommendCrop, GOALS, setIdle: ms => { lastInput = performance.now() - ms; lastHint = -Infinity; }, resetState: () => { S = fresh(); S.tut = 99; cropsDirty = signsDirty = true; }, plant, harvest, fillOrder, sell, buyPlot, buyPen, buyAnimal, buildWS, queueRecipe, canQueue, collectPen, collectWS, treePlant, treeHarvest, buyTreeSlot, discardOrder, canFill, canGet, buyUpgrade, hire, upgradeWS, wsUpCost,
+if (/debug/.test(location.search)) window.__fd = { PFX, SUR, rig, updateCam, GARD, gardStats, travelTo, PAY, PACKS, claimPurchases, payModal, makePlan, improvise, queueGain, flushGain, setNow: v => { simNow = v; }, audioRender, SONGS, prodRate, setOffline: v => { OFFLINE = v; }, DAILY, WHEEL, addBoost, ECON, grant, achVal, ACH, GOALD, MT, OFFLINE_EFF, crateReward, refreshMissions, CROPS, TREES, ITEMS, PENS, setSim: v => { SIM = v; }, BAL, adviceNow, curGoal, genOrder, idleHint, recommendCrop, GOALS, setIdle: ms => { lastInput = performance.now() - ms; lastHint = -Infinity; }, resetState: () => { S = fresh(); S.tut = 99; cropsDirty = signsDirty = true; }, plant, harvest, fillOrder, sell, buyPlot, buyPen, buyAnimal, buildWS, queueRecipe, canQueue, collectPen, collectWS, treePlant, treeHarvest, buyTreeSlot, discardOrder, canFill, canGet, buyUpgrade, hire, upgradeWS, wsUpCost,
   CROP, TREE, PEN, WSD, UPG, UPGD, HELPERS, ISL, NEW_ISL, PLOT_COST, PLOT_LVL, upgCost, animalCost, tslotCost, tslotLvl, cap, space, invTotal, have, price, xpNeed, pendingLv, ICONS, ITEMS, CROPS, TREES, PANELS, fmtT, THREE, renderer, scene, camera, W, travelTo, unlockIsland, ISLANDS, TSLOT, get S() { return S; }, onPick, toScreen, PLOT_POS, PENS, WS, openSheet, closeSheet, tick, simulate, addXP, rig, updateCam, save };
 // ---------- adaptation PC / mobile : son, plein écran, raccourcis clavier ----------
 const FINE = matchMedia('(hover:hover) and (pointer:fine)');
@@ -5009,6 +5226,7 @@ function lifeFrame(dt) {
   try { rainFrame(dt); } catch (e) { }
   try { balloonFrame(dt); } catch (e) { }
   try { fliesFrame(dt); } catch (e) { }
+  try { surFrame(dt, clock); } catch (e) { if (errN++ < 5) console.error('[Fermidor] mer', e); }
 }
 // ---------- export / import du code de sauvegarde ----------
 async function exportSaveModal() {
